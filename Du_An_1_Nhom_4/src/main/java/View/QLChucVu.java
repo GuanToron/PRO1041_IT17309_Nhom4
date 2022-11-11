@@ -41,7 +41,7 @@ public class QLChucVu extends javax.swing.JFrame {
 
     private void loadTextField(int i) {
         ChucVu x = listChucVu.get(i);
-        x.setMaChucVu(Integer.parseInt(txtMaChucVu.getText()));
+        txtMaChucVu.setText(x.getMaChucVu()+"");
         txtTenChucVu.setText(x.getTenChucVu());
     }
 
@@ -103,6 +103,8 @@ public class QLChucVu extends javax.swing.JFrame {
         lblLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLabel.setForeground(new java.awt.Color(102, 153, 255));
         lblLabel.setText("QUẢN LÝ CHỨC VỤ");
+
+        txtMaChucVu.setEditable(false);
 
         tblChucVu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -185,7 +187,7 @@ public class QLChucVu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        ChucVu x = getChucVu();
+        ChucVu x = new ChucVu(txtTenChucVu.getText());
         JOptionPane.showMessageDialog(this, service.themChucVu(x));
         listChucVu = service.listChucVu();
         loadTable();
