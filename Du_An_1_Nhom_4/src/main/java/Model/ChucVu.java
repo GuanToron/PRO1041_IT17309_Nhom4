@@ -27,6 +27,10 @@ public class ChucVu {
     private String tenChucVu;
     @OneToMany(mappedBy = "ChucVu",fetch = FetchType.EAGER)
     private ArrayList<NhanVien> listNhanVien ;
+
+    public ChucVu(String tenChucVu) {
+        this.tenChucVu = tenChucVu;
+    }
     
     public ChucVu() {
     }
