@@ -5,7 +5,7 @@ import java.sql.*;
 public class DBConection {
 
     private static String username = "sa";
-    private static String pass = "123";
+    private static String pass = "231003";
     private static String connectionSQL = "jdbc:sqlserver://localhost:1433;databaseName=AssignmentPro1041;encrypt=true;trustServerCertificate=true";
     private static Connection conn;
 
