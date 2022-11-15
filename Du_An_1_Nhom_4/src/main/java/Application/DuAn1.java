@@ -2,7 +2,7 @@
 
 package Application;
 
-import View.FormQLKhachHang;
+
 import View.Formkh;
 import View.QLChucVu;
 
