@@ -193,18 +193,33 @@ public class QLNPH extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        NPH x = getNPH();
-        JOptionPane.showMessageDialog(this, service.suaNPH(x));
-        listNPH = service.listNPH();
-        loadTable(listNPH);
+        int temp = tblNPH.getSelectedRow();
+        if (temp < 0) {
+            JOptionPane.showMessageDialog(this, "Ban chua chon doi tuong de xoa");
+        } else {
+            NPH x = getNPH();
+            JOptionPane.showMessageDialog(this, service.suaNPH(x));
+            listNPH = service.listNPH();
+            loadTable(listNPH);
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        NPH x = getNPH();
-        JOptionPane.showMessageDialog(this, service.xoaNPH(x));
-        listNPH = service.listNPH();
-        loadTable(listNPH);
-        clear();
+        int temp = tblNPH.getSelectedRow();
+        if (temp < 0) {
+            JOptionPane.showMessageDialog(this, "Ban chua chon doi tuong de xoa");
+        } else {
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon xoa doi tuong nay khong ?");
+            if (choice == JOptionPane.OK_OPTION) {
+                NPH x = getNPH();
+                JOptionPane.showMessageDialog(this, service.xoaNPH(x));
+                listNPH = service.listNPH();
+                loadTable(listNPH);
+                clear();
+            } else {
+                JOptionPane.showMessageDialog(this, "Da huy");
+            }
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
