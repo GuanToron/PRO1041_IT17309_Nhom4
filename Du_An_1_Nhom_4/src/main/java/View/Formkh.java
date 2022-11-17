@@ -20,14 +20,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Formkh extends javax.swing.JFrame {
 
-   private final ImanageKhachHangService imanageKhachHangService;
+    private final ImanageKhachHangService imanageKhachHangService;
+
     public Formkh() {
         initComponents();
         imanageKhachHangService = new manageKhachHangService();
         loadTable();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -238,15 +238,15 @@ public class Formkh extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng không để trống điểm tích lũy ");
             return;
         }
-        
+
         int diem = Integer.parseInt(txtdiemtichluy.getText());
-        if(diem <0){
-         JOptionPane.showMessageDialog(this, "Điểm tích lũy > 0");
-         return;
+        if (diem < 0) {
+            JOptionPane.showMessageDialog(this, "Điểm tích lũy > 0");
+            return;
         }
-        if(diem == 0){
-        JOptionPane.showMessageDialog(this, "Điểm tích lũy phải là số nguyên");
-         return;
+        if (diem == 0) {
+            JOptionPane.showMessageDialog(this, "Điểm tích lũy phải là số nguyên");
+            return;
         }
         // add
         if (imanageKhachHangService.add(kh) != null) {
@@ -262,7 +262,10 @@ public class Formkh extends javax.swing.JFrame {
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
-         int row = tblKH.getSelectedRow();
+        int row = tblKH.getSelectedRow();
+         if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 dòng trên table để update");
+        }
         KhachHang kh = getdataFromInput();
         String makh = tblKH.getValueAt(row, 0).toString();
         if (txtten.getText().isEmpty() == true) {
@@ -287,20 +290,22 @@ public class Formkh extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng không để trống điểm tích lũy ");
             return;
         }
-        
-        int diem = Integer.parseInt(txtdiemtichluy.getText());
-        if(diem <0){
-         JOptionPane.showMessageDialog(this, "Điểm tích lũy > 0");
-         return;
+        try {
+            int diem = Integer.parseInt(txtdiemtichluy.getText());
+
+            if (diem < 0) {
+                JOptionPane.showMessageDialog(this, "Điểm tích lũy > 0");
+                return;
+            }
+            if (diem == 0) {
+                JOptionPane.showMessageDialog(this, "Điểm tích lũy phải là số nguyên");
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if(diem == 0){
-        JOptionPane.showMessageDialog(this, "Điểm tích lũy phải là số nguyên");
-         return;
-        }
-        
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 dòng trên table để update");
-        }
+
+       
         if (imanageKhachHangService.update(makh, kh) != null) {
             JOptionPane.showMessageDialog(this, " Update thành công ");
 
@@ -319,12 +324,11 @@ public class Formkh extends javax.swing.JFrame {
             return;
         }
         String makh = tblKH.getValueAt(row, 0).toString();
-        if(txtma.getText().trim().equals("")){ 
-         JOptionPane.showMessageDialog(this, "Nhập mã KH để xóa");
-         return;
+        if (txtma.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Nhập mã KH để xóa");
+            return;
         }
-        
-        
+
         if (imanageKhachHangService.delete(makh) != null) {
             JOptionPane.showMessageDialog(this, " Delete thành công ");
 
@@ -337,7 +341,7 @@ public class Formkh extends javax.swing.JFrame {
     }//GEN-LAST:event_btndeleteActionPerformed
 
     private void tblKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKHMouseClicked
-       int row = tblKH.getSelectedRow();
+        int row = tblKH.getSelectedRow();
         txtdiachi.setText(tblKH.getValueAt(row, 3).toString());
         txtma.setText(tblKH.getValueAt(row, 0).toString());
         txtngaysinh.setText(tblKH.getValueAt(row, 4).toString());
@@ -414,14 +418,14 @@ public class Formkh extends javax.swing.JFrame {
         DefaultTableModel tblmodel = (DefaultTableModel) tblKH.getModel();
         tblmodel.setRowCount(0);
         List<QLKhachHang> list = imanageKhachHangService.getAll();
-        
+
         for (QLKhachHang kh : list) {
-            tblmodel.addRow(new Object[] {kh.getMaKH(), kh.getTenKH(), kh.getGioiTinh() == 0 ? "Nữ" : "Nam", kh.getDiaChi(), kh.getNgaySinh(), kh.getSdt(), kh.getDiemTichLuy()});
+            tblmodel.addRow(new Object[]{kh.getMaKH(), kh.getTenKH(), kh.getGioiTinh() == 0 ? "Nữ" : "Nam", kh.getDiaChi(), kh.getNgaySinh(), kh.getSdt(), kh.getDiemTichLuy()});
         }
     }
 
     private KhachHang getdataFromInput() {
-     KhachHang kh = new KhachHang();
+        KhachHang kh = new KhachHang();
         kh.setDiaChi(txtdiachi.getText());
         try {
             kh.setDiemTichLuy(Integer.parseInt(txtdiemtichluy.getText()));
