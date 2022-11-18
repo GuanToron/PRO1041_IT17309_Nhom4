@@ -1,10 +1,15 @@
 package View;
 
+import Model.DanhMuc;
 import Model.NPH;
+import Service.ImanageDanhMucService;
 import Service.ImanageSanPhamLoiService;
 import Service.Impl.NPHServiceImpl;
 import Service.Impl.SanPhamLoiService;
+import Service.Impl.manageDanhMucService;
+import ViewModel.QLDanhMuc;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,14 +31,18 @@ public class QLSach_ extends javax.swing.JFrame {
 
     private ArrayList<NPH> listNPH = new ArrayList<>();
     private NPHServiceImpl serviceNPH = new NPHServiceImpl();
+    private final ImanageDanhMucService imanageDanhMucService;
 
     public QLSach_() {
         initComponents();
         setLocationRelativeTo(null);
         initComponents();
         tblDSSachLoi.setModel(modelNPH);
+        tblDanhMuc.setModel(modelDanhMuc);
         listNPH = serviceNPH.listNPH();
         loadTableNPH(listNPH);
+        imanageDanhMucService = new manageDanhMucService();
+        loadTableDM();
     }
 
     private void loadTableNPH(ArrayList<NPH> list) {
@@ -44,14 +53,29 @@ public class QLSach_ extends javax.swing.JFrame {
         }
     }
 
+    private void loadTableDM() {
+        List<QLDanhMuc> list = this.imanageDanhMucService.getAll();
+
+        modelDanhMuc.setRowCount(0);
+        for (QLDanhMuc dm : list) {
+            modelDanhMuc.addRow(new Object[]{dm.getMaDM(), dm.getTenDM()});
+        }
+    }
+
     private void loadTextFieldNPH(int i) {
         NPH x = listNPH.get(i);
         txtMaNPH.setText(x.getMaNPH() + "");
         txtTenNPH.setText(x.getTenNPH());
     }
+
     private void clearNPH() {
         txtMaNPH.setText("");
         txtTenNPH.setText("");
+    }
+
+    private void clearDM() {
+        txtMaDanhMuc.setText("");
+        txtTenDanhMuc.setText("");
     }
 
     private NPH getNPH() {
@@ -60,6 +84,13 @@ public class QLSach_ extends javax.swing.JFrame {
         x.setTenNPH(txtTenNPH.getText());
         return x;
     }
+
+    private DanhMuc getDateFormInput() {
+        DanhMuc dm = new DanhMuc();
+        dm.setTenDM(txtTenDanhMuc.getText());
+        return dm;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -156,13 +187,13 @@ public class QLSach_ extends javax.swing.JFrame {
         pnDanhMuc = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
+        txtMaDanhMuc = new javax.swing.JTextField();
+        txtTenDanhMuc = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
+        tblDanhMuc = new javax.swing.JTable();
+        btnThem = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -800,11 +831,16 @@ public class QLSach_ extends javax.swing.JFrame {
 
         jLabel24.setText("Tên danh mục");
 
-        jTextField15.setEditable(false);
+        txtMaDanhMuc.setEditable(false);
+        txtMaDanhMuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaDanhMucActionPerformed(evt);
+            }
+        });
 
-        jTextField16.setEditable(false);
+        txtTenDanhMuc.setEditable(false);
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tblDanhMuc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -815,13 +851,33 @@ public class QLSach_ extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(jTable5);
+        tblDanhMuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDanhMucMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tblDanhMuc);
 
-        jButton19.setText("Thêm");
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
-        jButton20.setText("Sửa");
+        btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
-        jButton21.setText("Xoá");
+        btnXoa.setText("Xoá");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnDanhMucLayout = new javax.swing.GroupLayout(pnDanhMuc);
         pnDanhMuc.setLayout(pnDanhMucLayout);
@@ -832,22 +888,22 @@ public class QLSach_ extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(pnDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnDanhMucLayout.createSequentialGroup()
-                        .addComponent(jButton19)
+                        .addComponent(btnThem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton20)
+                        .addComponent(btnSua)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton21)
+                        .addComponent(btnXoa)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnDanhMucLayout.createSequentialGroup()
                         .addGroup(pnDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnDanhMucLayout.createSequentialGroup()
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField15))
+                                .addComponent(txtMaDanhMuc))
                             .addGroup(pnDanhMucLayout.createSequentialGroup()
                                 .addComponent(jLabel24)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField16)))
+                                .addComponent(txtTenDanhMuc)))
                         .addGap(10, 10, 10))))
         );
         pnDanhMucLayout.setVerticalGroup(
@@ -856,16 +912,16 @@ public class QLSach_ extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(pnDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel24)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton19)
-                    .addComponent(jButton20)
-                    .addComponent(jButton21))
+                    .addComponent(btnThem)
+                    .addComponent(btnSua)
+                    .addComponent(btnXoa))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
@@ -1280,19 +1336,19 @@ public class QLSach_ extends javax.swing.JFrame {
     }//GEN-LAST:event_tblDSSachLoiMouseClicked
 
     private void tblNPHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNPHMouseClicked
-                int temp = tblNPH.getSelectedRow();
+        int temp = tblNPH.getSelectedRow();
         loadTextFieldNPH(temp);
     }//GEN-LAST:event_tblNPHMouseClicked
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-                NPH x = new NPH(txtTenNPH.getText());
+        NPH x = new NPH(txtTenNPH.getText());
         JOptionPane.showMessageDialog(this, serviceNPH.themNPH(x));
         listNPH = serviceNPH.listNPH();
         loadTableNPH(listNPH);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-       int temp = tblNPH.getSelectedRow();
+        int temp = tblNPH.getSelectedRow();
         if (temp < 0) {
             JOptionPane.showMessageDialog(this, "Ban chua chon doi tuong de xoa");
         } else {
@@ -1304,7 +1360,7 @@ public class QLSach_ extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-                int temp = tblNPH.getSelectedRow();
+        int temp = tblNPH.getSelectedRow();
         if (temp < 0) {
             JOptionPane.showMessageDialog(this, "Ban chua chon doi tuong de xoa");
         } else {
@@ -1320,6 +1376,75 @@ public class QLSach_ extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void txtMaDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaDanhMucActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaDanhMucActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        if (txtTenDanhMuc.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên danh mục ");
+            return;
+        }
+        DanhMuc dm = getDateFormInput();
+        if (imanageDanhMucService.add(dm) != null) {
+            JOptionPane.showMessageDialog(this, "Add thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Add thất bại");
+            return;
+        }
+        loadTableDM();
+        clearDM();
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        int row = tblDanhMuc.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 dòng trên table để cập nhật");
+            return;
+        }
+        if (txtTenDanhMuc.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên danh mục ");
+            return;
+        }
+        DanhMuc dm = getDateFormInput();
+        String maDM = tblDanhMuc.getValueAt(row, 0).toString();
+        if (imanageDanhMucService.update(maDM, dm) != null) {
+            JOptionPane.showMessageDialog(this, "Update thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Update thất bại");
+            return;
+        }
+        loadTableDM();
+        clearDM();
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        int row = tblDanhMuc.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 dòng trên table để xóa");
+            return;
+        }
+        String maDM = tblDanhMuc.getValueAt(row, 0).toString();
+        if (imanageDanhMucService.delete(maDM) != null) {
+            JOptionPane.showMessageDialog(this, "Delete thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Delete thất bại");
+            return;
+        }
+        loadTableDM();
+        clearDM();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tblDanhMucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhMucMouseClicked
+        int row = tblDanhMuc.getSelectedRow();
+        if (row == -1) {
+            return;
+        }
+
+        txtMaDanhMuc.setText(tblDanhMuc.getValueAt(row, 0).toString());
+        txtTenDanhMuc.setText(tblDanhMuc.getValueAt(row, 1).toString());
+    }//GEN-LAST:event_tblDanhMucMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1363,6 +1488,9 @@ public class QLSach_ extends javax.swing.JFrame {
     private javax.swing.JPanel BackGround;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel SidePanel;
+    private javax.swing.JButton btnSua;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1373,10 +1501,7 @@ public class QLSach_ extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
@@ -1460,7 +1585,6 @@ public class QLSach_ extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
     private javax.swing.JTable jTable7;
     private javax.swing.JTable jTable8;
@@ -1470,8 +1594,6 @@ public class QLSach_ extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
@@ -1493,8 +1615,11 @@ public class QLSach_ extends javax.swing.JFrame {
     private javax.swing.JPanel pnThongTinSach;
     private javax.swing.JPanel pnThuocTinhSach;
     private javax.swing.JTable tblDSSachLoi;
+    private javax.swing.JTable tblDanhMuc;
     private javax.swing.JTable tblNPH;
+    private javax.swing.JTextField txtMaDanhMuc;
     private javax.swing.JTextField txtMaNPH;
+    private javax.swing.JTextField txtTenDanhMuc;
     private javax.swing.JTextField txtTenNPH;
     // End of variables declaration//GEN-END:variables
 }
