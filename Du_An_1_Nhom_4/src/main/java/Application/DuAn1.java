@@ -2,13 +2,17 @@
 
 package Application;
 
-/**
- *
- * @author Xuan Truong
- */
+
+import View.FormQLDanhMuc;
+import View.FormSanPhamLoi;
+import View.Formkh;
+import View.MainApp;
+import View.QLChucVu;
+
+
 public class DuAn1 {
 
     public static void main(String[] args) {
-        System.out.println("Xin chao, t mới sửa đây. Test lại nhé");
+         new MainApp().setVisible(true);
     }
 }

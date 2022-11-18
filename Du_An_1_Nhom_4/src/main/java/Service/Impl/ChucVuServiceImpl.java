@@ -20,6 +20,13 @@ public class ChucVuServiceImpl implements ChucVuService {
 
     @Override
     public String themChucVu(ChucVu x) {
+        if (x.getTenChucVu().isBlank()) {
+            return "Ten CV khong duoc de trong";
+        }
+        String regex = "^[a-zA-Z]+$";
+        if (!x.getTenChucVu().matches(regex)) {
+            return "Ten NPH sai dinh dang";
+        }
         boolean them = repo.themChucVu(x);
         if (them) {
             return "Thanh cong";
@@ -38,6 +45,13 @@ public class ChucVuServiceImpl implements ChucVuService {
 
     @Override
     public String suaChucVu(ChucVu x) {
+        if (x.getTenChucVu().isBlank()) {
+            return "Ten NPH khong duoc de trong";
+        }
+        String regex = "^[a-zA-Z]+$";
+        if (!x.getTenChucVu().matches(regex)) {
+            return "Ten NPH sai dinh dang";
+        }
         boolean sua = repo.suaChucVu(x);
         if (sua) {
             return "Thanh cong";

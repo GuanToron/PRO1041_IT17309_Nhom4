@@ -11,19 +11,19 @@ import Service.Impl.ChucVuServiceImpl;
  * @author Xuan Truong
  */
 public class QLChucVu extends javax.swing.JFrame {
-    
+
     DefaultTableModel model = new DefaultTableModel();
     private ArrayList<ChucVu> listChucVu = new ArrayList<>();
-    private ChucVuServiceImpl service = new ChucVuServiceImpl();
-    
+    private ChucVuServiceImpl serviceCV = new ChucVuServiceImpl();
+
     public QLChucVu() {
         initComponents();
         setLocationRelativeTo(null);
-        listChucVu = service.listChucVu();
+        listChucVu = serviceCV.listChucVu();
         tblChucVu.setModel(model);
         loadTable();
     }
-    
+
     private void loadTable() {
         model.setRowCount(0);
         model.setColumnIdentifiers(new String[]{"Ma chuc vu", "Ten chuc vu"});
@@ -31,7 +31,7 @@ public class QLChucVu extends javax.swing.JFrame {
             model.addRow(new Object[]{x.getMaChucVu(), x.getTenChucVu()});
         }
     }
-    
+
     private ChucVu getChucVu() {
         ChucVu x = new ChucVu();
         x.setMaChucVu(Integer.parseInt(txtMaChucVu.getText()));
@@ -41,7 +41,7 @@ public class QLChucVu extends javax.swing.JFrame {
 
     private void loadTextField(int i) {
         ChucVu x = listChucVu.get(i);
-        txtMaChucVu.setText(x.getMaChucVu()+"");
+        txtMaChucVu.setText(x.getMaChucVu() + "");
         txtTenChucVu.setText(x.getTenChucVu());
     }
 
@@ -179,17 +179,27 @@ public class QLChucVu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        ChucVu x = getChucVu();
-        JOptionPane.showMessageDialog(this, service.xoaChucVu(x));
-        listChucVu = service.listChucVu();
-        loadTable();
-        clear();
+        int temp = tblChucVu.getSelectedRow();
+        if (temp < 0) {
+            JOptionPane.showMessageDialog(this, "Ban chua chon doi tuong de xoa");
+        } else {
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon xoa doi tuong nay khong ?");
+            if (choice == JOptionPane.OK_OPTION) {
+                ChucVu x = getChucVu();
+                JOptionPane.showMessageDialog(this, serviceCV.xoaChucVu(x));
+                listChucVu = serviceCV.listChucVu();
+                loadTable();
+                clear();
+            } else {
+                JOptionPane.showMessageDialog(this, "Da huy");
+            }
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         ChucVu x = new ChucVu(txtTenChucVu.getText());
-        JOptionPane.showMessageDialog(this, service.themChucVu(x));
-        listChucVu = service.listChucVu();
+        JOptionPane.showMessageDialog(this, serviceCV.themChucVu(x));
+        listChucVu = serviceCV.listChucVu();
         loadTable();
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -203,10 +213,15 @@ public class QLChucVu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        ChucVu x = getChucVu();
-        JOptionPane.showMessageDialog(this, service.suaChucVu(x));
-        listChucVu = service.listChucVu();
-        loadTable();
+        int temp = tblChucVu.getSelectedRow();
+        if (temp < 0) {
+            JOptionPane.showMessageDialog(this, "Ban chua chon doi tuong de xoa");
+        } else {
+            ChucVu x = getChucVu();
+            JOptionPane.showMessageDialog(this, serviceCV.suaChucVu(x));
+            listChucVu = serviceCV.listChucVu();
+            loadTable();
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     /**
