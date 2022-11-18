@@ -14,12 +14,12 @@ public class QLChucVu extends javax.swing.JFrame {
 
     DefaultTableModel model = new DefaultTableModel();
     private ArrayList<ChucVu> listChucVu = new ArrayList<>();
-    private ChucVuServiceImpl service = new ChucVuServiceImpl();
+    private ChucVuServiceImpl serviceCV = new ChucVuServiceImpl();
 
     public QLChucVu() {
         initComponents();
         setLocationRelativeTo(null);
-        listChucVu = service.listChucVu();
+        listChucVu = serviceCV.listChucVu();
         tblChucVu.setModel(model);
         loadTable();
     }
@@ -186,8 +186,8 @@ public class QLChucVu extends javax.swing.JFrame {
             int choice = JOptionPane.showConfirmDialog(this, "Ban co muon xoa doi tuong nay khong ?");
             if (choice == JOptionPane.OK_OPTION) {
                 ChucVu x = getChucVu();
-                JOptionPane.showMessageDialog(this, service.xoaChucVu(x));
-                listChucVu = service.listChucVu();
+                JOptionPane.showMessageDialog(this, serviceCV.xoaChucVu(x));
+                listChucVu = serviceCV.listChucVu();
                 loadTable();
                 clear();
             } else {
@@ -198,8 +198,8 @@ public class QLChucVu extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         ChucVu x = new ChucVu(txtTenChucVu.getText());
-        JOptionPane.showMessageDialog(this, service.themChucVu(x));
-        listChucVu = service.listChucVu();
+        JOptionPane.showMessageDialog(this, serviceCV.themChucVu(x));
+        listChucVu = serviceCV.listChucVu();
         loadTable();
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -218,8 +218,8 @@ public class QLChucVu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ban chua chon doi tuong de xoa");
         } else {
             ChucVu x = getChucVu();
-            JOptionPane.showMessageDialog(this, service.suaChucVu(x));
-            listChucVu = service.listChucVu();
+            JOptionPane.showMessageDialog(this, serviceCV.suaChucVu(x));
+            listChucVu = serviceCV.listChucVu();
             loadTable();
         }
     }//GEN-LAST:event_btnSuaActionPerformed
