@@ -9,10 +9,7 @@ import View.Formkh;
 import View.MainApp;
 import View.QLChucVu;
 
-/**
- *
- * @author Xuan Truong
- */
+
 public class DuAn1 {
 
     public static void main(String[] args) {
