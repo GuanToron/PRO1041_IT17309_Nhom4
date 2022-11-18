@@ -55,7 +55,7 @@ private final ImanageKhachHangService imanageKhachHangService;
             d = new SimpleDateFormat("yyyy-mm-dd").parse(ngsinh);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Ngày sinh không đúng định dạng yyyy/mm/dd");
+            JOptionPane.showMessageDialog(this, "Ngày sinh không đúng định dạng yyyy-mm-dd");
             return null;
         }
         kh.setNgaySinh(d);
@@ -78,6 +78,7 @@ private final ImanageKhachHangService imanageKhachHangService;
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         BackGround = new javax.swing.JPanel();
         SidePanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -275,8 +276,10 @@ private final ImanageKhachHangService imanageKhachHangService;
 
         jLabel7.setText("SĐT");
 
+        buttonGroup1.add(rdNam);
         rdNam.setText("Nam");
 
+        buttonGroup1.add(rdNu);
         rdNu.setText("Nữ");
 
         txtMaKhachHang.setEditable(false);
@@ -718,6 +721,7 @@ private final ImanageKhachHangService imanageKhachHangService;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton13;
