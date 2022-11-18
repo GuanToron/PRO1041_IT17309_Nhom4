@@ -5,10 +5,14 @@
 package View;
 
 import Model.Sach;
+import Model.TheLoai;
 import Service.Impl.SachserviceImpl;
+import Service.Impl.TheloaiServiceImpl;
 import Service.SachService;
+import Service.TheloaiService;
 import ViewModel.SachViewmodel;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,13 +24,15 @@ public class QLSach extends javax.swing.JFrame {
 
     private DefaultTableModel defaultTableModel;
     private SachService cc = new SachserviceImpl();
-
+private  TheloaiService tll = new TheloaiServiceImpl();
+private DefaultComboBoxModel comboBoxModeltheloai;
     /**
      * Creates new form QLSach
      */
     public QLSach() {
         initComponents();
         load(cc.getlist());
+        loadcbbtl(tll.getlist());
     }
 
     private void load(ArrayList<SachViewmodel> list) {
@@ -52,6 +58,13 @@ public class QLSach extends javax.swing.JFrame {
             });
         }
     
+    } private  void loadcbbtl(ArrayList<TheLoai>list){
+        comboBoxModeltheloai = (DefaultComboBoxModel) cbxTheloai.getModel();
+            for (TheLoai tl : list) {
+                comboBoxModeltheloai.addElement(tl.getMatl());
+                list.add(tl);
+            }
+        
     }
     private Sach getfom() {
         Sach s = new Sach();
