@@ -656,7 +656,7 @@ public class QLSach_ extends javax.swing.JFrame {
                     .addGroup(pnNPHLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jButton11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                         .addComponent(jButton12))
                     .addGroup(pnNPHLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -801,7 +801,7 @@ public class QLSach_ extends javax.swing.JFrame {
                         .addComponent(jButton17)
                         .addGap(27, 27, 27)
                         .addComponent(jButton16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton18)))
                 .addGap(16, 16, 16))
         );
@@ -837,8 +837,6 @@ public class QLSach_ extends javax.swing.JFrame {
                 txtMaDanhMucActionPerformed(evt);
             }
         });
-
-        txtTenDanhMuc.setEditable(false);
 
         tblDanhMuc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -976,7 +974,7 @@ public class QLSach_ extends javax.swing.JFrame {
                                 .addComponent(jButton23)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton24)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addContainerGap(53, Short.MAX_VALUE))))))
             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -1382,7 +1380,7 @@ public class QLSach_ extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMaDanhMucActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (txtTenDanhMuc.getText().trim().equals("")) {
+        if (txtTenDanhMuc.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập tên danh mục ");
             return;
         }

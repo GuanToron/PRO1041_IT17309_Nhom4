@@ -55,6 +55,8 @@ private final ImanageKhachHangService imanageKhachHangService;
             d = new SimpleDateFormat("yyyy-mm-dd").parse(ngsinh);
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Ngày sinh không đúng định dạng yyyy/mm/dd");
+            return null;
         }
         kh.setNgaySinh(d);
         kh.setSdt(txtSDT.getText());
@@ -261,8 +263,6 @@ private final ImanageKhachHangService imanageKhachHangService;
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Mã khách hàng");
-
-        txtSDT.setEditable(false);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Tên khách hàng");

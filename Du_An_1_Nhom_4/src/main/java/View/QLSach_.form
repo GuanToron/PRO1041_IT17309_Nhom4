@@ -862,7 +862,7 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                           <Component id="jButton11" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                                          <EmptySpace pref="62" max="32767" attributes="0"/>
                                           <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
@@ -1122,7 +1122,7 @@
                                           <Component id="jButton17" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                           <Component id="jButton16" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jButton18" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1298,9 +1298,6 @@
                           </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtTenDanhMuc">
-                          <Properties>
-                            <Property name="editable" type="boolean" value="false"/>
-                          </Properties>
                         </Component>
                         <Container class="javax.swing.JScrollPane" name="jScrollPane5">
                           <AuxValues>
@@ -1390,7 +1387,7 @@
                                                   <Component id="jButton23" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="jButton24" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <EmptySpace pref="53" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
