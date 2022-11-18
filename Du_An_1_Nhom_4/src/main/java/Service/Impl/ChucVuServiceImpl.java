@@ -21,7 +21,7 @@ public class ChucVuServiceImpl implements ChucVuService {
     @Override
     public String themChucVu(ChucVu x) {
         if (x.getTenChucVu().isBlank()) {
-            return "Ten NPH khong duoc de trong";
+            return "Ten CV khong duoc de trong";
         }
         String regex = "^[a-zA-Z]+$";
         if (!x.getTenChucVu().matches(regex)) {
