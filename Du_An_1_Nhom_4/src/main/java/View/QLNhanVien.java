@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import Model.ChucVu;
-import Model.NhanVien;
-import Service.Impl.ChucVuServiceImpl;
-import Service.Impl.NhanVienServiceImpl;
-import ViewModel.NhanVienRespone;
+import DomainModel.ChucVu;
+import DomainModel.NhanVien;
+import Service.Implement.ChucVuServiceImpl;
+import Service.Implement.NVServiceImplement;
+import ViewModel.NhanVienVM;
 
 /**
  *
@@ -20,8 +20,8 @@ public class QLNhanVien extends javax.swing.JFrame {
 
     private DefaultTableModel model = new DefaultTableModel();
     private DefaultComboBoxModel boxModel = new DefaultComboBoxModel<>();
-    private ArrayList<NhanVienRespone> listNhanVien = new ArrayList<>();
-    private NhanVienServiceImpl serviceNV = new NhanVienServiceImpl();
+    private ArrayList<NhanVienVM> listNhanVien = new ArrayList<>();
+    private NVServiceImplement serviceNV = new NVServiceImplement();
     private ChucVuServiceImpl serviceCV = new ChucVuServiceImpl();
     private ArrayList<ChucVu> listChucVu = new ArrayList<>();
 
@@ -34,10 +34,10 @@ public class QLNhanVien extends javax.swing.JFrame {
         loadComboChucVu();
     }
 
-    private void loadTable(ArrayList<NhanVienRespone> list) {
+    private void loadTable(ArrayList<NhanVienVM> list) {
         model.setRowCount(0);
         model.setColumnIdentifiers(new String[]{"Mã nhân viên", "Tên nhân viên", "Chức vụ", "Giới tính", "Ngày sinh", "Địa chỉ", "SDT", "Tài khoản", "Mật khẩu"});
-        for (NhanVienRespone x : list) {
+        for (NhanVienVM x : list) {
             model.addRow(x.toDataRow());
         }
     }
@@ -72,7 +72,7 @@ public class QLNhanVien extends javax.swing.JFrame {
     }
 
     private void loadTextField(int i) {
-        NhanVienRespone x = listNhanVien.get(i);
+        NhanVienVM x = listNhanVien.get(i);
         txtDiaChi.setText(x.getDiaChi());
         txtMaNhanVien.setText(x.getMaNhanVien() + "");
         txtMatKhau.setText(x.getMatKhau());
@@ -371,11 +371,11 @@ public class QLNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        Integer maNhanVien = Integer.parseInt(txtMaNhanVien.getText());
-        JOptionPane.showMessageDialog(this, serviceNV.xoaNhanVien(maNhanVien));
-        listNhanVien = serviceNV.listNhanVien();
-        loadTable(listNhanVien);
-        clear();
+//        Integer maNhanVien = Integer.parseInt(txtMaNhanVien.getText());
+//        JOptionPane.showMessageDialog(this, serviceNV.xoaNhanVien(maNhanVien));
+//        listNhanVien = serviceNV.listNhanVien();
+//        loadTable(listNhanVien);
+//        clear();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     /**

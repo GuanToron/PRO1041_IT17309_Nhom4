@@ -4,9 +4,9 @@
  */
 package View;
 
-import Model.DanhMuc;
-import Service.ImanageDanhMucService;
-import Service.Impl.manageDanhMucService;
+import DomainModel.DanhMuc;
+import ServiceInterface.ImanageDanhMucService;
+import Service.Implement.manageDanhMucService;
 import ViewModel.QLDanhMuc;
 import java.util.List;
 import javax.swing.JOptionPane;

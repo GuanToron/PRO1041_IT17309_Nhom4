@@ -4,9 +4,9 @@
  */
 package View;
 
-import Model.Sach;
-import Service.Impl.SachserviceImpl;
-import Service.SachService;
+import DomainModel.Sach;
+import Service.Implement.SachserviceImpl;
+import ServiceInterface.SachService;
 import ViewModel.SachViewmodel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

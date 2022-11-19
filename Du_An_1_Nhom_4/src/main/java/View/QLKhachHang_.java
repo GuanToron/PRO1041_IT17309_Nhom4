@@ -1,9 +1,9 @@
 
 package View;
 
-import Model.KhachHang;
-import Service.ImanageKhachHangService;
-import Service.Impl.manageKhachHangService;
+import DomainModel.KhachHang;
+import ServiceInterface.ImanageKhachHangService;
+import Service.Implement.manageKhachHangService;
 import ViewModel.QLKhachHang;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,9 +26,9 @@ private final ImanageKhachHangService imanageKhachHangService;
     private void loadTable() {
         DefaultTableModel tblmodel = (DefaultTableModel) tblKhachHang.getModel();
         tblmodel.setRowCount(0);
-        List<QLKhachHang> list = imanageKhachHangService.getAll();
+        List<KhachHang> list = imanageKhachHangService.getAll();
 
-        for (QLKhachHang kh : list) {
+        for (KhachHang kh : list) {
             tblmodel.addRow(new Object[]{kh.getMaKH(), kh.getTenKH(), kh.getGioiTinh() == 0 ? "Nữ" : "Nam", kh.getDiaChi(), kh.getNgaySinh(), kh.getSdt(), kh.getDiemTichLuy()});
         }
     }

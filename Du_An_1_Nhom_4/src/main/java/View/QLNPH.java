@@ -1,8 +1,8 @@
 package View;
 
-import Model.ChucVu;
-import Model.NPH;
-import Service.Impl.NPHServiceImpl;
+import DomainModel.ChucVu;
+import DomainModel.NPH;
+import Service.Implement.NPHServiceImplement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +15,7 @@ public class QLNPH extends javax.swing.JFrame {
 
     private DefaultTableModel model = new DefaultTableModel();
     private ArrayList<NPH> listNPH = new ArrayList<>();
-    private NPHServiceImpl service = new NPHServiceImpl();
+    private NPHServiceImplement service = new NPHServiceImplement();
 
     public QLNPH() {
         initComponents();

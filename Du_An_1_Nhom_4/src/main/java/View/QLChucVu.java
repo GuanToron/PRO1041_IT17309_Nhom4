@@ -3,8 +3,8 @@ package View;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import Model.ChucVu;
-import Service.Impl.ChucVuServiceImpl;
+import DomainModel.ChucVu;
+import Service.Implement.ChucVuServiceImpl;
 
 /**
  *
