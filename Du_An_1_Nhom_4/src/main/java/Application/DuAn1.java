@@ -5,7 +5,6 @@ package Application;
 
 import Service.Implement.KhachHangServiceImplement;
 import View.FormSanPhamLoi;
-import View.Formkh;
 import View.MainApp;
 
 

@@ -1,6 +1,5 @@
 
 package View;
-import View.QLKhachHang_;
 import View.QLNhanVien1;
 
 /**
@@ -223,7 +222,6 @@ public class MainApp extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         this.dispose();
-        new QLKhachHang_().setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
