@@ -7,7 +7,7 @@ import DomainModel.ChucVu;
  *
  * @author Xuan Truong
  */
-public interface ChucVuService {
+public interface CVServiceInterface {
 
     ArrayList<ChucVu> listChucVu();
 

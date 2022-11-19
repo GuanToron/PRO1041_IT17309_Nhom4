@@ -1,8 +1,5 @@
 package DomainModel;
 
-
-
-
 import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-
 /**
  *
  * @author Xuan Truong
@@ -20,18 +15,19 @@ import javax.persistence.Table;
 @Table(name = "ChucVu")
 @Entity
 public class ChucVu {
+
     @Id
     @Column(name = "maChucVu", nullable = false)
     private Integer maChucVu;
     @Column(name = "tenChucVu", nullable = false)
     private String tenChucVu;
-    @OneToMany(mappedBy = "ChucVu",fetch = FetchType.EAGER)
-    private ArrayList<NhanVien> listNhanVien ;
+    @OneToMany(mappedBy = "ChucVu", fetch = FetchType.EAGER)
+    private ArrayList<NhanVien> listNhanVien;
 
     public ChucVu(String tenChucVu) {
         this.tenChucVu = tenChucVu;
     }
-    
+
     public ChucVu() {
     }
 
@@ -64,5 +60,9 @@ public class ChucVu {
         this.listNhanVien = listNhanVien;
     }
 
-    
+    @Override
+    public String toString() {
+        return tenChucVu;
+    }
+
 }

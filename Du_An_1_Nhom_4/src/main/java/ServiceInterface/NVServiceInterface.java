@@ -14,9 +14,9 @@ public interface NVServiceInterface {
 
     String themNhanVien(NhanVien x);
 
-    String xoaNhanVien(NhanVien x);
+    String xoaNhanVien(Integer maNhanVien);
 
     String suaNhanVien(NhanVien x, Integer maNhanVien);
 
-    ArrayList<NhanVienVM> listSearch(String ten, String ma);
+    ArrayList<NhanVienVM> listSearch(ArrayList<NhanVienVM> list, String text);
 }

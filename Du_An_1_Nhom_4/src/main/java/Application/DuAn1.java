@@ -3,16 +3,15 @@
 package Application;
 
 
-import View.FormQLDanhMuc;
+import Service.Implement.KhachHangServiceImplement;
 import View.FormSanPhamLoi;
 import View.Formkh;
 import View.MainApp;
-import View.QLChucVu;
 
 
 public class DuAn1 {
 
     public static void main(String[] args) {
-         new MainApp().setVisible(true);
+         new KhachHangServiceImplement().listKH().forEach(s->System.out.println(s.toString()));
     }
 }

@@ -16,7 +16,6 @@ public interface NVRepositoryInterface {
 
     Boolean suaNV(NhanVien x, Integer maNhanVien);
 
-    Boolean xoaNV(NhanVien x);
+    Boolean xoaNV(Integer maNhanVien);
 
-    ArrayList<NhanVienVM> listSearch(String ten, String ma);
 }

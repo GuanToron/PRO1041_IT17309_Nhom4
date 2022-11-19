@@ -14,9 +14,9 @@ public interface KhachHangServiceInterface {
 
     String themKH(KhachHang kh);
 
-    String suaKH(KhachHang kh);
+    String suaKH(KhachHang kh, Integer maKhachHang);
 
-    String xoaKH(KhachHang kh);
+    String xoaKH(Integer maKhachHang);
 
-    ArrayList<KhachHang> timKH(String ma, String ten);
+    ArrayList<KhachHang> listSearch(ArrayList<KhachHang> list, String text);
 }

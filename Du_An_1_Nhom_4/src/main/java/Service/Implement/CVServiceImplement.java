@@ -2,20 +2,20 @@ package Service.Implement;
 
 import java.util.ArrayList;
 import DomainModel.ChucVu;
-import RepositoryImplement.ChucVuRepository;
-import ServiceInterface.ChucVuService;
+import RepositoryImplement.CVRepositoryImplement;
+import ServiceInterface.CVServiceInterface;
 
 /**
  *
  * @author Xuan Truong
  */
-public class ChucVuServiceImpl implements ChucVuService {
+public class CVServiceImplement implements CVServiceInterface {
 
-    private ChucVuRepository repo = new ChucVuRepository();
+    private CVRepositoryImplement repo = new CVRepositoryImplement();
 
     @Override
     public ArrayList<ChucVu> listChucVu() {
-        return repo.getAllChucVu();
+        return repo.listCV();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class ChucVuServiceImpl implements ChucVuService {
         if (!x.getTenChucVu().matches(regex)) {
             return "Ten NPH sai dinh dang";
         }
-        boolean them = repo.themChucVu(x);
+        boolean them = repo.themCV(x);
         if (them) {
             return "Thanh cong";
         }
@@ -36,7 +36,7 @@ public class ChucVuServiceImpl implements ChucVuService {
 
     @Override
     public String xoaChucVu(ChucVu x) {
-        boolean xoa = repo.xoaChucVu(x);
+        boolean xoa = repo.xoaCV(x);
         if (xoa) {
             return "Thanh cong";
         }
@@ -52,7 +52,7 @@ public class ChucVuServiceImpl implements ChucVuService {
         if (!x.getTenChucVu().matches(regex)) {
             return "Ten NPH sai dinh dang";
         }
-        boolean sua = repo.suaChucVu(x);
+        boolean sua = repo.suaCV(x);
         if (sua) {
             return "Thanh cong";
         }

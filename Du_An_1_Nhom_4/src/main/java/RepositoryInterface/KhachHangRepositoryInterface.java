@@ -1,6 +1,7 @@
 package RepositoryInterface;
 
 import DomainModel.KhachHang;
+import ViewModel.KhachHangVM;
 import java.util.ArrayList;
 
 /**
@@ -13,9 +14,7 @@ public interface KhachHangRepositoryInterface {
 
     Boolean themKH(KhachHang kh);
 
-    Boolean xoaKH(KhachHang kh);
+    Boolean xoaKH(Integer maKhachHang);
 
-    Boolean suaKH(KhachHang kh);
-
-    ArrayList<KhachHang> listSearch(String ma, String ten);
+    Boolean suaKH(KhachHang kh, Integer maKhachHang);
 }

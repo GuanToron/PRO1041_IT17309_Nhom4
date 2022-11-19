@@ -48,7 +48,7 @@ public class KhachHangServiceImplement implements KhachHangServiceInterface {
     }
 
     @Override
-    public String suaKH(KhachHang kh) {
+    public String suaKH(KhachHang kh, Integer maKhachHang) {
         if (String.valueOf(kh.getDiemTichLuy()).isBlank() || String.valueOf(kh.getNgaySinh()).isBlank() || kh.getDiaChi().isBlank() || kh.getSdt().isBlank() || kh.getTenKH().isBlank()) {
             return "Còn trống dữ liệu";
         }
@@ -67,7 +67,7 @@ public class KhachHangServiceImplement implements KhachHangServiceInterface {
         } catch (NumberFormatException e) {
             return "Điểm phải là số";
         }
-        boolean sua = khRepo.suaKH(kh);
+        boolean sua = khRepo.suaKH(kh, maKhachHang);
         if (sua) {
             return "Thành công";
         }
@@ -75,8 +75,8 @@ public class KhachHangServiceImplement implements KhachHangServiceInterface {
     }
 
     @Override
-    public String xoaKH(KhachHang kh) {
-        boolean xoa = khRepo.xoaKH(kh);
+    public String xoaKH(Integer maKhachHang) {
+        boolean xoa = khRepo.xoaKH(maKhachHang);
         if (xoa) {
             return "Thành công";
         }
@@ -84,8 +84,14 @@ public class KhachHangServiceImplement implements KhachHangServiceInterface {
     }
 
     @Override
-    public ArrayList<KhachHang> timKH(String ma, String ten) {
-        return khRepo.listSearch(ma, ten);
+    public ArrayList<KhachHang> listSearch(ArrayList<KhachHang> list, String text) {
+        ArrayList<KhachHang> listKH = khRepo.listKH();
+        ArrayList<KhachHang> listSearch = new ArrayList<>();
+        for (KhachHang x : list) {
+            if (x.getTenKH().contains(text)) {
+                listSearch.add(x);
+            }
+        }
+        return listSearch;
     }
-
 }

@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import DomainModel.ChucVu;
 import DomainModel.NhanVien;
-import Service.Implement.ChucVuServiceImpl;
+import Service.Implement.CVServiceImplement;
 import Service.Implement.NVServiceImplement;
 import ViewModel.NhanVienVM;
 
@@ -22,7 +22,7 @@ public class QLNhanVien extends javax.swing.JFrame {
     private DefaultComboBoxModel boxModel = new DefaultComboBoxModel<>();
     private ArrayList<NhanVienVM> listNhanVien = new ArrayList<>();
     private NVServiceImplement serviceNV = new NVServiceImplement();
-    private ChucVuServiceImpl serviceCV = new ChucVuServiceImpl();
+    private CVServiceImplement serviceCV = new CVServiceImplement();
     private ArrayList<ChucVu> listChucVu = new ArrayList<>();
 
     public QLNhanVien() {
