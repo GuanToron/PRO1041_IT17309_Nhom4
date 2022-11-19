@@ -22,12 +22,13 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
     private List<QLKhachHang> listkh;
 
     public KhachHangResponsitory() {
-        listkh = new ArrayList<>();
+        
 
     }
 
     @Override
     public List<QLKhachHang> getAll() {
+        listkh = new ArrayList<>();
         String selectAll = "select * from KHACHHANG";
         ResultSet rs = DBConection.excutequery(selectAll);
         try {
