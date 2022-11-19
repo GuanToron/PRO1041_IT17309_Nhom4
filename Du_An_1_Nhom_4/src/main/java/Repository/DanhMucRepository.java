@@ -22,11 +22,12 @@ public class DanhMucRepository implements IDanhMucRepository {
     private List<QLDanhMuc> list;
 
     public DanhMucRepository() {
-        list = new ArrayList<>();
+       
     }
 
     @Override
     public List<QLDanhMuc> getAll() {
+         list = new ArrayList<>();
         String sql = "select * from DANHMUC ";
         ResultSet rs = DBConection.excutequery(sql);
         try {
