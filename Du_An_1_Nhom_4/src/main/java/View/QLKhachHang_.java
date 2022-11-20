@@ -1,4 +1,3 @@
-
 package View;
 
 import DomainModel.KhachHang;
@@ -17,12 +16,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QLKhachHang_ extends javax.swing.JFrame {
 
-private final ImanageKhachHangService imanageKhachHangService;
+    private final ImanageKhachHangService imanageKhachHangService;
+
     public QLKhachHang_() {
         initComponents();
         imanageKhachHangService = new manageKhachHangService();
         loadTable();
     }
+
     private void loadTable() {
         DefaultTableModel tblmodel = (DefaultTableModel) tblKhachHang.getModel();
         tblmodel.setRowCount(0);
@@ -32,6 +33,7 @@ private final ImanageKhachHangService imanageKhachHangService;
             tblmodel.addRow(new Object[]{kh.getMaKH(), kh.getTenKH(), kh.getGioiTinh() == 0 ? "Nữ" : "Nam", kh.getDiaChi(), kh.getNgaySinh(), kh.getSdt(), kh.getDiemTichLuy()});
         }
     }
+
     private KhachHang getdataFromInput() {
         KhachHang kh = new KhachHang();
         kh.setDiaChi(txtDiaChi.getText());
@@ -64,7 +66,8 @@ private final ImanageKhachHangService imanageKhachHangService;
 
         return kh;
     }
-        private void clearForm() {
+
+    private void clearForm() {
         txtDiaChi.setText("");
         txtDiemTichLuy.setText("");
         txtNgaySinh.setText("");
@@ -72,6 +75,7 @@ private final ImanageKhachHangService imanageKhachHangService;
         txtTenKhachHang.setText("");
         txtMaKhachHang.setText("");
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -122,8 +126,8 @@ private final ImanageKhachHangService imanageKhachHangService;
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblKhachHang = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
-        jButton10 = new javax.swing.JButton();
+        txtTimKiem = new javax.swing.JTextField();
+        btnTimKiem = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -341,7 +345,12 @@ private final ImanageKhachHangService imanageKhachHangService;
         });
         jScrollPane3.setViewportView(tblKhachHang);
 
-        jButton10.setText("Tìm kiếm");
+        btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("DANH SÁCH");
@@ -356,9 +365,9 @@ private final ImanageKhachHangService imanageKhachHangService;
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addComponent(jButton10)
+                .addComponent(btnTimKiem)
                 .addGap(72, 72, 72))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -372,8 +381,8 @@ private final ImanageKhachHangService imanageKhachHangService;
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10))
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimKiem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -540,7 +549,6 @@ private final ImanageKhachHangService imanageKhachHangService;
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        KhachHang kh = getdataFromInput();
         if (txtTenKhachHang.getText().isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Vui lòng không để trống tên ");
             return;
@@ -573,6 +581,7 @@ private final ImanageKhachHangService imanageKhachHangService;
             JOptionPane.showMessageDialog(this, "Điểm tích lũy phải là số nguyên");
             return;
         }
+        KhachHang kh = getdataFromInput();
         // add
         if (imanageKhachHangService.add(kh) != null) {
             JOptionPane.showMessageDialog(this, "Add thành công ");
@@ -588,7 +597,7 @@ private final ImanageKhachHangService imanageKhachHangService;
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
         int row = tblKhachHang.getSelectedRow();
-         if (row == -1) {
+        if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 dòng trên table để update");
         }
         KhachHang kh = getdataFromInput();
@@ -630,7 +639,6 @@ private final ImanageKhachHangService imanageKhachHangService;
             e.printStackTrace();
         }
 
-       
         if (imanageKhachHangService.update(makh, kh) != null) {
             JOptionPane.showMessageDialog(this, " Update thành công ");
 
@@ -684,6 +692,10 @@ private final ImanageKhachHangService imanageKhachHangService;
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         clearForm();
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -741,9 +753,9 @@ private final ImanageKhachHangService imanageKhachHangService;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnTimKiem;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
@@ -775,7 +787,6 @@ private final ImanageKhachHangService imanageKhachHangService;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JRadioButton rdNam;
     private javax.swing.JRadioButton rdNu;
     private javax.swing.JTable tblKhachHang;
@@ -785,5 +796,6 @@ private final ImanageKhachHangService imanageKhachHangService;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenKhachHang;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

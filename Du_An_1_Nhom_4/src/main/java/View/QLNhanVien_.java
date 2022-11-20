@@ -86,6 +86,11 @@ public class QLNhanVien_ extends javax.swing.JFrame {
         if (x.getTenChucVu().equals(cbChucVu.getSelectedIndex())) {
             cbChucVu.setSelectedIndex(cv);
         }
+        if (x.getGioiTinh() == 1) {
+            rdNam.setSelected(true);
+        } else {
+            rdNu.setSelected(true);
+        }
     }
 
     private void clear() {
@@ -212,52 +217,52 @@ public class QLNhanVien_ extends javax.swing.JFrame {
 
         SidePanel.setBackground(new java.awt.Color(51, 204, 255));
 
+        jButton1.setText("TRANG CHỦ");
         jButton1.setBackground(new java.awt.Color(255, 102, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("TRANG CHỦ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setText("BÁN HÀNG");
         jButton2.setBackground(new java.awt.Color(255, 102, 51));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("BÁN HÀNG");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jButton3.setText("QUẢN LÝ SÁCH");
         jButton3.setBackground(new java.awt.Color(255, 102, 51));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("QUẢN LÝ SÁCH");
 
+        jButton4.setText("QUẢN LÝ HOÁ ĐƠN");
         jButton4.setBackground(new java.awt.Color(255, 102, 51));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setText("QUẢN LÝ HOÁ ĐƠN");
 
+        jButton7.setText("QUẢN LÝ KHÁCH HÀNG");
         jButton7.setBackground(new java.awt.Color(255, 102, 51));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton7.setText("QUẢN LÝ KHÁCH HÀNG");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
 
+        jButton8.setText("THỐNG KÊ");
         jButton8.setBackground(new java.awt.Color(255, 102, 51));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton8.setText("THỐNG KÊ");
 
+        jButton9.setText("THOÁT");
         jButton9.setBackground(new java.awt.Color(255, 102, 51));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton9.setText("THOÁT");
 
+        jButton16.setText("QUẢN LÝ NHÂN VIÊN");
         jButton16.setBackground(new java.awt.Color(255, 102, 51));
         jButton16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton16.setText("QUẢN LÝ NHÂN VIÊN");
 
         javax.swing.GroupLayout SidePanelLayout = new javax.swing.GroupLayout(SidePanel);
         SidePanel.setLayout(SidePanelLayout);
@@ -315,18 +320,16 @@ public class QLNhanVien_ extends javax.swing.JFrame {
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Mã nhân viên");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtMaNhanVien.setEditable(false);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Tên nhân viên");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        txtTenNhanVien.setEditable(false);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Giới tính");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         buttonGroup1.add(rdNam);
         rdNam.setText("Nam");
@@ -334,27 +337,21 @@ public class QLNhanVien_ extends javax.swing.JFrame {
         buttonGroup1.add(rdNu);
         rdNu.setText("Nữ");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Ngày sinh");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel7.setText("SĐT");
 
-        dpNgaySinh.setEditable(false);
-
-        txtSDT.setEditable(false);
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Chức vụ");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         cbChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Tài khoản");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        txtTaiKhoan.setEditable(false);
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Mật khẩu");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel11.setText("Địa chỉ");
 
@@ -387,6 +384,11 @@ public class QLNhanVien_ extends javax.swing.JFrame {
         });
 
         jButton5.setText("Tìm kiếm");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -399,10 +401,15 @@ public class QLNhanVien_ extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhanVienMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblNhanVien);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("DANH SÁCH NHÂN VIÊN");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -554,11 +561,11 @@ public class QLNhanVien_ extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Thông tin nhân viên", jPanel2);
 
-        lblMaChucVu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblMaChucVu.setText("Mã chức vụ");
+        lblMaChucVu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        lblTenChucVu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTenChucVu.setText("Tên chức vụ");
+        lblTenChucVu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btnThem1.setText("Thêm");
         btnThem1.addActionListener(new java.awt.event.ActionListener() {
@@ -722,19 +729,32 @@ public class QLNhanVien_ extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        NhanVien x = getNhanVien();
-        Integer maNhanVien = Integer.parseInt(txtMaNhanVien.getText());
-        JOptionPane.showMessageDialog(this, serviceNV.suaNhanVien(x, maNhanVien));
-        listNhanVien = serviceNV.listNhanVien();
-        loadTableNV(listNhanVien);
+        int temp = tblNhanVien.getSelectedRow();
+        if (temp == -1) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn dòng để sửa");
+        } else {
+            NhanVien x = getNhanVien();
+            Integer maNhanVien = Integer.parseInt(txtMaNhanVien.getText());
+            JOptionPane.showMessageDialog(this, serviceNV.suaNhanVien(x, maNhanVien));
+            listNhanVien = serviceNV.listNhanVien();
+            loadTableNV(listNhanVien);
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        Integer maNhanVien = Integer.parseInt(txtMaNhanVien.getText());
-        JOptionPane.showMessageDialog(this, serviceNV.xoaNhanVien(maNhanVien));
-        listNhanVien = serviceNV.listNhanVien();
-        loadTableNV(listNhanVien);
-        clear();
+        int temp = tblNhanVien.getSelectedRow();
+        if (temp == -1) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn dòng để sửa");
+        } else {
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon xoa khong?");
+            if (choice == JOptionPane.OK_OPTION) {
+                Integer maNhanVien = Integer.parseInt(txtMaNhanVien.getText());
+                JOptionPane.showMessageDialog(this, serviceNV.xoaNhanVien(maNhanVien));
+                listNhanVien = serviceNV.listNhanVien();
+                loadTableNV(listNhanVien);
+                clear();
+            }
+        }
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -790,6 +810,15 @@ public class QLNhanVien_ extends javax.swing.JFrame {
     private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
         loadComboChucVu();
     }//GEN-LAST:event_btnReloadActionPerformed
+
+    private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
+        int temp = tblNhanVien.getSelectedRow();
+        loadTextField(temp);
+    }//GEN-LAST:event_tblNhanVienMouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

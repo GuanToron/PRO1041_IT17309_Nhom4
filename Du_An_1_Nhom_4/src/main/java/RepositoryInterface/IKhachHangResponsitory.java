@@ -8,14 +8,17 @@ import DomainModel.KhachHang;
 import ViewModel.QLKhachHang;
 import java.util.List;
 
-
 /**
  *
  * @author DELL 5515
  */
 public interface IKhachHangResponsitory {
+
     List<QLKhachHang> getAll();
+
     Integer add(KhachHang kh);
+
     Integer delete(String maKH);
+
     Integer update(String maKH, KhachHang kh);
 }

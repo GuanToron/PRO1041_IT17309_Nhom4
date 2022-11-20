@@ -17,4 +17,5 @@ public interface NhanVienService {
     String xoaNhanVien(Integer maNhanVien);
 
     String suaNhanVien(NhanVien x,Integer maNhanVien);
+
 }

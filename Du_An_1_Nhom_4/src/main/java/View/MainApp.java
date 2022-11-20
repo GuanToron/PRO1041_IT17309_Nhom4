@@ -1,8 +1,6 @@
 
 package View;
 import View.QLSach1;
-import View.QLKhachHang_;
-import View.QLNhanVien_;
 
 /**
  *
