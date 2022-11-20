@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import Model.ChucVu;
-import Model.NhanVien;
-import Service.Impl.ChucVuServiceImpl;
-import Service.Impl.NhanVienServiceImpl;
+import DomainModel.ChucVu;
+import DomainModel.NhanVien;
+import ServiceImplement.ChucVuServiceImpl;
+import ServiceImplement.NhanVienServiceImpl;
 import ViewModel.NhanVienRespone;
 
 /**
