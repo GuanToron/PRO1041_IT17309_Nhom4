@@ -2,6 +2,7 @@ package View;
 
 import DomainModel.DanhMuc;
 import DomainModel.NPH;
+import DomainModel.NXB;
 import DomainModel.TacGia;
 import DomainModel.TheLoai;
 import ServiceImplement.DMImplement_XT;
@@ -9,12 +10,16 @@ import ServiceInterface.DMInterface_XT;
 import ServiceImplement.NPHServiceImplement;
 import ServiceImplement.TGServiceImplement;
 import ServiceImplement.TLServiceImplement;
+import ServiceImplement.manageNXBService;
+import ServiceInterface.ImanageNXBService;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ServiceInterface.NPHServiceInterface;
 import ServiceInterface.TGServiceInterface;
 import ServiceInterface.TLServiceInterface;
+import ViewModel.QLNXB;
+import java.util.List;
 
 /**
  *
@@ -38,9 +43,11 @@ public class QLSach1 extends javax.swing.JFrame {
     private TGServiceInterface serviceTG = new TGServiceImplement();
     private TLServiceInterface serviceTL = new TLServiceImplement();
     private NPHServiceInterface serviceNPH = new NPHServiceImplement();
+    private final ImanageNXBService imanageNXBService;
 
     public QLSach1() {
         initComponents();
+        imanageNXBService = new manageNXBService();
         tblDanhMuc.setModel(modelDM);
         tblTacGia.setModel(modelTG);
         tblTheLoai.setModel(modelTL);
@@ -55,6 +62,7 @@ public class QLSach1 extends javax.swing.JFrame {
         loadTableTG(listTG);
         loadTableTL(listTL);
         loadTableNPH(listNPH);
+        loadTableNXB();
     }
 
     private void loadTableDM(ArrayList<DanhMuc> list) {
@@ -291,14 +299,14 @@ public class QLSach1 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
-        txtMaTuoi = new javax.swing.JTextField();
+        txtmaNXB = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        txttenNXB = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
-        jButton26 = new javax.swing.JButton();
-        jButton27 = new javax.swing.JButton();
-        jButton28 = new javax.swing.JButton();
+        tblNXB = new javax.swing.JTable();
+        btnTL = new javax.swing.JButton();
+        btnsua = new javax.swing.JButton();
+        btnxoa = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
 
@@ -1273,24 +1281,56 @@ public class QLSach1 extends javax.swing.JFrame {
 
         jLabel23.setText("Tên NXB");
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tblNXB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã NXB", "Tên NXB"
             }
-        ));
-        jScrollPane6.setViewportView(jTable6);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        jButton26.setText("Thêm");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-        jButton27.setText("Sửa");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblNXB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNXBMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tblNXB);
 
-        jButton28.setText("Xoá");
+        btnTL.setText("Thêm");
+        btnTL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTLActionPerformed(evt);
+            }
+        });
+
+        btnsua.setText("Sửa");
+        btnsua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsuaActionPerformed(evt);
+            }
+        });
+
+        btnxoa.setText("Xoá");
+        btnxoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnxoaActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("NHÀ XUẤT BẢN");
@@ -1305,24 +1345,24 @@ public class QLSach1 extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addGap(36, 36, 36)
-                        .addComponent(txtMaTuoi))
+                        .addComponent(txtmaNXB))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addGap(33, 33, 33)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField12)
+                            .addComponent(txttenNXB)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jButton27)
+                                .addComponent(btnsua)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton28)
+                                .addComponent(btnxoa)
                                 .addGap(0, 8, Short.MAX_VALUE)))))
                 .addGap(31, 31, 31))
             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton26)
+                    .addComponent(btnTL)
                     .addComponent(jLabel6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1334,16 +1374,16 @@ public class QLSach1 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(txtMaTuoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtmaNXB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txttenNXB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton26)
-                    .addComponent(jButton27)
-                    .addComponent(jButton28))
+                    .addComponent(btnTL)
+                    .addComponent(btnsua)
+                    .addComponent(btnxoa))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
@@ -1622,6 +1662,65 @@ public class QLSach1 extends javax.swing.JFrame {
         loadTextFieldTL(temo);
     }//GEN-LAST:event_tblTheLoaiMouseClicked
 
+    private void btnTLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTLActionPerformed
+        if (txttenNXB.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên NXB");
+            return;
+        }
+        NXB nxb = getNXBFromInput();
+        if (imanageNXBService.add(nxb) != null) {
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại");
+        }
+        loadTableNXB();
+        clearformNXB();
+    }//GEN-LAST:event_btnTLActionPerformed
+
+    private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
+        int row = tblNXB.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 dòng trên table để sửa");
+            return;
+        }
+
+        if (txttenNXB.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên NXB");
+            return;
+        }
+        String maNXB = tblNXB.getValueAt(row, 0).toString();
+        NXB nxb = getNXBFromInput();
+        if (imanageNXBService.update(maNXB, nxb) != null) {
+            JOptionPane.showMessageDialog(this, "Cập nhật thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Cập nhật thất bại");
+        }
+        loadTableNXB();
+        clearformNXB();
+    }//GEN-LAST:event_btnsuaActionPerformed
+
+    private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
+        int row = tblNXB.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 dòng trên table để Xóa");
+            return;
+        }
+        String maNXB = tblNXB.getValueAt(row, 0).toString();
+        if (imanageNXBService.delete(maNXB) != null) {
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
+        loadTableNXB();
+        clearformNXB();
+    }//GEN-LAST:event_btnxoaActionPerformed
+
+    private void tblNXBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNXBMouseClicked
+        int row = tblNXB.getSelectedRow();
+        txtmaNXB.setText(tblNXB.getValueAt(row, 0).toString());
+        txttenNXB.setText(tblNXB.getValueAt(row, 1).toString());
+    }//GEN-LAST:event_tblNXBMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1679,6 +1778,7 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JButton btnSuaNPH;
     private javax.swing.JButton btnSuaTG;
     private javax.swing.JButton btnSuaTL;
+    private javax.swing.JButton btnTL;
     private javax.swing.JButton btnThemDanhMuc;
     private javax.swing.JButton btnThemNPH;
     private javax.swing.JButton btnThemTG;
@@ -1689,15 +1789,14 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JButton btnXoaNPH;
     private javax.swing.JButton btnXoaTG;
     private javax.swing.JButton btnXoaTL;
+    private javax.swing.JButton btnsua;
+    private javax.swing.JButton btnxoa;
     private javax.swing.JComboBox<String> cbNPH;
     private javax.swing.JComboBox<String> cbNPH3;
     private javax.swing.JComboBox<String> cbNPH4;
     private javax.swing.JComboBox<String> cbNPH5;
     private javax.swing.JComboBox<String> cbTacGia1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
@@ -1773,8 +1872,6 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable6;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField8;
@@ -1782,6 +1879,7 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JTable tblDSSach;
     private javax.swing.JTable tblDanhMuc;
     private javax.swing.JTable tblNPH;
+    private javax.swing.JTable tblNXB;
     private javax.swing.JTable tblSachLoi;
     private javax.swing.JTable tblTacGia;
     private javax.swing.JTable tblTheLoai;
@@ -1793,7 +1891,6 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaSoSachLoi;
     private javax.swing.JTextField txtMaTG;
     private javax.swing.JTextField txtMaTheLoai;
-    private javax.swing.JTextField txtMaTuoi;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtSoLuong1;
     private javax.swing.JTextField txtTenDanhMuc;
@@ -1801,5 +1898,28 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenSach1;
     private javax.swing.JTextField txtTenTG;
     private javax.swing.JTextField txtTenTheLoai;
+    private javax.swing.JTextField txtmaNXB;
+    private javax.swing.JTextField txttenNXB;
     // End of variables declaration//GEN-END:variables
+
+    private void loadTableNXB() {
+        DefaultTableModel tblmodelNXB = (DefaultTableModel) tblNXB.getModel();
+        tblmodelNXB.setRowCount(0);
+        List<QLNXB> listnxb = imanageNXBService.getAll();
+
+        for (QLNXB nxb : listnxb) {
+            tblmodelNXB.addRow(new Object[]{nxb.getMaNXB(), nxb.getTenNXB()});
+        }
+    }
+
+    private NXB getNXBFromInput() {
+        NXB nxb = new NXB();
+        nxb.setTenNXB(txttenNXB.getText());
+        return nxb;
+    }
+
+    private void clearformNXB() {
+        txtmaNXB.setText("");
+        txttenNXB.setText("");
+    }
 }
