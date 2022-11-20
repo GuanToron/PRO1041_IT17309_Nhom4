@@ -4,9 +4,9 @@
  */
 package View;
 
-import Model.SanPhamLoi;
-import Service.ImanageSanPhamLoiService;
-import Service.Impl.SanPhamLoiService;
+import DomainModel.SanPhamLoi;
+import ServiceInterface.ImanageSanPhamLoiService;
+import ServiceImplement.SanPhamLoiService;
 import ViewModel.QLSanPhamLoi;
 import java.util.List;
 import javax.swing.JOptionPane;
