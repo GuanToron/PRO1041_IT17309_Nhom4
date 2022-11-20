@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ViewModel;
 
 /**
@@ -9,82 +5,98 @@ package ViewModel;
  * @author dqv20
  */
 public class SachViewmodel {
-       private int masach;
-    private String tensach;
-    private int madm, matl, manph, matg;
-    private String namxuatban, ngonngu;
-    private int nhomtuoi;
-    private String taiban;
-    private int sotrang;
-    private float giaban;
-    private int soluong, trangthai;
+
+    private Integer maSach;
+    private String tenSach;
+    private String tenDanhMuc;
+    private String tenTheLoai;
+    private String tenNPH;
+    private String tenTacGia;
+    private String tenNXB;
+    private String namxuatban;
+    private String ngonNgu;
+    private String nhomTuoi;
+    private Integer taiBan;
+    private Integer sotrang;
+    private Float giaban;
+    private Integer soluong;
+    private Integer trangthai;
 
     public SachViewmodel() {
     }
 
-    public SachViewmodel(int masach, String tensach, int madm, int matl, int manph, int matg, String namxuatban, String ngonngu, int nhomtuoi, String taiban, int sotrang, float giaban, int soluong, int trangthai) {
-        this.masach = masach;
-        this.tensach = tensach;
-        this.madm = madm;
-        this.matl = matl;
-        this.manph = manph;
-        this.matg = matg;
+    public SachViewmodel(Integer maSach, String tenSach, String tenDanhMuc, String tenTheLoai, String tenNPH, String tenTacGia, String tenNXB, String namxuatban, String ngonNgu, String nhomTuoi, Integer taiBan, Integer sotrang, Float giaban, Integer soluong, Integer trangthai) {
+        this.maSach = maSach;
+        this.tenSach = tenSach;
+        this.tenDanhMuc = tenDanhMuc;
+        this.tenTheLoai = tenTheLoai;
+        this.tenNPH = tenNPH;
+        this.tenTacGia = tenTacGia;
+        this.tenNXB = tenNXB;
         this.namxuatban = namxuatban;
-        this.ngonngu = ngonngu;
-        this.nhomtuoi = nhomtuoi;
-        this.taiban = taiban;
+        this.ngonNgu = ngonNgu;
+        this.nhomTuoi = nhomTuoi;
+        this.taiBan = taiBan;
         this.sotrang = sotrang;
         this.giaban = giaban;
         this.soluong = soluong;
         this.trangthai = trangthai;
     }
 
-    public int getMasach() {
-        return masach;
+    public Integer getMasach() {
+        return maSach;
     }
 
-    public void setMasach(int masach) {
-        this.masach = masach;
+    public void setMasach(Integer maSach) {
+        this.maSach = maSach;
     }
 
     public String getTensach() {
-        return tensach;
+        return tenSach;
     }
 
     public void setTensach(String tensach) {
-        this.tensach = tensach;
+        this.tenSach = tensach;
     }
 
-    public int getMadm() {
-        return madm;
+    public String getTenDanhMuc() {
+        return tenDanhMuc;
     }
 
-    public void setMadm(int madm) {
-        this.madm = madm;
+    public void setTenDanhMuc(String tenDanhMuc) {
+        this.tenDanhMuc = tenDanhMuc;
     }
 
-    public int getMatl() {
-        return matl;
+    public String getTenTheLoai() {
+        return tenTheLoai;
     }
 
-    public void setMatl(int matl) {
-        this.matl = matl;
+    public void setTenTheLoai(String tenTheLoai) {
+        this.tenTheLoai = tenTheLoai;
     }
 
-    public int getManph() {
-        return manph;
+    public String getTenNPH() {
+        return tenNPH;
     }
 
-    public void setManph(int manph) {
-        this.manph = manph;
+    public void setTenNPH(String tenNPH) {
+        this.tenNPH = tenNPH;
     }
 
-    public int getMatg() {
-        return matg;
+    public String getTenTacGia() {
+        return tenTacGia;
     }
 
-    public void setMatg(int matg) {
-        this.matg = matg;
+    public void setTenTacGia(String tenTacGia) {
+        this.tenTacGia = tenTacGia;
+    }
+
+    public String getTenNXB() {
+        return tenNXB;
+    }
+
+    public void setTenNXB(String tenNXB) {
+        this.tenNXB = tenNXB;
     }
 
     public String getNamxuatban() {
@@ -95,62 +107,63 @@ public class SachViewmodel {
         this.namxuatban = namxuatban;
     }
 
-    public String getNgonngu() {
-        return ngonngu;
+    public String getNgonNgu() {
+        return ngonNgu;
     }
 
-    public void setNgonngu(String ngonngu) {
-        this.ngonngu = ngonngu;
+    public void setNgonNgu(String ngonNgu) {
+        this.ngonNgu = ngonNgu;
     }
 
-    public int getNhomtuoi() {
-        return nhomtuoi;
+    public String getNhomTuoi() {
+        return nhomTuoi;
     }
 
-    public void setNhomtuoi(int nhomtuoi) {
-        this.nhomtuoi = nhomtuoi;
+    public void setNhomTuoi(String nhomTuoi) {
+        this.nhomTuoi = nhomTuoi;
     }
 
-    public String getTaiban() {
-        return taiban;
+    public Integer getTaiBan() {
+        return taiBan;
     }
 
-    public void setTaiban(String taiban) {
-        this.taiban = taiban;
+    public void setTaiBan(Integer taiBan) {
+        this.taiBan = taiBan;
     }
 
-    public int getSotrang() {
+    public Integer getSotrang() {
         return sotrang;
     }
 
-    public void setSotrang(int sotrang) {
+    public void setSotrang(Integer sotrang) {
         this.sotrang = sotrang;
     }
 
-    public float getGiaban() {
+    public Float getGiaban() {
         return giaban;
     }
 
-    public void setGiaban(float giaban) {
+    public void setGiaban(Float giaban) {
         this.giaban = giaban;
     }
 
-    public int getSoluong() {
+    public Integer getSoluong() {
         return soluong;
     }
 
-    public void setSoluong(int soluong) {
+    public void setSoluong(Integer soluong) {
         this.soluong = soluong;
     }
 
-    public int getTrangthai() {
+    public Integer getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(int trangthai) {
+    public void setTrangthai(Integer trangthai) {
         this.trangthai = trangthai;
     }
 
-  
-    
+    public Object[] todDataRow() {
+        return new Object[]{maSach, tenSach, tenDanhMuc, tenTheLoai, tenNPH, tenTacGia, tenNXB, namxuatban, ngonNgu, nhomTuoi, taiBan, sotrang, giaban, soluong, trangthai};
+    }
 }
