@@ -6,6 +6,7 @@ package ViewModel;
  */
 public class GioHangVM {
 
+    private Integer maSach;
     private String tenSach;
     private Integer soLuong;
     private Float donGia;
@@ -13,10 +14,19 @@ public class GioHangVM {
     public GioHangVM() {
     }
 
-    public GioHangVM(String tenSach, Integer soLuong, Float donGia) {
+    public GioHangVM(Integer maSach, String tenSach, Integer soLuong, Float donGia) {
+        this.maSach = maSach;
         this.tenSach = tenSach;
         this.soLuong = soLuong;
         this.donGia = donGia;
+    }
+
+    public Integer getMaSach() {
+        return maSach;
+    }
+
+    public void setMaSach(Integer maSach) {
+        this.maSach = maSach;
     }
 
     public String getTenSach() {
@@ -44,6 +54,6 @@ public class GioHangVM {
     }
 
     public Float getThanhTien() {
-        return this.donGia * this.getSoLuong();
+        return this.donGia * this.soLuong;
     }
 }

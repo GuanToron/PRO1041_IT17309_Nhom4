@@ -12,4 +12,6 @@ public interface HoaDomVMRepositoryInterface {
     ArrayList<HoaDonVM> listHDVM();
 
     Boolean taoHoaDon(HoaDonVM x);
+
+    Boolean capNhatHoaDon(HoaDonVM x);
 }
