@@ -37,4 +37,9 @@ public class TheLoai {
         this.tenTheLoai = tenTheLoai;
     }
 
+    @Override
+    public String toString() {
+        return tenTheLoai;
+    }
+
 }

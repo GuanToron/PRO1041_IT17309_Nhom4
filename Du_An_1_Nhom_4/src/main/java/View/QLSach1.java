@@ -3,11 +3,13 @@ package View;
 import DomainModel.DanhMuc;
 import DomainModel.NPH;
 import DomainModel.NXB;
+import DomainModel.Sach;
 import DomainModel.TacGia;
 import DomainModel.TheLoai;
 import ServiceImplement.DMImplement_XT;
 import ServiceInterface.DMInterface_XT;
 import ServiceImplement.NPHServiceImplement;
+import ServiceImplement.SachserviceImpl;
 import ServiceImplement.TGServiceImplement;
 import ServiceImplement.TLServiceImplement;
 import ServiceImplement.manageNXBService;
@@ -16,9 +18,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ServiceInterface.NPHServiceInterface;
+import ServiceInterface.SachService;
 import ServiceInterface.TGServiceInterface;
 import ServiceInterface.TLServiceInterface;
 import ViewModel.QLNXB;
+import ViewModel.SachViewmodel;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
@@ -34,6 +38,7 @@ public class QLSach1 extends javax.swing.JFrame {
     private DefaultTableModel modelNPH = new DefaultTableModel();
     private DefaultTableModel modelDSSach = new DefaultTableModel();
     private DefaultTableModel modelSachLoi = new DefaultTableModel();
+    private DefaultTableModel modelSach = new DefaultTableModel();
 
     private DefaultComboBoxModel boxModelTG = new DefaultComboBoxModel();
     private DefaultComboBoxModel boxModelTL = new DefaultComboBoxModel();
@@ -48,12 +53,14 @@ public class QLSach1 extends javax.swing.JFrame {
     private ArrayList<NPH> listNPH = new ArrayList<>();
     private ArrayList<NXB> listNXB = new ArrayList<>();
     private ArrayList<String> listNhomTuoi = new ArrayList<>();
+    private ArrayList<SachViewmodel> listSach = new ArrayList<>();
 
     private DMInterface_XT serviceDM = new DMImplement_XT();
     private TGServiceInterface serviceTG = new TGServiceImplement();
     private TLServiceInterface serviceTL = new TLServiceImplement();
     private NPHServiceInterface serviceNPH = new NPHServiceImplement();
     private final ImanageNXBService imanageNXBService;
+    private SachService serviceSach = new SachserviceImpl();
 
     public QLSach1() {
         initComponents();
@@ -62,27 +69,29 @@ public class QLSach1 extends javax.swing.JFrame {
         tblTacGia.setModel(modelTG);
         tblTheLoai.setModel(modelTL);
         tblNPH.setModel(modelNPH);
+        tblSach.setModel(modelSach);
 
         listDM = serviceDM.listDM();
         listTG = serviceTG.listTG();
         listTL = serviceTL.listTL();
         listNPH = serviceNPH.listNPH();
+        listSach = serviceSach.getlist();
 
-        loadTableDM(listDM);
         loadTableTG(listTG);
         loadTableTL(listTL);
         loadTableNPH(listNPH);
         loadTableNXB();
-        
+
         loadComBoNXB();
         loadComboDanhMuc();
         loadComboNPH();
         loadComboNhomTuoi();
         loadComboTacGia();
         loadComboTheLoai();
+        loadTableSach(listSach);
     }
 
-    private void loadComboNhomTuoi(){
+    private void loadComboNhomTuoi() {
         boxModelNhomTuoi.removeAllElements();
         listNhomTuoi.add("1-4");
         listNhomTuoi.add("5-9");
@@ -93,6 +102,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         cbNhomTuoi.setModel(boxModelNhomTuoi);
     }
+
     private void loadComboDanhMuc() {
         boxModelDM.removeAllElements();
         listDM = serviceDM.listDM();
@@ -233,10 +243,61 @@ public class QLSach1 extends javax.swing.JFrame {
         txtTenNPH.setText("");
     }
 
+    private Sach getSach() {
+        Sach x = new Sach();
+        x.setGiaban(Float.valueOf(txtGiaBan.getText()));
+        x.setMaDanhMuc((DanhMuc) cbDanhMuc.getSelectedItem());
+        x.setMaNPH((NPH) cbNPH3.getSelectedItem());
+        x.setMaNXB((NXB) cbNXB.getSelectedItem());
+        x.setMaTacGia((TacGia) cbTacGia.getSelectedItem());
+        x.setMaTheLoai((TheLoai) cbTheLoai.getSelectedItem());
+        x.setNamxuatban(txtNamXuatBan.getText());
+        x.setNgonNgu(txtNgonNgu.getText());
+        x.setNhomTuoi((String) cbNhomTuoi.getSelectedItem());
+        x.setSoluong(Integer.valueOf(txtSoLuong1.getText()));
+        x.setSotrang(Integer.valueOf(txtSoTrang.getText()));
+        x.setTaiBan(Integer.valueOf(txtTaiBan.getText()));
+        x.setTensach(txtTenSach1.getText());
+        Integer trangThai = 0;
+        if (rdDangBan.isSelected()) {
+            trangThai = 1;
+        } else {
+            trangThai = 0;
+        }
+        return x;
+    }
+
+    private void loadTableSach(ArrayList<SachViewmodel> list) {
+        modelSach.setRowCount(0);
+        modelSach.setColumnIdentifiers(new String[]{"Mã sách", "Tên sách", "Danh mục", "Thể loại", "Nhà phát hành", "Tác giả", "Nhà xuất bản", "Năm xuất bản", "Ngôn ngữ", "Nhóm tuổi", "Tái bản", "Số trang", "Giá bán", "Số lượng", "Trạng thái"});
+        for (SachViewmodel x : list) {
+            modelSach.addRow(x.todDataRow());
+        }
+    }
+
+    private void loadTextFieldSach(int i) {
+        SachViewmodel x = listSach.get(i);
+        txtGiaBan.setText(String.valueOf(x.getGiaban()));
+        txtTenSach1.setText(String.valueOf(x.getTensach()));
+        txtMaSach1.setText(String.valueOf(x.getMasach()));
+        txtNgonNgu.setText(String.valueOf(x.getNgonNgu()));
+        txtNamXuatBan.setText(x.getNamxuatban());
+        txtTaiBan.setText(String.valueOf(x.getTaiBan()));
+        txtGiaBan.setText(String.valueOf(x.getGiaban()));
+        txtSoLuong1.setText(String.valueOf(x.getSoluong()));
+        txtSoTrang.setText(String.valueOf(x.getSotrang()));
+        if (x.getTrangthai() == 1) {
+            rdDangBan.setSelected(true);
+        } else {
+            rdKhongBan1.setSelected(true);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         BackGround = new javax.swing.JPanel();
         SidePanel = new javax.swing.JPanel();
         btnTrangChu = new javax.swing.JButton();
@@ -269,7 +330,7 @@ public class QLSach1 extends javax.swing.JFrame {
         cbDanhMuc = new javax.swing.JComboBox<>();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
+        txtSoTrang = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         cbTheLoai = new javax.swing.JComboBox<>();
         jLabel40 = new javax.swing.JLabel();
@@ -277,27 +338,29 @@ public class QLSach1 extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         txtSoLuong1 = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdDangBan = new javax.swing.JRadioButton();
         rdKhongBan1 = new javax.swing.JRadioButton();
-        jButton6 = new javax.swing.JButton();
-        jButton35 = new javax.swing.JButton();
-        jButton36 = new javax.swing.JButton();
-        jButton37 = new javax.swing.JButton();
+        btnThemSach = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
+        btnXoaSach = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblSach = new javax.swing.JTable();
         jLabel44 = new javax.swing.JLabel();
         jComboBox8 = new javax.swing.JComboBox<>();
-        jTextField8 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        txtTimKiem = new javax.swing.JTextField();
+        btnTimKiem = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTaiBan = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtGiaBan = new javax.swing.JTextField();
         cbNXB = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
+        txtNgonNgu = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtNamXuatBan = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         txtMaSoSachLoi = new javax.swing.JTextField();
@@ -549,24 +612,42 @@ public class QLSach1 extends javax.swing.JFrame {
         jLabel42.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel42.setText("Trạng thái");
 
-        jRadioButton2.setText("Đang bán");
+        buttonGroup1.add(rdDangBan);
+        rdDangBan.setSelected(true);
+        rdDangBan.setText("Đang bán");
 
+        buttonGroup1.add(rdKhongBan1);
         rdKhongBan1.setText("Không còn bán");
 
-        jButton6.setText("THÊM");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnThemSach.setText("THÊM");
+        btnThemSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnThemSachActionPerformed(evt);
             }
         });
 
-        jButton35.setText("SỬA");
+        btnSua.setText("SỬA");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
-        jButton36.setText("XOÁ");
+        btnXoaSach.setText("XOÁ");
+        btnXoaSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaSachActionPerformed(evt);
+            }
+        });
 
-        jButton37.setText("LÀM MỚI");
+        btnClear.setText("LÀM MỚI");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -577,18 +658,28 @@ public class QLSach1 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblSach.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSachMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblSach);
 
         jLabel44.setText("Lọc");
 
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton5.setText("Tìm kiếm");
+        btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("SÁCH");
 
-        jButton1.setText("+");
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -599,12 +690,12 @@ public class QLSach1 extends javax.swing.JFrame {
                 .addComponent(jLabel44)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(btnTimKiem)
                 .addGap(89, 89, 89))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -622,43 +713,34 @@ public class QLSach1 extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimKiem)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44)
-                    .addComponent(jButton1))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jLabel7.setText("Tai ban");
-
-        jTextField1.setText("jTextField1");
 
         jLabel10.setText("Gia ban");
 
         cbNXB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextField2.setText("jTextField2");
+        jLabel11.setText("Nam xuat ban");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(jButton6)
-                .addGap(142, 142, 142)
-                .addComponent(jButton35)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton36)
+                                .addComponent(btnXoaSach)
                                 .addGap(1, 1, 1))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
@@ -686,13 +768,16 @@ public class QLSach1 extends javax.swing.JFrame {
                                     .addGroup(jPanel14Layout.createSequentialGroup()
                                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel41)
-                                            .addComponent(jLabel7))
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel11))
                                         .addGap(58, 58, 58)
                                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel14Layout.createSequentialGroup()
-                                                .addComponent(jTextField1)
-                                                .addGap(18, 18, 18))
-                                            .addComponent(txtSoLuong1))))
+                                            .addComponent(txtSoLuong1)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(txtNamXuatBan, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtTaiBan))
+                                                .addGap(18, 18, 18)))))
                                 .addGap(135, 135, 135)
                                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel34)
@@ -706,21 +791,27 @@ public class QLSach1 extends javax.swing.JFrame {
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTenSach1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton37)
+                                .addComponent(btnClear)
                                 .addGroup(jPanel14Layout.createSequentialGroup()
-                                    .addComponent(jRadioButton2)
+                                    .addComponent(rdDangBan)
                                     .addGap(18, 18, 18)
                                     .addComponent(rdKhongBan1)))
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNgonNgu, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(cbNXB, javax.swing.GroupLayout.Alignment.LEADING, 0, 241, Short.MAX_VALUE)
-                                .addComponent(jTextField20, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtSoTrang, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(cbDanhMuc, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(btnThemSach)
+                .addGap(142, 142, 142)
+                .addComponent(btnSua)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -748,11 +839,11 @@ public class QLSach1 extends javax.swing.JFrame {
                     .addComponent(jLabel37)
                     .addComponent(jLabel39)
                     .addComponent(cbTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSoTrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel40)
                     .addComponent(cbNhomTuoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -760,20 +851,24 @@ public class QLSach1 extends javax.swing.JFrame {
                     .addComponent(jLabel41)
                     .addComponent(txtSoLuong1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel42)
-                    .addComponent(jRadioButton2)
+                    .addComponent(rdDangBan)
                     .addComponent(rdKhongBan1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTaiBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                    .addComponent(txtGiaBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton35)
-                    .addComponent(jButton36)
-                    .addComponent(jButton37))
+                    .addComponent(jLabel11)
+                    .addComponent(txtNamXuatBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThemSach)
+                    .addComponent(btnSua)
+                    .addComponent(btnXoaSach)
+                    .addComponent(btnClear))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -940,7 +1035,7 @@ public class QLSach1 extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(txtLyDoDoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDoiSach)
                     .addComponent(btnLamMoi)
@@ -1255,7 +1350,7 @@ public class QLSach1 extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(txtTenNPH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThemNPH)
                     .addComponent(btnXoaNPH)
@@ -1813,9 +1908,63 @@ public class QLSach1 extends javax.swing.JFrame {
         txttenNXB.setText(tblNXB.getValueAt(row, 1).toString());
     }//GEN-LAST:event_tblNXBMouseClicked
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void btnThemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSachActionPerformed
+        Sach x = getSach();
+        JOptionPane.showMessageDialog(this, serviceSach.add(x));
+        listSach = serviceSach.getlist();
+        loadTableSach(listSach);
+    }//GEN-LAST:event_btnThemSachActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        String text = txtTimKiem.getText();
+        ArrayList<SachViewmodel> listSearch = serviceSach.listSearch(listSach, text);
+        loadTableSach(listSach);
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        int temp = tblSach.getSelectedRow();
+        if (temp < 0) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn dòng");
+        } else {
+            Integer maSach = Integer.valueOf(txtMaSach1.getText());
+            Sach x = getSach();
+            JOptionPane.showMessageDialog(this, serviceSach.update(x, maSach));
+            listSach = serviceSach.getlist();
+            loadTableSach(listSach);
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSachActionPerformed
+        int temp = tblSach.getSelectedRow();
+        if (temp < 0) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn dòng");
+        } else {
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon xoa khong?");
+            if (choice == JOptionPane.OK_OPTION) {
+                Integer maSach = Integer.valueOf(txtMaSach1.getText());
+                JOptionPane.showMessageDialog(this, serviceSach.delete(maSach));
+                listSach = serviceSach.getlist();
+                loadTableSach(listSach);
+            }
+        }
+    }//GEN-LAST:event_btnXoaSachActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        txtGiaBan.setText("");
+        txtNgonNgu.setText("");
+        txtNamXuatBan.setText("");
+        txtTaiBan.setText("");
+        txtSoLuong1.setText("");
+        txtTenSach1.setText("");
+        txtMaSach1.setText("");
+        txtGiaBan.setText("");
+        buttonGroup1.clearSelection();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void tblSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSachMouseClicked
+        int temp = tblSach.getSelectedRow();
+        loadTextFieldSach(temp);
+    }//GEN-LAST:event_tblSachMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1863,6 +2012,7 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JPanel BackGround;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JButton btnBanHang;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDoiSach;
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnLamMoi;
@@ -1870,6 +2020,7 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JButton btnQLKhachHang;
     private javax.swing.JButton btnQLNhanVien;
     private javax.swing.JButton btnQLSach;
+    private javax.swing.JButton btnSua;
     private javax.swing.JButton btnSuaDanhMuc;
     private javax.swing.JButton btnSuaNPH;
     private javax.swing.JButton btnSuaTG;
@@ -1877,16 +2028,20 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JButton btnTL;
     private javax.swing.JButton btnThemDanhMuc;
     private javax.swing.JButton btnThemNPH;
+    private javax.swing.JButton btnThemSach;
     private javax.swing.JButton btnThemTG;
     private javax.swing.JButton btnThemTL;
     private javax.swing.JButton btnThongKe;
+    private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnTrangChu;
     private javax.swing.JButton btnXoaDanhMuc;
     private javax.swing.JButton btnXoaNPH;
+    private javax.swing.JButton btnXoaSach;
     private javax.swing.JButton btnXoaTG;
     private javax.swing.JButton btnXoaTL;
     private javax.swing.JButton btnsua;
     private javax.swing.JButton btnxoa;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbDanhMuc;
     private javax.swing.JComboBox<String> cbNPH;
     private javax.swing.JComboBox<String> cbNPH3;
@@ -1894,16 +2049,12 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbNhomTuoi;
     private javax.swing.JComboBox<String> cbTacGia;
     private javax.swing.JComboBox<String> cbTheLoai;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton35;
-    private javax.swing.JButton jButton36;
-    private javax.swing.JButton jButton37;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1952,7 +2103,6 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1969,20 +2119,17 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JRadioButton rdDangBan;
     private javax.swing.JRadioButton rdKhongBan1;
     private javax.swing.JTable tblDSSach;
     private javax.swing.JTable tblDanhMuc;
     private javax.swing.JTable tblNPH;
     private javax.swing.JTable tblNXB;
+    private javax.swing.JTable tblSach;
     private javax.swing.JTable tblSachLoi;
     private javax.swing.JTable tblTacGia;
     private javax.swing.JTable tblTheLoai;
+    private javax.swing.JTextField txtGiaBan;
     private javax.swing.JTextField txtLyDoDoi;
     private javax.swing.JTextField txtMaDanhMuc;
     private javax.swing.JTextField txtMaNPH;
@@ -1991,13 +2138,18 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaSoSachLoi;
     private javax.swing.JTextField txtMaTG;
     private javax.swing.JTextField txtMaTheLoai;
+    private javax.swing.JTextField txtNamXuatBan;
+    private javax.swing.JTextField txtNgonNgu;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtSoLuong1;
+    private javax.swing.JTextField txtSoTrang;
+    private javax.swing.JTextField txtTaiBan;
     private javax.swing.JTextField txtTenDanhMuc;
     private javax.swing.JTextField txtTenNPH;
     private javax.swing.JTextField txtTenSach1;
     private javax.swing.JTextField txtTenTG;
     private javax.swing.JTextField txtTenTheLoai;
+    private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtmaNXB;
     private javax.swing.JTextField txttenNXB;
     // End of variables declaration//GEN-END:variables

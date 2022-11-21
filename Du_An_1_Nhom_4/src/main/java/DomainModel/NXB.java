@@ -9,6 +9,7 @@ package DomainModel;
  * @author DELL 5515
  */
 public class NXB {
+
     private int maNXB;
     private String tenNXB;
 
@@ -35,7 +36,10 @@ public class NXB {
     public void setTenNXB(String tenNXB) {
         this.tenNXB = tenNXB;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return tenNXB;
+    }
+
 }

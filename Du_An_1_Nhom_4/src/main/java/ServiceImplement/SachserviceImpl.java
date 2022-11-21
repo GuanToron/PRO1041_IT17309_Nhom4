@@ -150,4 +150,15 @@ public class SachserviceImpl implements SachService {
         return "That bai";
     }
 
+    @Override
+    public ArrayList<SachViewmodel> listSearch(ArrayList<SachViewmodel> list, String text) {
+        ArrayList<SachViewmodel> listSearch = new ArrayList<>();
+        for (SachViewmodel x : listSearch) {
+            if (x.getTensach().contains(text)) {
+                listSearch.add(x);
+            }
+        }
+        return listSearch;
+    }
+
 }

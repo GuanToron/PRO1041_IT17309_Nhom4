@@ -22,4 +22,5 @@ public interface SachService {
 
     String delete(int ma);
 
+    ArrayList<SachViewmodel> listSearch(ArrayList<SachViewmodel> list, String text);
 }

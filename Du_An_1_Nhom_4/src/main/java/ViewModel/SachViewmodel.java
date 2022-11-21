@@ -164,6 +164,6 @@ public class SachViewmodel {
     }
 
     public Object[] todDataRow() {
-        return new Object[]{maSach, tenSach, tenDanhMuc, tenTheLoai, tenNPH, tenTacGia, tenNXB, namxuatban, ngonNgu, nhomTuoi, taiBan, sotrang, giaban, soluong, trangthai};
+        return new Object[]{maSach, tenSach, tenDanhMuc, tenTheLoai, tenNPH, tenTacGia, tenNXB, namxuatban, ngonNgu, nhomTuoi, taiBan, sotrang, giaban, soluong, trangthai==1?"Đang bán":"Chờ bán"};
     }
 }

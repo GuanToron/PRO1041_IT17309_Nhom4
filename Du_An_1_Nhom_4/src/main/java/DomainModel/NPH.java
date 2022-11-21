@@ -37,4 +37,9 @@ public class NPH {
         this.tenNPH = tenNPH;
     }
 
+    @Override
+    public String toString() {
+        return tenNPH;
+    }
+
 }
