@@ -12,4 +12,6 @@ public interface HoaDonVMServiceInterface {
     String taoHD(HoaDonVM x);
 
     ArrayList<HoaDonVM> listHDVM();
+
+    String capNhatHD(HoaDonVM x);
 }

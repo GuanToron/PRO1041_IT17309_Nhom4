@@ -13,9 +13,14 @@ import java.util.ArrayList;
  * @author dqv20
  */
 public interface SachService {
-     public ArrayList<SachViewmodel> getlist() ;
-     public Boolean add(Sach s);
-      public Boolean update(Sach s ,int ma);
-      public Boolean delete(int ma);
-    
+
+    ArrayList<SachViewmodel> getlist();
+
+    String add(Sach s);
+
+    String update(Sach s, int ma);
+
+    String delete(int ma);
+
+    ArrayList<SachViewmodel> listSearch(ArrayList<SachViewmodel> list, String text);
 }

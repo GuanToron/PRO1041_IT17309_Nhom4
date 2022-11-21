@@ -6,6 +6,7 @@ package RepositoryImplement;
 
 import DomainModel.Sach;
 import Utilities.DBConection;
+import ViewModel.SachViewmodel;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -17,28 +18,15 @@ public class sachRepository {
 
     private DBConection conection;
 
-    public ArrayList<Sach> getlist() {
-        ArrayList<Sach> list = new ArrayList<>();
-        String sql = "select MaSach,TenSach,MaDM,MaTL,MaTL,MaNPH,MaTG,NamXuatBan,NgonNgu,NhomTuoi,TaiBan,SoTrang,SoLuong from sach";
+    public ArrayList<SachViewmodel> getlist() {
+        ArrayList<SachViewmodel> list = new ArrayList<>();
+        String sql = "SELECT SACH.MaSach, SACH.TenSach, DANHMUC.TenDM, THELOAI.TenTL, NPH.TenNPH, TACGIA.TenTG, NXB.TenNXB, SACH.NamXuatBan, SACH.NgonNgu, SACH.NhomTuoi, SACH.TaiBan, SACH.SoTrang, SACH.GiaBan, \n"
+                + "SACH.SoLuong, SACH.TrangThai\n"
+                + "FROM DANHMUC INNER JOIN SACH ON DANHMUC.MaDM = SACH.MaDM INNER JOIN NPH ON SACH.MaNPH = NPH.MaNPH INNER JOIN NXB ON SACH.MaNXB = NXB.MaNXB INNER JOIN TACGIA ON SACH.MaTG = TACGIA.MaTG INNER JOIN THELOAI ON SACH.MaTL = THELOAI.MaTL";
         try ( Connection con = conection.getConnection();  PreparedStatement ps = con.prepareStatement(sql);  ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                Sach s = new Sach();
-                s.setMasach(rs.getInt("MaSach"));
-                s.setTensach(rs.getString("TenSach"));
-                s.setMadm(rs.getInt("MaDM"));
-                s.setMatl(rs.getInt("MaTL"));
-                s.setManph(rs.getInt("MaNPH"));
-                s.setMatg(rs.getInt("MaTG"));
-                s.setNamxuatban(rs.getString("NamXuatBan"));
-                s.setNgonngu(rs.getString("NgonNgu"));
-                s.setNhomtuoi(rs.getInt("NhomTuoi"));
-                s.setTaiban(rs.getString("TaiBan"));
-                s.setMadm(rs.getInt("SoTrang"));
-                s.setMadm(rs.getInt("SoLuong"));
-                list.add(s);
-
+                list.add(new SachViewmodel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getInt(12), rs.getFloat(13), rs.getInt(14), rs.getInt(15)));
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,68 +34,70 @@ public class sachRepository {
     }
 
     public Boolean add(Sach s) {
-        String sql = "insert into sach( TenSach,MaDM,MaTL,MaTL,MaNPH,MaTG,NamXuatBan,NgonNgu,NhomTuoi,TaiBan,SoTrang,SoLuong) values ?,?,?,?,?,?,?,?,?,?,?,?";
+        String sql = "INSERT INTO [dbo].[SACH]([TenSach],[MaDM],[MaTL],[MaNPH],[MaTG],[MaNXB],[NamXuatBan],[NgonNgu],[NhomTuoi],[TaiBan],[SoTrang],[GiaBan],[SoLuong],[TrangThai])\n"
+                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        int check = 0;
         try ( Connection con = conection.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setObject(1, s.getTensach());
-            ps.setObject(2, s.getMadm());
-            ps.setObject(3, s.getMatl());
-            ps.setObject(4, s.getManph());
-            ps.setObject(5, s.getMatg());
-            ps.setObject(6, s.getNamxuatban());
-            ps.setObject(7, s.getNgonngu());
-            ps.setObject(8, s.getNhomtuoi());
-            ps.setObject(9, s.getTaiban());
-            ps.setObject(10, s.getSotrang());
-            ps.setObject(11, s.getGiaban());
-            ps.setObject(12, s.getSoluong());
-            ps.setObject(12, s.getTrangthai());
-            ps.executeUpdate();
-return true;
-        } catch (Exception e) {
- e.printStackTrace();
-        return false;}
-
-    }
-    public Boolean update(Sach s ,int ma){
-   String sql="update sach set TenSach =?,MaDM=?,MaTL=?,MaTL=?,MaNPH=?,MaTG=?,NamXuatBan=?,NgonNgu=?,NhomTuoi=?,TaiBan=?,SoTrang=?,SoLuong=?"
-           + "  where masach=?";
-    
-        try (Connection con = conection.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql)){
-             ps.setObject(1, s.getTensach());
-            ps.setObject(2, s.getMadm());
-            ps.setObject(3, s.getMatl());
-            ps.setObject(4, s.getManph());
-            ps.setObject(5, s.getMatg());
-            ps.setObject(6, s.getNamxuatban());
-            ps.setObject(7, s.getNgonngu());
-            ps.setObject(8, s.getNhomtuoi());
-            ps.setObject(9, s.getTaiban());
-            ps.setObject(10, s.getSotrang());
-            ps.setObject(11, s.getGiaban());
-            ps.setObject(12, s.getSoluong());
-            ps.setObject(12, s.getTrangthai());
-            
-            ps.setObject(13, ma);
-          
-            ps.executeUpdate();  return true;
-        } catch (Exception e) {
-      e.printStackTrace();
-        return false;}
-    }
-    public Boolean delete(int ma){
-    String sql = "delete sach where Masach=?";
-        try (Connection con = conection.getConnection();
-                PreparedStatement ps = con.prepareStatement(sql)){
-            ps.setObject(1, ma);
-            ps.executeUpdate();
-            
-            return true;
-            
+            ps.setObject(2, s.getMaDanhMuc().getMaDM());
+            ps.setObject(3, s.getMaTheLoai().getMaTheLoai());
+            ps.setObject(4, s.getMaNPH().getMaNPH());
+            ps.setObject(5, s.getMaTacGia().getMaTacGia());
+            ps.setObject(6, s.getMaNXB().getMaNXB());
+            ps.setObject(7, s.getNamxuatban());
+            ps.setObject(8, s.getNgonNgu());
+            ps.setObject(9, s.getNhomTuoi());
+            ps.setObject(10, s.getTaiBan());
+            ps.setObject(11, s.getSotrang());
+            ps.setObject(12, s.getGiaban());
+            ps.setObject(13, s.getSoluong());
+            ps.setObject(14, s.getTrangthai());
+            check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return check > 0;
+
+    }
+
+    public Boolean update(Sach s, int ma) {
+        String sql = "UPDATE [dbo].[SACH]\n"
+                + "SET [TenSach] = ?,[MaDM] = ?,[MaTL] = ?,[MaNPH] = ?,[MaTG] = ?,[MaNXB] = ?,[NamXuatBan] = ?,[NgonNgu] = ?,[NhomTuoi] = ?,[TaiBan] = ?,[SoTrang] =?,[GiaBan] = ?,[SoLuong] = ?,[TrangThai] = ?\n"
+                + " WHERE [MaSach] = ?";
+        int check = 0;
+        try ( Connection con = conection.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, s.getTensach());
+            ps.setObject(2, s.getMaDanhMuc().getMaDM());
+            ps.setObject(3, s.getMaTheLoai().getMaTheLoai());
+            ps.setObject(4, s.getMaNPH().getMaNPH());
+            ps.setObject(5, s.getMaTacGia().getMaTacGia());
+            ps.setObject(6, s.getMaNXB().getMaNXB());
+            ps.setObject(7, s.getNamxuatban());
+            ps.setObject(8, s.getNgonNgu());
+            ps.setObject(9, s.getNhomTuoi());
+            ps.setObject(10, s.getTaiBan());
+            ps.setObject(11, s.getSotrang());
+            ps.setObject(12, s.getGiaban());
+            ps.setObject(13, s.getSoluong());
+            ps.setObject(14, s.getTrangthai());
+            ps.setObject(15, ma);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+
+    public Boolean delete(int ma) {
+        String sql = "DELETE FROM [dbo].[SACH] WHERE [MaSach] = ?";
+        int check = 0;
+        try ( Connection con = conection.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ma);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
     }
 
 }

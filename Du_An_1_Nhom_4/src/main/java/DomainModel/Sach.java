@@ -9,41 +9,49 @@ package DomainModel;
  * @author dqv20
  */
 public class Sach {
-       private int masach;
+
+    private Integer masach;
     private String tensach;
-    private int madm, matl, manph, matg;
-    private String namxuatban, ngonngu;
-    private int nhomtuoi;
-    private String taiban;
-    private int sotrang;
-    private float giaban;
-    private int soluong, trangthai;
+    private DanhMuc maDanhMuc;
+    private TheLoai maTheLoai;
+    private NPH maNPH;
+    private TacGia maTacGia;
+    private NXB maNXB;
+    private String namxuatban;
+    private String ngonNgu;
+    private String nhomTuoi;
+    private Integer taiBan;
+    private Integer sotrang;
+    private Float giaban;
+    private Integer soluong;
+    private Integer trangthai;
 
     public Sach() {
     }
 
-    public Sach(int masach, String tensach, int madm, int matl, int manph, int matg, String namxuatban, String ngonngu, int nhomtuoi, String taiban, int sotrang, float giaban, int soluong, int trangthai) {
+    public Sach(Integer masach, String tensach, DanhMuc maDanhMuc, TheLoai maTheLoai, NPH maNPH, TacGia maTacGia, NXB maNXB, String namxuatban, String ngonNgu, String nhomTuoi, Integer taiBan, Integer sotrang, Float giaban, Integer soluong, Integer trangthai) {
         this.masach = masach;
         this.tensach = tensach;
-        this.madm = madm;
-        this.matl = matl;
-        this.manph = manph;
-        this.matg = matg;
+        this.maDanhMuc = maDanhMuc;
+        this.maTheLoai = maTheLoai;
+        this.maNPH = maNPH;
+        this.maTacGia = maTacGia;
+        this.maNXB = maNXB;
         this.namxuatban = namxuatban;
-        this.ngonngu = ngonngu;
-        this.nhomtuoi = nhomtuoi;
-        this.taiban = taiban;
+        this.ngonNgu = ngonNgu;
+        this.nhomTuoi = nhomTuoi;
+        this.taiBan = taiBan;
         this.sotrang = sotrang;
         this.giaban = giaban;
         this.soluong = soluong;
         this.trangthai = trangthai;
     }
 
-    public int getMasach() {
+    public Integer getMasach() {
         return masach;
     }
 
-    public void setMasach(int masach) {
+    public void setMasach(Integer masach) {
         this.masach = masach;
     }
 
@@ -55,36 +63,44 @@ public class Sach {
         this.tensach = tensach;
     }
 
-    public int getMadm() {
-        return madm;
+    public DanhMuc getMaDanhMuc() {
+        return maDanhMuc;
     }
 
-    public void setMadm(int madm) {
-        this.madm = madm;
+    public void setMaDanhMuc(DanhMuc maDanhMuc) {
+        this.maDanhMuc = maDanhMuc;
     }
 
-    public int getMatl() {
-        return matl;
+    public TheLoai getMaTheLoai() {
+        return maTheLoai;
     }
 
-    public void setMatl(int matl) {
-        this.matl = matl;
+    public void setMaTheLoai(TheLoai maTheLoai) {
+        this.maTheLoai = maTheLoai;
     }
 
-    public int getManph() {
-        return manph;
+    public NPH getMaNPH() {
+        return maNPH;
     }
 
-    public void setManph(int manph) {
-        this.manph = manph;
+    public void setMaNPH(NPH maNPH) {
+        this.maNPH = maNPH;
     }
 
-    public int getMatg() {
-        return matg;
+    public TacGia getMaTacGia() {
+        return maTacGia;
     }
 
-    public void setMatg(int matg) {
-        this.matg = matg;
+    public void setMaTacGia(TacGia maTacGia) {
+        this.maTacGia = maTacGia;
+    }
+
+    public NXB getMaNXB() {
+        return maNXB;
+    }
+
+    public void setMaNXB(NXB maNXB) {
+        this.maNXB = maNXB;
     }
 
     public String getNamxuatban() {
@@ -95,62 +111,60 @@ public class Sach {
         this.namxuatban = namxuatban;
     }
 
-    public String getNgonngu() {
-        return ngonngu;
+    public String getNgonNgu() {
+        return ngonNgu;
     }
 
-    public void setNgonngu(String ngonngu) {
-        this.ngonngu = ngonngu;
+    public void setNgonNgu(String ngonNgu) {
+        this.ngonNgu = ngonNgu;
     }
 
-    public int getNhomtuoi() {
-        return nhomtuoi;
+    public String getNhomTuoi() {
+        return nhomTuoi;
     }
 
-    public void setNhomtuoi(int nhomtuoi) {
-        this.nhomtuoi = nhomtuoi;
+    public void setNhomTuoi(String nhomTuoi) {
+        this.nhomTuoi = nhomTuoi;
     }
 
-    public String getTaiban() {
-        return taiban;
+    public Integer getTaiBan() {
+        return taiBan;
     }
 
-    public void setTaiban(String taiban) {
-        this.taiban = taiban;
+    public void setTaiBan(Integer taiBan) {
+        this.taiBan = taiBan;
     }
 
-    public int getSotrang() {
+    public Integer getSotrang() {
         return sotrang;
     }
 
-    public void setSotrang(int sotrang) {
+    public void setSotrang(Integer sotrang) {
         this.sotrang = sotrang;
     }
 
-    public float getGiaban() {
+    public Float getGiaban() {
         return giaban;
     }
 
-    public void setGiaban(float giaban) {
+    public void setGiaban(Float giaban) {
         this.giaban = giaban;
     }
 
-    public int getSoluong() {
+    public Integer getSoluong() {
         return soluong;
     }
 
-    public void setSoluong(int soluong) {
+    public void setSoluong(Integer soluong) {
         this.soluong = soluong;
     }
 
-    public int getTrangthai() {
+    public Integer getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(int trangthai) {
+    public void setTrangthai(Integer trangthai) {
         this.trangthai = trangthai;
     }
 
-  
-    
 }

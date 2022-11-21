@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Xuan Truong
  */
-public class BanHang extends javax.swing.JFrame {
+public class BanHang1 extends javax.swing.JFrame {
 
     private DefaultTableModel modelSach = new DefaultTableModel();
     private DefaultTableModel modelHoaDonVM = new DefaultTableModel();
@@ -27,13 +27,13 @@ public class BanHang extends javax.swing.JFrame {
 
     private ArrayList<HoaDonVM> listHDVM = new ArrayList<>();
     private ArrayList<SachVM> listSach = new ArrayList<>();
+    public ArrayList<GioHangVM> listGioHang = new ArrayList<>();
 
     private SachVMServiceInterface serviceSach = new SachVMServiceImplement();
     private HoaDonVMServiceInterface serviceHoaDonVM = new HoaDonVMServiceImplement();
     private HoaDonCTVMServiccecInterface serviceHDCTVM = new HoaDonCTVMServiceImplement();
-    public ArrayList<GioHangVM> listGioHang = new ArrayList<>();
 
-    public BanHang() {
+    public BanHang1() {
         initComponents();
         setLocationRelativeTo(null);
 
@@ -606,27 +606,26 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQLKhachHangActionPerformed
 
     private void tblSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSachMouseClicked
-        String soLuong = JOptionPane.showInputDialog(this, "Nhập số lượng");
-        GioHangVM x = new GioHangVM();
         int row = tblSach.getSelectedRow();
-        x.setTenSach(tblSach.getValueAt(row, 1).toString());
-        x.setSoLuong(Integer.valueOf(soLuong));
-        x.setDonGia((Float) tblSach.getValueAt(row, 3));
-        x.setMaSach((Integer) tblSach.getValueAt(row, 0));
-        listGioHang.add(x);
-        loadTableGioHang(listGioHang);
+        String soLuong = JOptionPane.showInputDialog(this, "Nhập số lượng");
         Integer slSachCon;
         slSachCon = (Integer) tblSach.getValueAt(row, 2) - Integer.valueOf(soLuong);
         String tenSach = tblSach.getValueAt(row, 1).toString();
         serviceSach.capNhatSoSach(slSachCon, tenSach);
         listSach = serviceSach.listSach();
         loadTableSach(listSach);
+        GioHangVM x = new GioHangVM();
+        x.setTenSach(tblSach.getValueAt(row, 1).toString());
+        x.setSoLuong(Integer.valueOf(soLuong));
+        x.setDonGia((Float) tblSach.getValueAt(row, 3));
+        listGioHang.add(x);
+        loadTableGioHang(listGioHang);
     }//GEN-LAST:event_tblSachMouseClicked
 
     private void btnTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHDActionPerformed
         HoaDonVM x = new HoaDonVM();
         x.setNgayTao(new Date());
-        x.setMaNhanVien(1);
+        x.setMaNhanVien(4);
         x.setMaKhachHang(1);
         x.setTrangThai(0);
         JOptionPane.showMessageDialog(this, serviceHoaDonVM.taoHD(x));
@@ -635,11 +634,11 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTaoHDActionPerformed
 
     private void tblGioHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGioHangMouseClicked
-        int row = tblGioHang.getSelectedRow();
-        SachVM x = new SachVM();
-        x.setSoLuong((Integer) tblGioHang.getValueAt(row, 1));
-        x.setTenSach(tblGioHang.getValueAt(row, 0).toString());
-        x.setGiaBan((Float) tblGioHang.getValueAt(row, 2));
+//        int row = tblGioHang.getSelectedRow();
+//        SachVM x = new SachVM();
+//        x.setSoLuong((Integer) tblGioHang.getValueAt(row, 1));
+//        x.setTenSach(tblGioHang.getValueAt(row, 0).toString());
+//        x.setGiaBan((Float) tblGioHang.getValueAt(row, 2));
     }//GEN-LAST:event_tblGioHangMouseClicked
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
@@ -663,6 +662,7 @@ public class BanHang extends javax.swing.JFrame {
             z.setMaHoaDon(Integer.valueOf(txtMaHoaDon.getText()));
             z.setSoLuong(x.getSoLuong());
             z.setMaSach(x.getMaSach());
+            listHDCT.add(z);
         }
         for (HoaDonCTVM x : listHDCT) {
             serviceHDCTVM.themHDCCT(x);
@@ -686,14 +686,18 @@ public class BanHang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BanHang1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BanHang1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BanHang1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BanHang1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -702,7 +706,7 @@ public class BanHang extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BanHang().setVisible(true);
+                new BanHang1().setVisible(true);
             }
         });
     }

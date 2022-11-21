@@ -19,7 +19,7 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
     public Boolean taoHoaDon(HoaDonVM x) {
         String query = "INSERT INTO [dbo].[HOADON]([MaKH],[MaNV],[NgayTao],[TrangThai])VALUES(?,?,?,?)";
         int check = 0;
-        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
             ps.setObject(1, x.getMaKhachHang());
             ps.setObject(2, x.getMaNhanVien());
             ps.setObject(3, x.getNgayTao());
@@ -44,6 +44,21 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
             e.getMessage();
         }
         return listHDVM;
+    }
+
+    @Override
+    public Boolean capNhatHoaDon(HoaDonVM x) {
+                String query = "UPDATE [dbo].[HOADON] SET [TongTien] = ?,[TrangThai] = ? WHERE [MaHD] = ?";
+        int check = 0;
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+//            ps.setObject(1, x.g());
+//            ps.setObject(2, x.getMaNhanVien());
+//            ps.setObject(3, x.getNgayTao());
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return check > 0;
     }
 
 }

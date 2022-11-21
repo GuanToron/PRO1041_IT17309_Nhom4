@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DomainModel;
 
 /**
@@ -9,6 +6,7 @@ package DomainModel;
  * @author DELL 5515
  */
 public class DanhMuc {
+
     private int maDM;
     private String tenDM;
 
@@ -39,6 +37,10 @@ public class DanhMuc {
     public DanhMuc(String tenDM) {
         this.tenDM = tenDM;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return tenDM;
+    }
+
 }

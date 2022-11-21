@@ -14,54 +14,151 @@ import java.util.ArrayList;
  *
  * @author dqv20
  */
-public class SachserviceImpl  implements SachService{
+public class SachserviceImpl implements SachService {
+
     private sachRepository cc = new sachRepository();
 
     @Override
     public ArrayList<SachViewmodel> getlist() {
-        ArrayList<Sach> ds = cc.getlist();
-        ArrayList<SachViewmodel> listviewmodel = new ArrayList<>();
-        for (Sach s : ds) {
-            SachViewmodel ss = new SachViewmodel(
-            s.getMasach(),
-            s.getTensach(),
-                    s.getMadm(),
-                    s.getMatl(),
-                    s.getManph(),
-                    s.getMatg(),
-                    s.getNamxuatban(),
-                    s.getNgonngu(),
-                    s.getNhomtuoi(),
-                    s.getTaiban(),
-                    s.getSotrang(),
-                    s.getGiaban(),
-                    s.getSoluong(),
-                    s.getTrangthai()
-            );
-            listviewmodel.add(ss);
-            
+        return cc.getlist();
+    }
+
+    @Override
+    public String add(Sach s) {
+        if (s.getGiaban().toString().isBlank() || s.getNamxuatban().isBlank() || s.getNgonNgu().isBlank() || s.getNhomTuoi().isBlank() || s.getSoluong().toString().isBlank() || s.getSotrang().toString().isBlank() || s.getTaiBan().toString().isBlank() || s.getTensach().isBlank()) {
+            return "Con tron du lieu";
         }
-        return listviewmodel;
-        
+        String regex = "^[a-zA-Z]*$";
+        if (!s.getTensach().matches(regex)) {
+            return "Ten sach sai dinh dang";
+        }
+        try {
+            Integer soLuong = s.getSoluong();
+            if (soLuong <= 0) {
+                return "So luong phai lon hon 0";
+            }
+        } catch (Exception e) {
+            return "So luong phai la so";
+        }
+        try {
+            Integer soTrang = s.getSotrang();
+            if (soTrang <= 0) {
+                return "So trang phai lon hon 0";
+            }
+        } catch (Exception e) {
+            return "So trang phai la so";
+        }
+        try {
+            Integer soTaiBan = s.getTaiBan();
+            if (soTaiBan <= 0) {
+                return "So tai ban phai lon hon 0";
+            }
+        } catch (Exception e) {
+            return "So tai ban phai la so";
+        }
+        try {
+            Integer namXuatBan = Integer.parseInt(s.getNamxuatban());
+            if (namXuatBan <= 0) {
+                return "Nam xuat ban phai lon hon 0";
+            }
+            if (namXuatBan > 2022) {
+                return "Nam xuat ban phai nho hon 2022";
+            }
+        } catch (Exception e) {
+            return "Nam xuat ban phai la so";
+        }
+        try {
+            Float giaBan = s.getGiaban();
+            if (0 > giaBan) {
+                return "Gia ban phai lon hon 0";
+            }
+        } catch (Exception e) {
+            return "Gia ban phai la so";
+        }
+        boolean them = cc.add(s);
+        if (them) {
+            return "Thanh cong";
+        }
+        return "That bai";
     }
 
     @Override
-    public Boolean add(Sach s) {
-        cc.add(s);
-        return true;
+    public String update(Sach s, int ma) {
+        if (s.getGiaban().toString().isBlank() || s.getNamxuatban().isBlank() || s.getNgonNgu().isBlank() || s.getNhomTuoi().isBlank() || s.getSoluong().toString().isBlank() || s.getSotrang().toString().isBlank() || s.getTaiBan().toString().isBlank() || s.getTensach().isBlank()) {
+            return "Con tron du lieu";
+        }
+        String regex = "^[a-zA-Z]*$";
+        if (!s.getTensach().matches(regex)) {
+            return "Ten sach sai dinh dang";
+        }
+        try {
+            Integer soLuong = s.getSoluong();
+            if (soLuong <= 0) {
+                return "So luong phai lon hon 0";
+            }
+        } catch (Exception e) {
+            return "So luong phai la so";
+        }
+        try {
+            Integer soTrang = s.getSotrang();
+            if (soTrang <= 0) {
+                return "So trang phai lon hon 0";
+            }
+        } catch (Exception e) {
+            return "So trang phai la so";
+        }
+        try {
+            Integer soTaiBan = s.getTaiBan();
+            if (soTaiBan <= 0) {
+                return "So tai ban phai lon hon 0";
+            }
+        } catch (Exception e) {
+            return "So tai ban phai la so";
+        }
+        try {
+            Integer namXuatBan = Integer.parseInt(s.getNamxuatban());
+            if (namXuatBan <= 0) {
+                return "Nam xuat ban phai lon hon 0";
+            }
+            if (namXuatBan > 2022) {
+                return "Nam xuat ban phai nho hon 2022";
+            }
+        } catch (Exception e) {
+            return "Nam xuat ban phai la so";
+        }
+        try {
+            Float giaBan = s.getGiaban();
+            if (0 > giaBan) {
+                return "Gia ban phai lon hon 0";
+            }
+        } catch (Exception e) {
+            return "Gia ban phai la so";
+        }
+        boolean sua = cc.update(s, ma);
+        if (sua) {
+            return "Thanh cong";
+        }
+        return "That bai";
     }
 
     @Override
-    public Boolean update(Sach s, int ma) {
-    cc.update(s, ma);
-    return true;
-    
+    public String delete(int ma) {
+        boolean xoa = cc.delete(ma);
+        if (xoa) {
+            return "Thanh cong";
+        }
+        return "That bai";
     }
 
     @Override
-    public Boolean delete(int ma) {
-    cc.delete(ma);
-    return true;
+    public ArrayList<SachViewmodel> listSearch(ArrayList<SachViewmodel> list, String text) {
+        ArrayList<SachViewmodel> listSearch = new ArrayList<>();
+        for (SachViewmodel x : listSearch) {
+            if (x.getTensach().contains(text)) {
+                listSearch.add(x);
+            }
+        }
+        return listSearch;
     }
-    
+
 }
