@@ -231,10 +231,20 @@ public class QLNhanVien_ extends javax.swing.JFrame {
         jButton3.setText("QUẢN LÝ SÁCH");
         jButton3.setBackground(new java.awt.Color(255, 102, 51));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("QUẢN LÝ HOÁ ĐƠN");
         jButton4.setBackground(new java.awt.Color(255, 102, 51));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("QUẢN LÝ KHÁCH HÀNG");
         jButton7.setBackground(new java.awt.Color(255, 102, 51));
@@ -256,6 +266,11 @@ public class QLNhanVien_ extends javax.swing.JFrame {
         jButton16.setText("QUẢN LÝ NHÂN VIÊN");
         jButton16.setBackground(new java.awt.Color(255, 102, 51));
         jButton16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SidePanelLayout = new javax.swing.GroupLayout(SidePanel);
         SidePanel.setLayout(SidePanelLayout);
@@ -532,11 +547,11 @@ public class QLNhanVien_ extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Thông tin nhân viên", jPanel2);
 
-        lblMaChucVu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblMaChucVu.setText("Mã chức vụ");
+        lblMaChucVu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        lblTenChucVu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTenChucVu.setText("Tên chức vụ");
+        lblTenChucVu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btnThem1.setText("Thêm");
         btnThem1.addActionListener(new java.awt.event.ActionListener() {
@@ -764,6 +779,18 @@ public class QLNhanVien_ extends javax.swing.JFrame {
         int temp = tblChucVu.getSelectedRow();
         loadTextField(temp);
     }//GEN-LAST:event_tblChucVuMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
      * @param args the command line arguments

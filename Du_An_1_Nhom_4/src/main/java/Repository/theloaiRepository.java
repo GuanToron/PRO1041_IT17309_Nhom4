@@ -21,7 +21,7 @@ public class theloaiRepository {
 
     public ArrayList<TheLoai> getlist() {
         ArrayList<TheLoai> list = new ArrayList<>();
-        String sql = " seletct *from THELOAI";
+        String sql = " select *from THELOAI";
         try ( Connection con = conection.getConnection();  PreparedStatement ps = con.prepareStatement(sql);  ResultSet rs = ps.executeQuery();) {
             TheLoai tl = new TheLoai();
             tl.setMatl(rs.getString("MaTL"));

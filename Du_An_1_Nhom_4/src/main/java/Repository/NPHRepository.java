@@ -12,7 +12,8 @@ import java.util.ArrayList;
  * @author Xuan Truong
  */
 public class NPHRepository {
-
+        private DBConection conection;
+        
     public ArrayList<NPH> getAllNPH() {
         String query = "SELECT [MaNPH],[TenNPH] FROM [dbo].[NPH]";
         ArrayList<NPH> listNPH = new ArrayList<>();
