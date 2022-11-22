@@ -59,4 +59,16 @@ public class NXBRepository implements INXBRepository {
         return row;
     }
 
+    @Override
+    public NXB timnxb(ArrayList<NXB> list, String text) {
+          NXB x = new NXB();
+        for (NXB z : list) {
+            if (z.getTenNXB().equals(text)) {
+                x.setTenNXB(z.getTenNXB());
+            }
+        }
+        return x;
+    }
+    
+
 }

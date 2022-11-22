@@ -280,6 +280,7 @@ public class QLSach1 extends javax.swing.JFrame {
         listTL = serviceTL.listTL();
         listNPH = serviceNPH.listNPH();
         listSach = serviceSach.getlist();
+        listnxb = imanageNXBService.getAll();
         
         Integer maTacGia = 0;
         for (TacGia z : listTG) {
@@ -312,7 +313,14 @@ public class QLSach1 extends javax.swing.JFrame {
             
         }
         x.setMaTheLoai(maTheLoai);
-
+        
+Integer manxb =0;
+          for (NXB nxb : listnxb) {
+            if (nxb.getTenNXB().equals(txtNXB)) {
+                manxb = nxb.getMaNXB();
+            }
+        }
+        x.setMaNXB(manxb);
 //        x.setMaDanhMuc((DanhMuc) cbDanhMuc.getSelectedItem());
 //        x.setMaNXB((NXB) cbNXB.getSelectedItem());
         x.setNamxuatban(txtNamXuatBan.getText());
@@ -2264,7 +2272,7 @@ public class QLSach1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReloadTheLoaiActionPerformed
 
     private void btnReloadNXBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadNXBActionPerformed
-
+  listnxb = imanageNXBService.getAll();
     }//GEN-LAST:event_btnReloadNXBActionPerformed
 
     private void btnReloadDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadDanhMucActionPerformed
@@ -2273,6 +2281,17 @@ public class QLSach1 extends javax.swing.JFrame {
 
     private void btnTimNXBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimNXBActionPerformed
         // TODO add your handling code here:
+        String text = JOptionPane.showInputDialog(this, "Nhập tên NXB cần tìm");
+        NXB x = imanageNXBService.timnxb((ArrayList<NXB>) listnxb, text);
+        if (x.getTenNXB()== null) {
+            JOptionPane.showMessageDialog(this, "Khong co nhà xuất bản, vui long thu lai hoac tao moi");
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon tao moi nhà xuất bản khong?");
+            if (choice == JOptionPane.OK_OPTION) {
+                new formNXBmini().setVisible(true);
+            }
+        } else {
+            txtTacGia.setText(x.getTenNXB());
+        }
         
     }//GEN-LAST:event_btnTimNXBActionPerformed
 

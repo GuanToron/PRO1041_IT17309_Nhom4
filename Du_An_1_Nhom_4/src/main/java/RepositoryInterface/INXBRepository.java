@@ -5,6 +5,7 @@
 package RepositoryInterface;
 
 import DomainModel.NXB;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,4 +21,5 @@ public interface INXBRepository {
     Integer delete(String maNXB);
 
     Integer update(String maNXB, NXB nxb);
+     NXB timnxb(ArrayList<NXB> list, String text);
 }

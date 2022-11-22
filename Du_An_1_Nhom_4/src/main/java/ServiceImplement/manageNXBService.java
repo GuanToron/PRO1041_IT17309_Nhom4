@@ -10,6 +10,7 @@ import RepositoryImplement.NXBRepository;
 import RepositoryInterface.INXBRepository;
 import ServiceInterface.ImanageNXBService;
 import ViewModel.QLNXB;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +44,16 @@ public class manageNXBService implements ImanageNXBService{
     @Override
     public Integer update(String maNXB, NXB nxb) {
      return iNXBRepository.update(maNXB, nxb);
+    }
+      @Override
+    public NXB timnxb(ArrayList<NXB> list, String text) {
+          NXB x = new NXB();
+        for (NXB z : list) {
+            if (z.getTenNXB().equals(text)) {
+                x.setTenNXB(z.getTenNXB());
+            }
+        }
+        return x;
     }
     
 }
