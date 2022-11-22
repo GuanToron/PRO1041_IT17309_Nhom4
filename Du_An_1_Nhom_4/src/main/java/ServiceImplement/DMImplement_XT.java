@@ -63,4 +63,16 @@ public class DMImplement_XT implements DMInterface_XT {
         return "Thất bại";
     }
 
+    @Override
+    public DanhMuc timDanhMuc(ArrayList<DanhMuc> Listcc, String timkiem) {
+        ArrayList<DanhMuc> danhMuc = repo.listDM();
+        DanhMuc x = new DanhMuc();
+        for (DanhMuc z : danhMuc) {
+            if (z.getTenDM().equals(timkiem)) {
+                x.setTenDM(z.getTenDM());
+            }
+        }
+        return x;
+    }
+
 }

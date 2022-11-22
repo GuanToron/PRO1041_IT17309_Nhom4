@@ -21,4 +21,6 @@ public interface DMInterface_XT {
     String suaDM(DanhMuc x);
 
     String xoaDM(DanhMuc x);
+
+    DanhMuc timDanhMuc(ArrayList<DanhMuc> Listcc, String timkiem);
 }

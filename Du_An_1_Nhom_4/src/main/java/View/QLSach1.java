@@ -299,9 +299,17 @@ public class QLSach1 extends javax.swing.JFrame {
         
         Integer maTheLoai = 0;
         for (TheLoai v : listTL) {
-            if (v.getTenTheLoai().equals(txtTheLoai)) {
+            if (v.getTenTheLoai().equals(txtTheLoai.getText())) {
                 maTheLoai = v.getMaTheLoai();
             }
+        }
+        
+        Integer DanhMuc = 0;
+        for (DanhMuc dm : listDM) {
+            if(dm.getTenDM().equals(txtDanhMuc.getText())){
+                DanhMuc = dm.getMaDM();
+            }
+            
         }
         x.setMaTheLoai(maTheLoai);
 
@@ -808,8 +816,18 @@ public class QLSach1 extends javax.swing.JFrame {
         });
 
         btnTimNXB.setText("*");
+        btnTimNXB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimNXBActionPerformed(evt);
+            }
+        });
 
         btnDanhMuc.setText("*");
+        btnDanhMuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDanhMucActionPerformed(evt);
+            }
+        });
 
         txtTacGia.setEditable(false);
 
@@ -2252,6 +2270,26 @@ public class QLSach1 extends javax.swing.JFrame {
     private void btnReloadDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadDanhMucActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReloadDanhMucActionPerformed
+
+    private void btnTimNXBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimNXBActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnTimNXBActionPerformed
+
+    private void btnDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhMucActionPerformed
+        // TODO add your handling code here:
+        String text = JOptionPane.showInputDialog(this, "Nhập tên danh mục cần tìm");
+        DanhMuc x = serviceDM.timDanhMuc(listDM, text);
+        if (x.getTenDM() == null) {
+            JOptionPane.showMessageDialog(this, "Khong co danh muc, vui long thu lai hoac tao moi");
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon tao moi danh muc khong?");
+            if (choice == JOptionPane.OK_OPTION) {
+                new FormDanhMuc_Mini().setVisible(true);
+            }
+        } else {
+            txtDanhMuc.setText(x.getTenDM());
+        }
+    }//GEN-LAST:event_btnDanhMucActionPerformed
 
     /**
      * @param args the command line arguments
