@@ -12,11 +12,11 @@ public class Sach {
 
     private Integer masach;
     private String tensach;
-    private DanhMuc maDanhMuc;
-    private TheLoai maTheLoai;
-    private NPH maNPH;
-    private TacGia maTacGia;
-    private NXB maNXB;
+    private Integer maDanhMuc;
+    private Integer maTheLoai;
+    private Integer maNPH;
+    private Integer maTacGia;
+    private Integer maNXB;
     private String namxuatban;
     private String ngonNgu;
     private String nhomTuoi;
@@ -29,7 +29,7 @@ public class Sach {
     public Sach() {
     }
 
-    public Sach(Integer masach, String tensach, DanhMuc maDanhMuc, TheLoai maTheLoai, NPH maNPH, TacGia maTacGia, NXB maNXB, String namxuatban, String ngonNgu, String nhomTuoi, Integer taiBan, Integer sotrang, Float giaban, Integer soluong, Integer trangthai) {
+    public Sach(Integer masach, String tensach, Integer maDanhMuc, Integer maTheLoai, Integer maNPH, Integer maTacGia, Integer maNXB, String namxuatban, String ngonNgu, String nhomTuoi, Integer taiBan, Integer sotrang, Float giaban, Integer soluong, Integer trangthai) {
         this.masach = masach;
         this.tensach = tensach;
         this.maDanhMuc = maDanhMuc;
@@ -63,43 +63,43 @@ public class Sach {
         this.tensach = tensach;
     }
 
-    public DanhMuc getMaDanhMuc() {
+    public Integer getMaDanhMuc() {
         return maDanhMuc;
     }
 
-    public void setMaDanhMuc(DanhMuc maDanhMuc) {
+    public void setMaDanhMuc(Integer maDanhMuc) {
         this.maDanhMuc = maDanhMuc;
     }
 
-    public TheLoai getMaTheLoai() {
+    public Integer getMaTheLoai() {
         return maTheLoai;
     }
 
-    public void setMaTheLoai(TheLoai maTheLoai) {
+    public void setMaTheLoai(Integer maTheLoai) {
         this.maTheLoai = maTheLoai;
     }
 
-    public NPH getMaNPH() {
+    public Integer getMaNPH() {
         return maNPH;
     }
 
-    public void setMaNPH(NPH maNPH) {
+    public void setMaNPH(Integer maNPH) {
         this.maNPH = maNPH;
     }
 
-    public TacGia getMaTacGia() {
+    public Integer getMaTacGia() {
         return maTacGia;
     }
 
-    public void setMaTacGia(TacGia maTacGia) {
+    public void setMaTacGia(Integer maTacGia) {
         this.maTacGia = maTacGia;
     }
 
-    public NXB getMaNXB() {
+    public Integer getMaNXB() {
         return maNXB;
     }
 
-    public void setMaNXB(NXB maNXB) {
+    public void setMaNXB(Integer maNXB) {
         this.maNXB = maNXB;
     }
 

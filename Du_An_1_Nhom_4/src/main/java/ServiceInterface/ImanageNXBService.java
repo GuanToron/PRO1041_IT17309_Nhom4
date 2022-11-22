@@ -13,8 +13,12 @@ import java.util.List;
  * @author DELL 5515
  */
 public interface ImanageNXBService {
-    List<QLNXB> getAll();
+
+    List<NXB> getAll();
+
     Integer add(NXB nxb);
+
     Integer delete(String maNXB);
+
     Integer update(String maNXB, NXB nxb);
 }

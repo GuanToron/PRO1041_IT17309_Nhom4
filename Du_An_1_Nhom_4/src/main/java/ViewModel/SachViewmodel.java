@@ -6,9 +6,9 @@ package ViewModel;
  */
 public class SachViewmodel {
 
-    private Integer maSach;
+    private Integer maSach; 
     private String tenSach;
-    private String tenDanhMuc;
+    private String tenDanhMuc;  
     private String tenTheLoai;
     private String tenNPH;
     private String tenTacGia;

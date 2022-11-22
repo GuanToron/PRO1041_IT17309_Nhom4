@@ -16,4 +16,6 @@ public interface TLServiceInterface {
     String suaTL(TheLoai x);
 
     String xoaTL(TheLoai x);
+
+    TheLoai timTheLoai(ArrayList<TheLoai> list, String text);
 }

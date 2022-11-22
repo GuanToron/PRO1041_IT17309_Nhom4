@@ -22,7 +22,7 @@ public class TGImplement implements TGInterface {
     @Override
     public ArrayList<TacGia> listTG() {
         String query = "SELECT [MaTG],[TenTG] FROM [dbo].[TACGIA]";
-        try (Connection con = DBConection.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ArrayList<TacGia> listTG = new ArrayList<>();
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -39,7 +39,7 @@ public class TGImplement implements TGInterface {
     public Boolean themTG(TacGia x) {
         String query = "INSERT INTO [dbo].[TACGIA]([TenTG]) VALUES (?)";
         int check = 0;
-        try (Connection con = DBConection.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, x.getTenTacGia());
             check = ps.executeUpdate();
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class TGImplement implements TGInterface {
     public Boolean suaTG(TacGia x) {
         String query = "UPDATE [dbo].[TACGIA]SET [TenTG] = ? WHERE [MaTG] = ?";
         int check = 0;
-        try (Connection con = DBConection.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, x.getTenTacGia());
             ps.setObject(2, x.getMaTacGia());
             check = ps.executeUpdate();
@@ -66,7 +66,7 @@ public class TGImplement implements TGInterface {
     public Boolean xoaTG(TacGia x) {
         String query = "DELETE FROM [dbo].[TACGIA] WHERE [MaTG] = ?";
         int check = 0;
-        try (Connection con = DBConection.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, x.getMaTacGia());
             check = ps.executeUpdate();
         } catch (Exception e) {

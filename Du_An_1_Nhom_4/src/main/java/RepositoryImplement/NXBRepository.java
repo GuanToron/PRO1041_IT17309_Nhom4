@@ -19,19 +19,18 @@ import java.util.logging.Logger;
  *
  * @author DELL 5515
  */
-public class NXBRepository implements INXBRepository{
-    
-    private List<QLNXB> list;
-    
+public class NXBRepository implements INXBRepository {
+
+    private List<NXB> list;
 
     @Override
-    public List<QLNXB> getAll() {
+    public List<NXB> getAll() {
         list = new ArrayList<>();
-      String sql = "select * from NXB";
+        String sql = "select * from NXB";
         ResultSet rs = DBConection.excutequery(sql);
         try {
-            while(rs.next()){
-                list.add(new QLNXB(rs.getInt(1), rs.getString(2)));
+            while (rs.next()) {
+                list.add(new NXB(rs.getInt(1), rs.getString(2)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(NXBRepository.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,23 +40,23 @@ public class NXBRepository implements INXBRepository{
 
     @Override
     public Integer add(NXB nxb) {
-      String sql = "insert into NXB(TenNXB) values(?)";
-      int row = DBConection.excuteUpdate(sql, nxb.getTenNXB());
-      return row;
+        String sql = "insert into NXB(TenNXB) values(?)";
+        int row = DBConection.excuteUpdate(sql, nxb.getTenNXB());
+        return row;
     }
 
     @Override
     public Integer delete(String maNXB) {
-     String sql = "delete NXB where MaNXB = ?";
-     int row = DBConection.excuteUpdate(sql, maNXB);
-     return row;
+        String sql = "delete NXB where MaNXB = ?";
+        int row = DBConection.excuteUpdate(sql, maNXB);
+        return row;
     }
 
     @Override
     public Integer update(String maNXB, NXB nxb) {
         String sql = "update NXB set TenNXB = ? where MaNXB = ?";
-     int row = DBConection.excuteUpdate(sql, nxb.getTenNXB(), maNXB);
-     return row;
+        int row = DBConection.excuteUpdate(sql, nxb.getTenNXB(), maNXB);
+        return row;
     }
-    
+
 }

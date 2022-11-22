@@ -46,4 +46,8 @@ public class TacGia {
         this.tenTacGia = tenTacGia;
     }
 
+    public TacGia(int maTacGia) {
+        this.maTacGia = maTacGia;
+    }
+
 }

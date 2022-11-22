@@ -1,6 +1,7 @@
 package ServiceImplement;
 
 import DomainModel.NPH;
+import DomainModel.TacGia;
 import RepositoryImplement.NPHRepositoryImplement;
 import RepositoryInterface.NPHRepositoryInterface;
 import java.util.ArrayList;
@@ -64,6 +65,17 @@ public class NPHServiceImplement implements NPHServiceInterface {
             return "Thanh cong";
         }
         return "That bai";
+    }
+
+    @Override
+    public NPH timNPH(ArrayList<NPH> list, String text) {
+        NPH x = new NPH();
+        for (NPH z : list) {
+            if (z.getTenNPH().equals(text)) {
+                x.setTenNPH(z.getTenNPH());
+            }
+        }
+        return x;
     }
 
 }

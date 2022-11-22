@@ -21,4 +21,6 @@ public interface TGServiceInterface {
     String suaTG(TacGia x);
 
     String xoaTG(TacGia x);
+
+    TacGia timTG(ArrayList<TacGia> list, String text);
 }

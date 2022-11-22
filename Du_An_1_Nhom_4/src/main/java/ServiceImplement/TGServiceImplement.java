@@ -65,4 +65,16 @@ public class TGServiceImplement implements TGServiceInterface {
         return "Thất bại";
     }
 
+    @Override
+    public TacGia timTG(ArrayList<TacGia> list, String text) {
+        TacGia x = new TacGia();
+        for (TacGia z : list) {
+            if (z.getTenTacGia().equals(text)) {
+                x.setMaTacGia(z.getMaTacGia());
+                x.setTenTacGia(z.getTenTacGia());
+            }
+        }
+        return x;
+    }
+
 }

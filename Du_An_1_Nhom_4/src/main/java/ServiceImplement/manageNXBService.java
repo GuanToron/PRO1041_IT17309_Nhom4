@@ -26,7 +26,7 @@ public class manageNXBService implements ImanageNXBService{
 
     
     @Override
-    public List<QLNXB> getAll() {
+    public List<NXB> getAll() {
      return iNXBRepository.getAll();
     }
 

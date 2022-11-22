@@ -5,6 +5,7 @@ import ServiceInterface.ImanageKhachHangService;
 import ServiceImplement.manageKhachHangService;
 import ViewModel.QLKhachHang;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -17,17 +18,18 @@ import javax.swing.table.DefaultTableModel;
 public class QLKhachHang_ extends javax.swing.JFrame {
 
     private final ImanageKhachHangService imanageKhachHangService;
+    private List<QLKhachHang> list;
 
     public QLKhachHang_() {
         initComponents();
         imanageKhachHangService = new manageKhachHangService();
-        loadTable();
+        list = imanageKhachHangService.getAll();
+        loadTable(list);
     }
 
-    private void loadTable() {
+    private void loadTable(List<QLKhachHang> list) {
         DefaultTableModel tblmodel = (DefaultTableModel) tblKhachHang.getModel();
         tblmodel.setRowCount(0);
-        List<QLKhachHang> list = imanageKhachHangService.getAll();
 
         for (QLKhachHang kh : list) {
             tblmodel.addRow(new Object[]{kh.getMaKH(), kh.getTenKH(), kh.getGioiTinh() == 0 ? "Nữ" : "Nam", kh.getDiaChi(), kh.getNgaySinh(), kh.getSdt(), kh.getDiemTichLuy()});
@@ -590,7 +592,8 @@ public class QLKhachHang_ extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Add thất bại  ");
             return;
         }
-        loadTable();
+        list = imanageKhachHangService.getAll();
+        loadTable(list);
         clearForm();
 
     }//GEN-LAST:event_btnThemActionPerformed
@@ -646,7 +649,8 @@ public class QLKhachHang_ extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Update thất bại  ");
             return;
         }
-        loadTable();
+        list = imanageKhachHangService.getAll();
+        loadTable(list);
         clearForm();
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
@@ -669,7 +673,8 @@ public class QLKhachHang_ extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Delete thất bại  ");
             return;
         }
-        loadTable();
+        list = imanageKhachHangService.getAll();
+        loadTable(list);
         clearForm();
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -694,7 +699,9 @@ public class QLKhachHang_ extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        
+        String text = txtTimKiem.getText();
+        ArrayList<QLKhachHang> listSearch = (ArrayList<QLKhachHang>) imanageKhachHangService.listSearch(list, text);
+        loadTable(listSearch);
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     /**

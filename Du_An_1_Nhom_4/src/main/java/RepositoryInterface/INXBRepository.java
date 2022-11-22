@@ -5,7 +5,6 @@
 package RepositoryInterface;
 
 import DomainModel.NXB;
-import ViewModel.QLNXB;
 import java.util.List;
 
 /**
@@ -13,8 +12,12 @@ import java.util.List;
  * @author DELL 5515
  */
 public interface INXBRepository {
-    List<QLNXB> getAll();
+
+    List<NXB> getAll();
+
     Integer add(NXB nxb);
+
     Integer delete(String maNXB);
+
     Integer update(String maNXB, NXB nxb);
 }

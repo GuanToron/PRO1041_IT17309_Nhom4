@@ -1,31 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DomainModel;
 
 /**
  *
- * @author DELL 5515
+ * @author Xuan Truong
  */
 public class NXB {
 
-    private int maNXB;
+    private Integer maNXB;
     private String tenNXB;
 
     public NXB() {
     }
 
-    public NXB(int maNXB, String tenNXB) {
+    public NXB(Integer maNXB, String tenNXB) {
         this.maNXB = maNXB;
         this.tenNXB = tenNXB;
     }
 
-    public int getMaNXB() {
+    public Integer getMaNXB() {
         return maNXB;
     }
 
-    public void setMaNXB(int maNXB) {
+    public void setMaNXB(Integer maNXB) {
         this.maNXB = maNXB;
     }
 

@@ -16,4 +16,6 @@ public interface NPHServiceInterface {
     String suaNPH(NPH x);
 
     String xoaNPH(NPH x);
+
+    NPH timNPH(ArrayList<NPH> list, String text);
 }

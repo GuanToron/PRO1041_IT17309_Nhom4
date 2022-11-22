@@ -11,14 +11,14 @@ import java.util.ArrayList;
  * @author Xuan Truong
  */
 public class TLServiceImplement implements TLServiceInterface {
-
+    
     private TLRepositoryInterface repo = new TLRepositoryImplement();
-
+    
     @Override
     public ArrayList<TheLoai> listTL() {
         return repo.listTL();
     }
-
+    
     @Override
     public String themTL(TheLoai x) {
         if (x.getTenTheLoai().isBlank()) {
@@ -40,7 +40,7 @@ public class TLServiceImplement implements TLServiceInterface {
         }
         return "Thất bại";
     }
-
+    
     @Override
     public String suaTL(TheLoai x) {
         if (x.getTenTheLoai().isBlank()) {
@@ -56,7 +56,7 @@ public class TLServiceImplement implements TLServiceInterface {
         }
         return "Thất bại";
     }
-
+    
     @Override
     public String xoaTL(TheLoai x) {
         boolean xoa = repo.xoaTL(x);
@@ -65,5 +65,16 @@ public class TLServiceImplement implements TLServiceInterface {
         }
         return "Thất bại";
     }
-
+    
+    @Override
+    public TheLoai timTheLoai(ArrayList<TheLoai> list, String text) {
+        TheLoai x = new TheLoai();
+        for (TheLoai z : list) {
+            if (z.getTenTheLoai().equals(text)) {
+                x.setTenTheLoai(z.getTenTheLoai());
+            }
+        }
+        return x;
+    }
+    
 }
