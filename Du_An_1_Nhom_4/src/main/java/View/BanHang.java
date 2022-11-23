@@ -589,7 +589,7 @@ public class BanHang extends javax.swing.JFrame {
 
     private void btnQLSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSachActionPerformed
         this.dispose();
-        new QLSach1().setVisible(true);
+        //new QLSach1().setVisible(true);
     }//GEN-LAST:event_btnQLSachActionPerformed
 
     private void btnQLHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLHoaDonActionPerformed
