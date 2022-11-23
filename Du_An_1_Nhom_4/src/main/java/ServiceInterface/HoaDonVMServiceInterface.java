@@ -2,6 +2,7 @@ package ServiceInterface;
 
 import ViewModel.HoaDonVM;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,7 @@ public interface HoaDonVMServiceInterface {
     ArrayList<HoaDonVM> listHDVM();
 
     String capNhatHD(HoaDonVM x);
+    
+    List<HoaDonVM> loadDaThanhToan();
+    List<HoaDonVM> loadChuaThanhToan();
 }

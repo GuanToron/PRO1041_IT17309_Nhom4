@@ -34,6 +34,16 @@ public class QLKhachHang_ extends javax.swing.JFrame {
         }
     }
 
+    private void loadSearch(String tenKH) {
+        DefaultTableModel tblmodel2 = (DefaultTableModel) tblKhachHang.getModel();
+        tblmodel2.setRowCount(0);
+        List<QLKhachHang> list = imanageKhachHangService.getListSearch(tenKH);
+
+        for (QLKhachHang kh : list) {
+            tblmodel2.addRow(new Object[]{kh.getMaKH(), kh.getTenKH(), kh.getGioiTinh() == 0 ? "Nữ" : "Nam", kh.getDiaChi(), kh.getNgaySinh(), kh.getSdt(), kh.getDiemTichLuy()});
+        }
+    }
+
     private KhachHang getdataFromInput() {
         KhachHang kh = new KhachHang();
         kh.setDiaChi(txtDiaChi.getText());
@@ -694,7 +704,13 @@ public class QLKhachHang_ extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        
+        String tenKH = txtTimKiem.getText();
+        if (txtTimKiem.getText().isBlank()) {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập họ tên khách hàng cần tìm");
+            return;
+        }
+
+        loadSearch(tenKH);
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     /**

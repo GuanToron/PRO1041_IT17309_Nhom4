@@ -1,6 +1,7 @@
 package RepositoryImplement;
 
 import RepositoryInterface.HoaDomVMRepositoryInterface;
+import ServiceImplement.HoaDonVMServiceImplement;
 import Utilities.DBConection;
 import ViewModel.HoaDonVM;
 import java.sql.Connection;
@@ -8,13 +9,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.List;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Xuan Truong
  */
 public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface {
 
+     private List<HoaDonVM> listthanhtoan;
+     private List<HoaDonVM> listchuathanhtoan;
     @Override
     public Boolean taoHoaDon(HoaDonVM x) {
         String query = "INSERT INTO [dbo].[HOADON]([MaKH],[MaNV],[NgayTao],[TrangThai])VALUES(?,?,?,?)";
@@ -59,6 +65,34 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
             e.getMessage();
         }
         return check > 0;
+    }
+
+    @Override
+    public List<HoaDonVM> loadDaThanhToan() {
+       listthanhtoan = new ArrayList<>();
+      String sql = "select MaHD, MaKH, MaNV, NgayTao, TrangThai   from HOADON where TrangThai = 1";
+      ResultSet rs = DBConection.excutequery(sql);
+        try {
+            while(rs.next()){
+                listthanhtoan.add(new HoaDonVM(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5)));
+            } } catch (SQLException ex) {
+            Logger.getLogger(HoaDonVMServiceImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listthanhtoan;
+    }
+
+    @Override
+    public List<HoaDonVM> loadChuaThanhToan() {
+        listchuathanhtoan = new ArrayList<>();
+      String sql = "select MaHD, MaKH, MaNV, NgayTao, TrangThai   from HOADON where TrangThai = 0";
+      ResultSet rs = DBConection.excutequery(sql);
+        try {
+            while(rs.next()){
+                listchuathanhtoan.add(new HoaDonVM(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5)));
+            } } catch (SQLException ex) {
+            Logger.getLogger(HoaDonVMServiceImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listchuathanhtoan;
     }
 
 }

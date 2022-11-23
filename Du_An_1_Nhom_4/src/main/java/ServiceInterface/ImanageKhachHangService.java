@@ -17,4 +17,5 @@ public interface ImanageKhachHangService {
     Integer add(KhachHang kh);
     Integer delete(String maKH);
     Integer update(String maKH, KhachHang kh);
+     List<QLKhachHang> getListSearch(String tenKH);
 }
