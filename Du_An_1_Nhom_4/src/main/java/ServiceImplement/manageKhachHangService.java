@@ -42,5 +42,10 @@ public class manageKhachHangService implements ImanageKhachHangService{
     public Integer update(String maKH, KhachHang kh) {
      return iKhachHangResponsitory.update(maKH, kh);
     }
+
+    @Override
+    public List<QLKhachHang> getListSearch(String tenKH) {
+      return iKhachHangResponsitory.getListSearch(tenKH);
+    }
     
 }

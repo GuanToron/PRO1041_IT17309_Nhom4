@@ -22,6 +22,7 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
 
     private List<QLKhachHang> listkh;
 
+    private List<QLKhachHang> listSearch;
     public KhachHangResponsitory() {
         
 
@@ -62,6 +63,21 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
         int row = DBConection.excuteUpdate(update, kh.getTenKH(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getDiaChi(), kh.getSdt(), kh.getDiemTichLuy(),maKH);
         return row;
 
+    }
+
+    @Override
+    public List<QLKhachHang> getListSearch(String tenKH) {
+        listSearch = new ArrayList<>();
+        String selectAll = "SELECT MaKH, TenKH, GioiTinh, NgaySinh, DiaChi, SDT, DiemTichLuy FROM KHACHHANG where TenKH = ?";
+        ResultSet rs = DBConection.excutequery(selectAll,tenKH);
+        try {
+            while (rs.next()) {
+                listSearch.add(new QLKhachHang(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6), rs.getInt(7)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangResponsitory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listSearch;
     }
 
 }

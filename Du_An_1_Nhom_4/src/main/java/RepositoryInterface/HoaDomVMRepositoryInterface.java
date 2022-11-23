@@ -2,6 +2,7 @@ package RepositoryInterface;
 
 import ViewModel.HoaDonVM;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,7 @@ public interface HoaDomVMRepositoryInterface {
     Boolean taoHoaDon(HoaDonVM x);
 
     Boolean capNhatHoaDon(HoaDonVM x);
+    
+     List<HoaDonVM> loadDaThanhToan();
+    List<HoaDonVM> loadChuaThanhToan();
 }

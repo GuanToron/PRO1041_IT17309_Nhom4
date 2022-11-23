@@ -21,4 +21,6 @@ public interface IKhachHangResponsitory {
     Integer delete(String maKH);
 
     Integer update(String maKH, KhachHang kh);
+    
+    List<QLKhachHang> getListSearch(String tenKH);
 }

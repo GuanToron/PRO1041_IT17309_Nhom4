@@ -12,6 +12,7 @@ import ViewModel.HoaDonVM;
 import ViewModel.SachVM;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -75,6 +76,7 @@ public class BanHang1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         SidePanel = new javax.swing.JPanel();
         btnTrangChu = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -96,8 +98,8 @@ public class BanHang1 extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdodathanhtoan = new javax.swing.JRadioButton();
+        rdochuathanhtoan = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -274,29 +276,47 @@ public class BanHang1 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("DANH SÁCH HOÁ ĐƠN");
 
-        jRadioButton1.setText("Đã thanh toán");
+        buttonGroup1.add(rdodathanhtoan);
+        rdodathanhtoan.setText("Đã thanh toán");
+        rdodathanhtoan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdodathanhtoanMouseClicked(evt);
+            }
+        });
+        rdodathanhtoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdodathanhtoanActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("Đang chờ");
+        buttonGroup1.add(rdochuathanhtoan);
+        rdochuathanhtoan.setText("Chưa thanh toán");
+        rdochuathanhtoan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdochuathanhtoanMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jRadioButton1)
-                        .addGap(45, 45, 45)
-                        .addComponent(jRadioButton2)
-                        .addGap(144, 144, 144))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(rdodathanhtoan)
+                                .addGap(182, 182, 182)
+                                .addComponent(rdochuathanhtoan)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -306,8 +326,8 @@ public class BanHang1 extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(1, 1, 1)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1))
+                    .addComponent(rdodathanhtoan)
+                    .addComponent(rdochuathanhtoan))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 6, Short.MAX_VALUE))
@@ -625,7 +645,7 @@ public class BanHang1 extends javax.swing.JFrame {
     private void btnTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHDActionPerformed
         HoaDonVM x = new HoaDonVM();
         x.setNgayTao(new Date());
-        x.setMaNhanVien(4);
+        x.setMaNhanVien(1);
         x.setMaKhachHang(1);
         x.setTrangThai(0);
         JOptionPane.showMessageDialog(this, serviceHoaDonVM.taoHD(x));
@@ -668,6 +688,18 @@ public class BanHang1 extends javax.swing.JFrame {
             serviceHDCTVM.themHDCCT(x);
         }
     }//GEN-LAST:event_btnThanhToanActionPerformed
+
+    private void rdodathanhtoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdodathanhtoanMouseClicked
+        loadtabledathanhtoan();
+    }//GEN-LAST:event_rdodathanhtoanMouseClicked
+
+    private void rdodathanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdodathanhtoanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdodathanhtoanActionPerformed
+
+    private void rdochuathanhtoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdochuathanhtoanMouseClicked
+        loadtableChuathanhtoan();
+    }//GEN-LAST:event_rdochuathanhtoanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -721,6 +753,7 @@ public class BanHang1 extends javax.swing.JFrame {
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnTrangChu;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbKhachHang;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
@@ -742,8 +775,6 @@ public class BanHang1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
@@ -756,6 +787,8 @@ public class BanHang1 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JRadioButton rdochuathanhtoan;
+    private javax.swing.JRadioButton rdodathanhtoan;
     private javax.swing.JTable tblGioHang;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblSach;
@@ -766,4 +799,27 @@ public class BanHang1 extends javax.swing.JFrame {
     private javax.swing.JTextField txtTienThua;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
+
+    private void loadtabledathanhtoan() {
+      DefaultTableModel tblmodelDaThanhToan = (DefaultTableModel) tblHoaDon.getModel();
+      tblmodelDaThanhToan.setRowCount(0);
+      List<HoaDonVM> listdathanhtoan = serviceHoaDonVM.loadDaThanhToan();
+     
+      
+        for (HoaDonVM hd : listdathanhtoan) {
+            tblmodelDaThanhToan.addRow(new Object[] {hd.getMaHoaDon(), hd.getMaKhachHang(), hd.getMaNhanVien(), hd.getNgayTao(), hd.getTrangThai() == 0 ?"Chưa thanh toán" : "Đã thanh toán"});
+        }
+      
+    }
+    
+    private void loadtableChuathanhtoan() {
+      DefaultTableModel tblmodelChuaThanhToan = (DefaultTableModel) tblHoaDon.getModel();
+      tblmodelChuaThanhToan.setRowCount(0);
+      List<HoaDonVM> listChuathanhtoan = serviceHoaDonVM.loadChuaThanhToan();
+      
+        for (HoaDonVM hd : listChuathanhtoan) {
+            tblmodelChuaThanhToan.addRow(new Object[] {hd.getMaHoaDon(), hd.getMaKhachHang(), hd.getMaNhanVien(), hd.getNgayTao(), hd.getTrangThai() == 0 ?"Chưa thanh toán" : "Đã thanh toán"});
+        }
+      
+    }
 }
