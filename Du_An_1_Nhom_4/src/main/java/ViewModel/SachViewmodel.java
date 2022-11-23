@@ -163,7 +163,11 @@ public class SachViewmodel {
         this.trangthai = trangthai;
     }
 
-    public Object[] todDataRow() {
-        return new Object[]{maSach, tenSach, tenDanhMuc, tenTheLoai, tenNPH, tenTacGia, tenNXB, namxuatban, ngonNgu, nhomTuoi, taiBan, sotrang, giaban, soluong, trangthai==1?"Đang bán":"Chờ bán"};
+    public Object[] todDataRow1() {
+        return new Object[]{maSach, tenSach, tenDanhMuc, tenTheLoai, tenNPH, tenTacGia, tenNXB, namxuatban, ngonNgu, nhomTuoi, taiBan, sotrang, giaban, soluong, trangthai == 1 ? "Đang bán" : "Chờ bán"};
+    }
+
+    public Object[] todDataRow2() {
+        return new Object[]{maSach, tenSach, tenTacGia,tenNPH, giaban, soluong, trangthai == 1 ? "Đang bán" : "Chờ bán"};
     }
 }
