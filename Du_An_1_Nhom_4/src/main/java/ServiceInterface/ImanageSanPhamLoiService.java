@@ -4,6 +4,8 @@
  */
 package ServiceInterface;
 
+import DomainModel.KhachHang;
+import DomainModel.NhanVien;
 import DomainModel.SanPhamLoi;
 import ViewModel.QLSanPhamLoi;
 import java.util.List;
@@ -17,4 +19,8 @@ public interface ImanageSanPhamLoiService {
     Integer add(SanPhamLoi sp);
     Integer delete(String maspl);
     Integer update(String maspl, SanPhamLoi sp);
+
+    public Object add(KhachHang kh);
+
+    public Object add(NhanVien nv);
 }
