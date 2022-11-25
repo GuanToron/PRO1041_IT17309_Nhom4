@@ -1,4 +1,3 @@
-
 package ViewModel;
 
 import java.util.Date;
@@ -8,20 +7,23 @@ import java.util.Date;
  * @author Xuan Truong
  */
 public class HoaDonVM {
+
     private Integer maHoaDon;
     private Integer maKhachHang;
     private Integer maNhanVien;
     private Date ngayTao;
+    private float tongTien;
     private Integer trangThai;
 
     public HoaDonVM() {
     }
 
-    public HoaDonVM(Integer maHoaDon, Integer maKhachHang, Integer maNhanVien, Date ngayTao, Integer trangThai) {
+    public HoaDonVM(Integer maHoaDon, Integer maKhachHang, Integer maNhanVien, Date ngayTao, float tongTien, Integer trangThai) {
         this.maHoaDon = maHoaDon;
         this.maKhachHang = maKhachHang;
         this.maNhanVien = maNhanVien;
         this.ngayTao = ngayTao;
+        this.tongTien = tongTien;
         this.trangThai = trangThai;
     }
 
@@ -57,6 +59,14 @@ public class HoaDonVM {
         this.ngayTao = ngayTao;
     }
 
+    public float getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(float tongTien) {
+        this.tongTien = tongTien;
+    }
+
     public Integer getTrangThai() {
         return trangThai;
     }
@@ -64,5 +74,23 @@ public class HoaDonVM {
     public void setTrangThai(Integer trangThai) {
         this.trangThai = trangThai;
     }
-    
+
+    public HoaDonVM(Integer maHoaDon, Integer maKhachHang, Integer maNhanVien, Date ngayTao, Integer trangThai) {
+        this.maHoaDon = maHoaDon;
+        this.maKhachHang = maKhachHang;
+        this.maNhanVien = maNhanVien;
+        this.ngayTao = ngayTao;
+        this.trangThai = trangThai;
+    }
+
+    public HoaDonVM(Integer maHoaDon, Integer maKhachHang, float tongTien, Integer trangThai) {
+        this.maHoaDon = maHoaDon;
+        this.maKhachHang = maKhachHang;
+        this.tongTien = tongTien;
+        this.trangThai = trangThai;
+    }
+
+    public Object[] toDataRow() {
+        return new Object[]{maHoaDon, maKhachHang, maNhanVien, ngayTao, trangThai};
+    }
 }

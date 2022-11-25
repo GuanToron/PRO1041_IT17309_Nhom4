@@ -34,11 +34,11 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
     @Override
     public ArrayList<HoaDonVM> listHDVM() {
         String query = "SELECT [MaHD],[MaKH],[MaNV],[NgayTao],[TrangThai] FROM [dbo].[HOADON]";
-        ArrayList<HoaDonVM>listHDVM = new ArrayList<>();
-        try( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+        ArrayList<HoaDonVM> listHDVM = new ArrayList<>();
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {                
-                listHDVM.add(new HoaDonVM(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDate(4),rs.getInt(5)));
+            while (rs.next()) {
+                listHDVM.add(new HoaDonVM(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5)));
             }
         } catch (Exception e) {
             e.getMessage();
@@ -48,12 +48,13 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public Boolean capNhatHoaDon(HoaDonVM x) {
-                String query = "UPDATE [dbo].[HOADON] SET [TongTien] = ?,[TrangThai] = ? WHERE [MaHD] = ?";
+        String query = "UPDATE [dbo].[HOADON]SET [MaKH] = ? ,[TongTien] = ? ,[TrangThai] = ? WHERE [MaHD] = ?";
         int check = 0;
         try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
-//            ps.setObject(1, x.g());
-//            ps.setObject(2, x.getMaNhanVien());
-//            ps.setObject(3, x.getNgayTao());
+            ps.setObject(1, x.getMaKhachHang());
+            ps.setObject(2, x.getTongTien());
+            ps.setObject(3, x.getTrangThai());
+            ps.setObject(4, x.getMaHoaDon());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.getMessage();

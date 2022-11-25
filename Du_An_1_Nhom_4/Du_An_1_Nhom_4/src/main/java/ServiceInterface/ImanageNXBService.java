@@ -6,6 +6,7 @@ package ServiceInterface;
 
 import DomainModel.NXB;
 import ViewModel.QLNXB;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,4 +22,6 @@ public interface ImanageNXBService {
     Integer delete(String maNXB);
 
     Integer update(String maNXB, NXB nxb);
+
+    NXB timNXB(List<NXB> list, String NXB);
 }

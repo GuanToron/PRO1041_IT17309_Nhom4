@@ -30,7 +30,11 @@ public class HoaDonVMServiceImplement implements HoaDonVMServiceInterface {
 
     @Override
     public String capNhatHD(HoaDonVM x) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean capNhatHD = repo.capNhatHoaDon(x);
+        if (capNhatHD) {
+            return "Thanh cong";
+        }
+        return "That bai";
     }
 
 }

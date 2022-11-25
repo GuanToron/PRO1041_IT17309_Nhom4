@@ -24,4 +24,6 @@ public interface ImanageKhachHangService {
     Integer update(String maKH, KhachHang kh);
 
     List<QLKhachHang> listSearch(List<QLKhachHang> list, String text);
+
+    QLKhachHang timKH(List<QLKhachHang> list, String text);
 }

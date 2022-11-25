@@ -30,7 +30,7 @@ import javax.swing.DefaultComboBoxModel;
  * @author Xuan Truong
  */
 public class QLSach1 extends javax.swing.JFrame {
-    
+
     private DefaultTableModel modelDM = new DefaultTableModel();
     private DefaultTableModel modelTG = new DefaultTableModel();
     private DefaultTableModel modelTL = new DefaultTableModel();
@@ -38,7 +38,7 @@ public class QLSach1 extends javax.swing.JFrame {
     private DefaultTableModel modelDSSach = new DefaultTableModel();
     private DefaultTableModel modelSachLoi = new DefaultTableModel();
     private DefaultTableModel modelSach = new DefaultTableModel();
-    
+
     private DefaultComboBoxModel boxModelTG = new DefaultComboBoxModel();
     private DefaultComboBoxModel boxModelTL = new DefaultComboBoxModel();
     private DefaultComboBoxModel boxModelDM = new DefaultComboBoxModel();
@@ -46,7 +46,7 @@ public class QLSach1 extends javax.swing.JFrame {
     private DefaultComboBoxModel boxModelDanhMucSearch = new DefaultComboBoxModel();
     private DefaultComboBoxModel boxModelNPH = new DefaultComboBoxModel();
     private DefaultComboBoxModel boxModelNXB = new DefaultComboBoxModel();
-    
+
     private ArrayList<String> listDanhMucSearch = new ArrayList<>();
     private ArrayList<DanhMuc> listDM = new ArrayList<>();
     private ArrayList<TacGia> listTG = new ArrayList<>();
@@ -55,14 +55,14 @@ public class QLSach1 extends javax.swing.JFrame {
     private ArrayList<String> listNhomTuoi = new ArrayList<>();
     private ArrayList<SachViewmodel> listSach = new ArrayList<>();
     private List<NXB> listnxb;
-    
+
     private DMInterface_XT serviceDM = new DMImplement_XT();
     private TGServiceInterface serviceTG = new TGServiceImplement();
     private TLServiceInterface serviceTL = new TLServiceImplement();
     private NPHServiceInterface serviceNPH = new NPHServiceImplement();
     private final ImanageNXBService imanageNXBService = new manageNXBService();
     private SachService serviceSach = new SachserviceImpl();
-    
+
     public QLSach1() {
         initComponents();
         tblDanhMuc.setModel(modelDM);
@@ -70,20 +70,20 @@ public class QLSach1 extends javax.swing.JFrame {
         tblTheLoai.setModel(modelTL);
         tblNPH.setModel(modelNPH);
         tblSach.setModel(modelSach);
-        
+
         listDM = serviceDM.listDM();
         listTG = serviceTG.listTG();
         listTL = serviceTL.listTL();
         listNPH = serviceNPH.listNPH();
         listSach = serviceSach.getlist();
         listnxb = imanageNXBService.getAll();
-        
+
         loadTableSach(listSach);
         loadTableTG(listTG);
         loadTableTL(listTL);
         loadTableNPH(listNPH);
         loadTableNXB();
-        
+
         loadComBoNXB();
         loadComboDanhMuc();
         loadComboNPH();
@@ -91,9 +91,9 @@ public class QLSach1 extends javax.swing.JFrame {
         loadComboNhomTuoi();
         loadComboTacGia();
         loadComboTheLoai();
-        
+
     }
-    
+
     private void loadComboNhomTuoi() {
         boxModelNhomTuoi.removeAllElements();
         listNhomTuoi.add("1-4");
@@ -105,7 +105,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         cbNhomTuoi.setModel(boxModelNhomTuoi);
     }
-    
+
     private void loadComboNhomTuoiSearch() {
         boxModelNhomTuoi.removeAllElements();
         listNhomTuoi.add("1-4");
@@ -117,7 +117,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         cbChiTetDanhMuc.setModel(boxModelNhomTuoi);
     }
-    
+
     private void loadComBoDanhMucSearch() {
         boxModelDanhMucSearch.removeAllElements();
         listDanhMucSearch.add("Thể loại");
@@ -131,7 +131,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         cbDanhMucSearch.setModel(boxModelDanhMucSearch);
     }
-    
+
     private void loadComboDanhMuc() {
         boxModelDM.removeAllElements();
         listDM = serviceDM.listDM();
@@ -140,7 +140,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         cbChiTetDanhMuc.setModel(boxModelDM);
     }
-    
+
     private void loadComboNPH() {
         boxModelNPH.removeAllElements();
         listNPH = serviceNPH.listNPH();
@@ -149,7 +149,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         cbChiTetDanhMuc.setModel(boxModelNPH);
     }
-    
+
     private void loadComboTacGia() {
         boxModelTG.removeAllElements();
         listTG = serviceTG.listTG();
@@ -158,7 +158,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         cbChiTetDanhMuc.setModel(boxModelTG);
     }
-    
+
     private void loadComboTheLoai() {
         boxModelTL.removeAllElements();
         listTL = serviceTL.listTL();
@@ -167,7 +167,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         cbChiTetDanhMuc.setModel(boxModelTL);
     }
-    
+
     private void loadTableDM(ArrayList<DanhMuc> list) {
         modelDM.setRowCount(0);
         modelDM.setColumnIdentifiers(new String[]{"Mã danh mục", "Tên danh mục"});
@@ -175,25 +175,25 @@ public class QLSach1 extends javax.swing.JFrame {
             modelDM.addRow(new Object[]{x.getMaDM(), x.getTenDM()});
         }
     }
-    
+
     private DanhMuc getDanhMuc() {
         DanhMuc x = new DanhMuc();
         x.setMaDM(Integer.valueOf(txtMaDanhMuc.getText()));
         x.setTenDM(txtTenDanhMuc.getText());
         return x;
     }
-    
+
     private void loadTextFielDM(int i) {
         DanhMuc x = listDM.get(i);
         txtMaDanhMuc.setText(String.valueOf(x.getMaDM()));
         txtTenDanhMuc.setText(String.valueOf(x.getTenDM()));
     }
-    
+
     private void clearDM() {
         txtMaDanhMuc.setText("");
         txtTenDanhMuc.setText("");
     }
-    
+
     private void loadTableTG(ArrayList<TacGia> list) {
         modelTG.setRowCount(0);
         modelTG.setColumnIdentifiers(new String[]{"Mã tác giả", "Tên tác giả"});
@@ -201,25 +201,25 @@ public class QLSach1 extends javax.swing.JFrame {
             modelTG.addRow(new Object[]{x.getMaTacGia(), x.getTenTacGia()});
         }
     }
-    
+
     private TacGia getTacGia() {
         TacGia x = new TacGia();
         x.setMaTacGia(Integer.valueOf(txtMaTG.getText()));
         x.setTenTacGia(txtTenTG.getText());
         return x;
     }
-    
+
     private void loatTextFieldTG(int i) {
         TacGia x = listTG.get(i);
         txtMaTG.setText(String.valueOf(x.getMaTacGia()));
         txtTenTG.setText(String.valueOf(x.getTenTacGia()));
     }
-    
+
     private void clearTG() {
         txtMaTG.setText("");
         txtTenTG.setText("");
     }
-    
+
     private void loadTableTL(ArrayList<TheLoai> list) {
         modelTL.setRowCount(0);
         modelTL.setColumnIdentifiers(new String[]{"Mã thể loại", "Tên thể loại"});
@@ -227,25 +227,25 @@ public class QLSach1 extends javax.swing.JFrame {
             modelTL.addRow(new Object[]{x.getMaTheLoai(), x.getTenTheLoai()});
         }
     }
-    
+
     private TheLoai getTheLoai() {
         TheLoai x = new TheLoai();
         x.setMaTheLoai(Integer.valueOf(txtMaTheLoai.getText()));
         x.setTenTheLoai(txtTenTheLoai.getText());
         return x;
     }
-    
+
     private void loadTextFieldTL(int i) {
         TheLoai x = listTL.get(i);
         txtMaTheLoai.setText(String.valueOf(x.getMaTheLoai()));
         txtTenTheLoai.setText(String.valueOf(x.getTenTheLoai()));
     }
-    
+
     private void clearTL() {
         txtTenTheLoai.setText("");
         txtMaTheLoai.setText("");
     }
-    
+
     private void loadTableNPH(ArrayList<NPH> list) {
         modelNPH.setRowCount(0);
         modelNPH.setColumnIdentifiers(new String[]{"Mã NPH", "Tên NPH"});
@@ -253,34 +253,35 @@ public class QLSach1 extends javax.swing.JFrame {
             modelNPH.addRow(new Object[]{x.getMaNPH(), x.getTenNPH()});
         }
     }
-    
+
     private NPH getNPH() {
         NPH x = new NPH();
         x.setMaNPH(Integer.valueOf(txtMaNPH.getText()));
         x.setTenNPH(txtTenNPH.getText());
         return x;
     }
-    
+
     private void loadTextFieldNPH(int i) {
         NPH x = listNPH.get(i);
         txtMaNPH.setText(String.valueOf(x.getMaNPH()));
         txtTenNPH.setText(String.valueOf(x.getTenNPH()));
     }
-    
+
     private void clearNPH() {
         txtMaNPH.setText("");
         txtTenNPH.setText("");
     }
-    
+
     private Sach getSach() {
         Sach x = new Sach();
-        
+
         listDM = serviceDM.listDM();
         listTG = serviceTG.listTG();
         listTL = serviceTL.listTL();
         listNPH = serviceNPH.listNPH();
         listSach = serviceSach.getlist();
-        
+        listnxb = imanageNXBService.getAll();
+
         Integer maTacGia = 0;
         for (TacGia z : listTG) {
             if (txtTacGia.getText().equals(z.getTenTacGia())) {
@@ -288,7 +289,7 @@ public class QLSach1 extends javax.swing.JFrame {
             }
         }
         x.setMaTacGia(maTacGia);
-        
+
         Integer maNPH = 0;
         for (NPH c : listNPH) {
             if (c.getTenNPH().equals(txtTacGia.getText())) {
@@ -296,7 +297,7 @@ public class QLSach1 extends javax.swing.JFrame {
             }
         }
         x.setMaNPH(maNPH);
-        
+
         Integer maTheLoai = 0;
         for (TheLoai v : listTL) {
             if (v.getTenTheLoai().equals(txtTheLoai)) {
@@ -305,8 +306,20 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         x.setMaTheLoai(maTheLoai);
 
-//        x.setMaDanhMuc((DanhMuc) cbDanhMuc.getSelectedItem());
-//        x.setMaNXB((NXB) cbNXB.getSelectedItem());
+        Integer maNXB = 0;
+        for (NXB b : listnxb) {
+            if (b.getTenNXB().equals(txtNXB)) {
+                maNXB = b.getMaNXB();
+            }
+        }
+        x.setMaNXB(maNXB);
+        Integer maDM = 0;
+        for (DanhMuc n : listDM) {
+            if (n.getTenDM().equals(txtDanhMuc)) {
+                maDM = n.getMaDM();
+            }
+        }
+        x.setMaDanhMuc(maDM);
         x.setNamxuatban(txtNamXuatBan.getText());
         x.setNgonNgu(txtNgonNgu.getText());
         x.setNhomTuoi((String) cbNhomTuoi.getSelectedItem());
@@ -324,7 +337,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         return x;
     }
-    
+
     private void loadTableSach(ArrayList<SachViewmodel> list) {
         modelSach.setRowCount(0);
         modelSach.setColumnIdentifiers(new String[]{"Mã sách", "Tên sách", "Danh mục", "Thể loại", "Nhà phát hành", "Tác giả", "Nhà xuất bản", "Năm xuất bản", "Ngôn ngữ", "Nhóm tuổi", "Tái bản", "Số trang", "Giá bán", "Số lượng", "Trạng thái"});
@@ -332,7 +345,7 @@ public class QLSach1 extends javax.swing.JFrame {
             modelSach.addRow(x.todDataRow());
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1843,7 +1856,7 @@ public class QLSach1 extends javax.swing.JFrame {
 
     private void btnQLNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLNhanVienActionPerformed
         this.dispose();
-        new QLNhanVien().setVisible(true);
+        new QLNhanVien_().setVisible(true);
     }//GEN-LAST:event_btnQLNhanVienActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
@@ -2050,7 +2063,7 @@ public class QLSach1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 dòng trên table để sửa");
             return;
         }
-        
+
         if (txttenNXB.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập tên NXB");
             return;
@@ -2264,7 +2277,17 @@ public class QLSach1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReloadDanhMucActionPerformed
 
     private void btnTimNXBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimNXBActionPerformed
-        
+        String text = JOptionPane.showInputDialog(this, "Nhập tên nxb cần tìm");
+        NXB x = imanageNXBService.timNXB(listnxb, text);
+        if (x.getTenNXB() == null) {
+            JOptionPane.showMessageDialog(this, "Khong co nxb, vui long thu lai hoac tao moi");
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon tao moi nxb khong?");
+            if (choice == JOptionPane.OK_OPTION) {
+                new FormNXB_Mini().setVisible(true);
+            }
+        } else {
+            txtDanhMuc.setText(x.getTenNXB());
+        }
     }//GEN-LAST:event_btnTimNXBActionPerformed
 
     private void btnDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhMucActionPerformed
@@ -2274,7 +2297,7 @@ public class QLSach1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Khong co danh muc, vui long thu lai hoac tao moi");
             int choice = JOptionPane.showConfirmDialog(this, "Ban co muon tao moi danh muc khong?");
             if (choice == JOptionPane.OK_OPTION) {
-//                new FormDanhMuc_Mini().setVisible(true);
+                new FormDanhMuc_Mini().setVisible(true);
             }
         } else {
             txtDanhMuc.setText(x.getTenDM());
@@ -2484,23 +2507,23 @@ public class QLSach1 extends javax.swing.JFrame {
         DefaultTableModel tblmodelNXB = (DefaultTableModel) tblNXB.getModel();
         tblmodelNXB.setRowCount(0);
         listnxb = imanageNXBService.getAll();
-        
+
         for (NXB nxb : listnxb) {
             tblmodelNXB.addRow(new Object[]{nxb.getMaNXB(), nxb.getTenNXB()});
         }
     }
-    
+
     private NXB getNXBFromInput() {
         NXB nxb = new NXB();
         nxb.setTenNXB(txttenNXB.getText());
         return nxb;
     }
-    
+
     private void clearformNXB() {
         txtmaNXB.setText("");
         txttenNXB.setText("");
     }
-    
+
     private void loadComBoNXB() {
         boxModelNXB.removeAllElements();
         listnxb = imanageNXBService.getAll();
@@ -2509,7 +2532,7 @@ public class QLSach1 extends javax.swing.JFrame {
         }
         cbChiTetDanhMuc.setModel(boxModelNXB);
     }
-    
+
     private boolean themSach() {
         Boolean check = true;
         if (txtGiaBan.getText().isBlank() || txtNamXuatBan.getText().isBlank() || txtNgonNgu.getText().isBlank() || txtSoLuong1.getText().isBlank() || txtSoTrang.getText().isBlank() || txtTaiBan.getText().isBlank() || txtTenSach1.getText().isBlank()) {

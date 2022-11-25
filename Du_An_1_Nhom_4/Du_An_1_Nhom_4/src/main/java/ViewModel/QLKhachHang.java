@@ -11,13 +11,14 @@ import java.util.Date;
  * @author DELL 5515
  */
 public class QLKhachHang {
+
     private int maKH;
-   private String tenKH ;
-   private  int gioiTinh   ;
-   private Date ngaySinh  ;
-   private String diaChi   ;
-   private String sdt ;
-   private int diemTichLuy ;
+    private String tenKH;
+    private int gioiTinh;
+    private Date ngaySinh;
+    private String diaChi;
+    private String sdt;
+    private int diemTichLuy;
 
     public QLKhachHang() {
     }
@@ -88,5 +89,7 @@ public class QLKhachHang {
         this.diemTichLuy = diemTichLuy;
     }
 
-   
+    public Integer getGiamGia() {
+        return this.diemTichLuy * 1000;
+    }
 }

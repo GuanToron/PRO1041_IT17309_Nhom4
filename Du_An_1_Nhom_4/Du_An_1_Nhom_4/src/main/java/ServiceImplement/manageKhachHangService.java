@@ -55,4 +55,15 @@ public class manageKhachHangService implements ImanageKhachHangService {
         return listSearch;
     }
 
+    @Override
+    public QLKhachHang timKH(List<QLKhachHang> list, String text) {
+        QLKhachHang x = new QLKhachHang();
+        for (QLKhachHang z : list) {
+            if (z.getSdt().equals(text)) {
+                x.setSdt(z.getSdt());
+            }
+        }
+        return x;
+    }
+
 }
