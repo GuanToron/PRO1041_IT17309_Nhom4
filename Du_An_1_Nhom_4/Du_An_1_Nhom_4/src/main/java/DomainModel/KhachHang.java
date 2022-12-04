@@ -3,7 +3,6 @@ package DomainModel;
 import java.sql.Date;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author Xuan Truong
@@ -129,6 +128,11 @@ public class KhachHang {
     public KhachHang() {
     }
 
+    public KhachHang(int maKH, int diemTichLuy) {
+        this.maKH = maKH;
+        this.diemTichLuy = diemTichLuy;
+    }
+
     public KhachHang(int maKH, String tenKH, int gioiTinh, java.util.Date ngaySinh, String diaChi, String sdt, int diemTichLuy) {
         this.maKH = maKH;
         this.tenKH = tenKH;
@@ -194,6 +198,5 @@ public class KhachHang {
     public void setDiemTichLuy(int diemTichLuy) {
         this.diemTichLuy = diemTichLuy;
     }
-    
-    
+
 }

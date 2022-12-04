@@ -23,7 +23,6 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
     private List<QLKhachHang> listkh;
 
     public KhachHangResponsitory() {
-        
 
     }
 
@@ -59,9 +58,32 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
     @Override
     public Integer update(String maKH, KhachHang kh) {
         String update = "update KHACHHANG set TenKH= ? ,GioiTinh= ? ,NgaySinh= ?, DiaChi= ?  ,SDT= ?   ,DiemTichLuy= ? where MaKH = ?";
-        int row = DBConection.excuteUpdate(update, kh.getTenKH(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getDiaChi(), kh.getSdt(), kh.getDiemTichLuy(),maKH);
+        int row = DBConection.excuteUpdate(update, kh.getTenKH(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getDiaChi(), kh.getSdt(), kh.getDiemTichLuy(), maKH);
         return row;
 
+    }
+
+    @Override
+    public KhachHang timKhachHang(String SĐT) {
+        KhachHang x = new KhachHang();
+        String query = "SELECT [MaKH],[TenKH],[GioiTinh],[NgaySinh],[DiaChi],[SDT],[DiemTichLuy]\n"
+                + "FROM [dbo].[KHACHHANG] WHERE [SDT] = ?";
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, SĐT);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                x.setMaKH(rs.getInt(1));
+                x.setTenKH(rs.getString(2));
+                x.setGioiTinh(rs.getInt(3));
+                x.setNgaySinh(rs.getDate(4));
+                x.setDiaChi(rs.getString(5));
+                x.setSdt(rs.getString(6));
+                x.setDiemTichLuy(rs.getInt(7));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return x;
     }
 
 }

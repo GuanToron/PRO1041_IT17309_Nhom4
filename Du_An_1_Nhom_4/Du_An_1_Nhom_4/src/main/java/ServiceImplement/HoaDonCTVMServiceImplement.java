@@ -3,6 +3,7 @@ package ServiceImplement;
 import RepositoryImplement.HoaDonCTVMRepositoryInterface;
 import ServiceInterface.HoaDonCTVMServiccecInterface;
 import ViewModel.HoaDonCTVM;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +20,11 @@ public class HoaDonCTVMServiceImplement implements HoaDonCTVMServiccecInterface 
             return "Thanh cong";
         }
         return "That bai";
+    }
+
+    @Override
+    public ArrayList<HoaDonCTVM> getlist(Integer maHoaDon) {
+        return repo.getlist(maHoaDon);
     }
 
 }

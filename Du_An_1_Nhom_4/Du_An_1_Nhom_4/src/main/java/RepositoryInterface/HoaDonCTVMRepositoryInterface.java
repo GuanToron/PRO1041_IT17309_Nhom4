@@ -1,6 +1,7 @@
 package RepositoryInterface;
 
 import ViewModel.HoaDonCTVM;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,4 +10,6 @@ import ViewModel.HoaDonCTVM;
 public interface HoaDonCTVMRepositoryInterface {
 
     Boolean themHDCT(HoaDonCTVM x);
+
+    public ArrayList<HoaDonCTVM> getlist(Integer maHoaDon);
 }

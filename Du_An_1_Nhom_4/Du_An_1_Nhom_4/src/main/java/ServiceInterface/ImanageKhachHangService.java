@@ -25,5 +25,5 @@ public interface ImanageKhachHangService {
 
     List<QLKhachHang> listSearch(List<QLKhachHang> list, String text);
 
-    QLKhachHang timKH(List<QLKhachHang> list, String text);
+    KhachHang timKH(String SDT);
 }

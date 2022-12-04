@@ -4,6 +4,8 @@ import Utilities.DBConection;
 import ViewModel.HoaDonCTVM;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +27,34 @@ public class HoaDonCTVMRepositoryInterface implements RepositoryInterface.HoaDon
             e.getMessage();
         }
         return check > 0;
+    }
+
+    @Override
+    public ArrayList<HoaDonCTVM> getlist(Integer maHoaDon) {
+        ArrayList<HoaDonCTVM> list = new ArrayList<>();
+        String sql = "SELECT [MaHDCT]\n"
+                + "      ,[MaHD]\n"
+                + "      ,[MaSACH]\n"
+                + "      ,[SoLuong]\n"
+                + "      ,[DonGia]\n"
+                + "  FROM [dbo].[HOADONCT]\n"
+                + "  WHERE [MaHD] = ?";
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setObject(1, maHoaDon);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HoaDonCTVM h = new HoaDonCTVM();
+                h.setMaHoaDonCT(rs.getInt(1));
+                h.setMaHoaDon(rs.getInt(2));
+                h.setMaSach(rs.getInt(3));
+                h.setSoLuong(rs.getInt(4));
+                h.setDonGia(rs.getFloat(5));
+                list.add(h);
+            }
+
+        } catch (Exception e) {
+        }
+        return list;
     }
 
 }

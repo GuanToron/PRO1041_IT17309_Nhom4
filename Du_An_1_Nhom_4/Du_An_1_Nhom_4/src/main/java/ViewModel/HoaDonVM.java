@@ -91,6 +91,6 @@ public class HoaDonVM {
     }
 
     public Object[] toDataRow() {
-        return new Object[]{maHoaDon, maKhachHang, maNhanVien, ngayTao, trangThai};
+        return new Object[]{maHoaDon, maKhachHang, maNhanVien, ngayTao, trangThai == 0 ? "Đang chờ" : "Chưa thanh toán"};
     }
 }

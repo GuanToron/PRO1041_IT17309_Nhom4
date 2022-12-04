@@ -21,6 +21,12 @@ public class GioHangVM {
         this.donGia = donGia;
     }
 
+    public GioHangVM(String tenSach, Integer soLuong, Float donGia) {
+        this.tenSach = tenSach;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+    }
+
     public Integer getMaSach() {
         return maSach;
     }

@@ -21,6 +21,12 @@ public class SachVM {
         this.giaBan = giaBan;
     }
 
+    public SachVM(String tenSach, Integer soLuong, Float giaBan) {
+        this.tenSach = tenSach;
+        this.soLuong = soLuong;
+        this.giaBan = giaBan;
+    }
+
     public Integer getMaSach() {
         return maSach;
     }
