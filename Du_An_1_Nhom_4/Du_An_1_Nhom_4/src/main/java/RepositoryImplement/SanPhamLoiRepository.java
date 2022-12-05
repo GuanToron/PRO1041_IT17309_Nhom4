@@ -42,11 +42,11 @@ public class SanPhamLoiRepository implements ISanPhamLoiRepository {
     }
 
     @Override
-    public Integer add(SanPhamLoi sp) {
+    public Boolean add(SanPhamLoi sp) {
         String insert = "INSERT INTO [dbo].[SANPHAMLOI]([MaSach],[SoLuong],[MaNPH],[LyDoDoi])\n"
                 + "VALUES(?,?,?,?)";
         int row = DBConection.excuteUpdate(insert, sp.getMaSach(), sp.getSoLuong(), sp.getMaNPH(), sp.getLyDoDoi());
-        return row;
+        return row > 0;
     }
 
     @Override
@@ -57,10 +57,10 @@ public class SanPhamLoiRepository implements ISanPhamLoiRepository {
     }
 
     @Override
-    public Integer update(String maspl, SanPhamLoi sp) {
+    public Boolean update(String maspl, SanPhamLoi sp) {
         String update = "update SANPHAMLOI set MaSach = ?, SoLuong = ?, LyDoDoi =  ? where MaSPL = ?";
         int row = DBConection.excuteUpdate(update, sp.getMaSach(), sp.getSoLuong(), sp.getLyDoDoi(), maspl);
-        return row;
+        return row > 0;
     }
 
 }

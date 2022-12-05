@@ -16,9 +16,9 @@ public interface ISanPhamLoiRepository {
 
     List<QLSanPhamLoi> getAll();
 
-    Integer add(SanPhamLoi sp);
+    Boolean add(SanPhamLoi sp);
 
     Integer delete(String maspl);
 
-    Integer update(String maspl, SanPhamLoi sp);
+    Boolean update(String maspl, SanPhamLoi sp);
 }
