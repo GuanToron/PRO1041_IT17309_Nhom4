@@ -59,18 +59,18 @@ public class MainApp extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("BÁN HÀNG");
         jButton2.setBackground(new java.awt.Color(255, 102, 51));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("BÁN HÀNG");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jButton3.setText("QUẢN LÝ SÁCH");
         jButton3.setBackground(new java.awt.Color(255, 102, 51));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("QUẢN LÝ SÁCH");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -81,18 +81,18 @@ public class MainApp extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setText("QUẢN LÝ HOÁ ĐƠN");
 
+        jButton6.setText("QUẢN LÝ NHÂN VIÊN");
         jButton6.setBackground(new java.awt.Color(255, 102, 51));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton6.setText("QUẢN LÝ NHÂN VIÊN");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
 
+        jButton7.setText("QUẢN LÝ KHÁCH HÀNG");
         jButton7.setBackground(new java.awt.Color(255, 102, 51));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton7.setText("QUẢN LÝ KHÁCH HÀNG");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -102,6 +102,11 @@ public class MainApp extends javax.swing.JFrame {
         jButton8.setBackground(new java.awt.Color(255, 102, 51));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton8.setText("THỐNG KÊ");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setBackground(new java.awt.Color(255, 102, 51));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -228,6 +233,12 @@ public class MainApp extends javax.swing.JFrame {
         this.dispose();
         new QLSach1().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new FormThongKe().setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments

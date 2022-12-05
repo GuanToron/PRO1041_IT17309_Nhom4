@@ -596,6 +596,11 @@ public class QLSach1 extends javax.swing.JFrame {
         btnThongKe.setBackground(new java.awt.Color(255, 102, 51));
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThongKe.setText("THỐNG KÊ");
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
 
         jButton9.setBackground(new java.awt.Color(255, 102, 51));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -919,7 +924,7 @@ public class QLSach1 extends javax.swing.JFrame {
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addComponent(jLabel40)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                                 .addComponent(cbNhomTuoi, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel14Layout.createSequentialGroup()
@@ -2438,6 +2443,12 @@ public class QLSach1 extends javax.swing.JFrame {
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLamMoiActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        // TODO add your handling code here:
+         this.dispose();
+        new FormThongKe().setVisible(true);
+    }//GEN-LAST:event_btnThongKeActionPerformed
     private SanPhamLoi getSanPhamLoiTuSach() {
         SanPhamLoi x = new SanPhamLoi();
         int maNPH = 0;

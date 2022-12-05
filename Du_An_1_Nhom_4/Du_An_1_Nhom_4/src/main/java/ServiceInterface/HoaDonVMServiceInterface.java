@@ -28,4 +28,8 @@ public interface HoaDonVMServiceInterface {
     List<HoaDonVM> loadchuathanhtoan();
 
     List<HoaDonVM> loaddangcho();
+    List<HoaDonVM> listDT();
+    
+    List<HoaDonVM> TimKiemDTTheoNgay(String date);
+    List<HoaDonVM> TongDT();
 }
