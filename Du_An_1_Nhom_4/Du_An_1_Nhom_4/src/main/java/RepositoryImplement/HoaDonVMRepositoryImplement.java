@@ -25,6 +25,10 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
     private List<GioHangVM> listGH;
     private List<HoaDonVM> listchuathanhtoan;
     private List<HoaDonVM> listdangcho;
+    private List<HoaDonVM> listDT;
+    private List<HoaDonVM> timkiem;
+
+    private List<HoaDonVM> tongDT;
 
     @Override
     public Boolean taoHoaDon(HoaDonVM x) {
@@ -161,6 +165,56 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
             e.getMessage();
         }
         return listHDVM;
+    }
+
+    @Override
+    public List<HoaDonVM> listDT() {
+         listDT = new ArrayList<>();
+        String sql = "select NgayTao as 'Nam',SUM(TongTien) as 'doanh thu ' from HOADON \n"
+                + "group by NgayTao\n"
+                + "order by SUM( TongTien) desc";
+        ResultSet rs = DBConection.excutequery(sql);
+        try {
+            while (rs.next()) {
+                listDT.add(new HoaDonVM(rs.getDate(1), rs.getFloat(2)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listDT;
+    }
+
+    @Override
+    public List<HoaDonVM> TimKiemDTTheoNgay(String date) {
+      timkiem = new ArrayList<>();
+        String sql = "select NgayTao as 'thoi gian ',SUM(TongTien) as 'doanh thu ' from HOADON where NgayTao = ?\n"
+                + "group by NgayTao\n"
+                + "order by SUM( TongTien) desc";
+        ResultSet rs = DBConection.excutequery(sql, date);
+        try {
+            while (rs.next()) {
+                timkiem.add(new HoaDonVM(rs.getDate(1), rs.getFloat(2)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return timkiem;
+    }
+
+    @Override
+    public List<HoaDonVM> TongDT() {
+     tongDT = new ArrayList<>();
+        String sql = "select SUM(TongTien) as 'doanh thu ' from HOADON\n"
+                + "order by SUM( TongTien) desc";
+        ResultSet rs = DBConection.excutequery(sql);
+        try {
+            while (rs.next()) {
+                tongDT.add(new HoaDonVM( rs.getFloat(1)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tongDT;
     }
 
 }

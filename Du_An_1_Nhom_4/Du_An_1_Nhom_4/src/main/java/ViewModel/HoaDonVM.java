@@ -27,6 +27,16 @@ public class HoaDonVM {
         this.trangThai = trangThai;
     }
 
+    public HoaDonVM(float tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    public HoaDonVM(Date ngayTao, float tongTien) {
+        this.ngayTao = ngayTao;
+        this.tongTien = tongTien;
+    }
+
+    
     public Integer getMaHoaDon() {
         return maHoaDon;
     }

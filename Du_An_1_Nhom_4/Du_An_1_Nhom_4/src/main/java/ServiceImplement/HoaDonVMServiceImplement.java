@@ -66,4 +66,19 @@ public class HoaDonVMServiceImplement implements HoaDonVMServiceInterface {
         return repo.listHD();
     }
 
+    @Override
+    public List<HoaDonVM> listDT() {
+     return repo.listDT();
+    }
+
+    @Override
+    public List<HoaDonVM> TimKiemDTTheoNgay(String date) {
+     return repo.TimKiemDTTheoNgay(date);
+    }
+
+    @Override
+    public List<HoaDonVM> TongDT() {
+      return repo.TongDT();
+    }
+
 }

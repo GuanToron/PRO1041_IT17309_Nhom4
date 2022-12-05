@@ -252,9 +252,14 @@ public class QLNhanVien_ extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("THỐNG KÊ");
         jButton8.setBackground(new java.awt.Color(255, 102, 51));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton8.setText("THỐNG KÊ");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("THOÁT");
         jButton9.setBackground(new java.awt.Color(255, 102, 51));
@@ -819,6 +824,12 @@ public class QLNhanVien_ extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+         this.dispose();
+        new FormThongKe().setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments

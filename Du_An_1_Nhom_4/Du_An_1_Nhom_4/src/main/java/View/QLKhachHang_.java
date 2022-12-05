@@ -203,6 +203,11 @@ public class QLKhachHang_ extends javax.swing.JFrame {
         jButton8.setBackground(new java.awt.Color(255, 102, 51));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton8.setText("THỐNG KÊ");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setBackground(new java.awt.Color(255, 102, 51));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -703,6 +708,12 @@ public class QLKhachHang_ extends javax.swing.JFrame {
         ArrayList<QLKhachHang> listSearch = (ArrayList<QLKhachHang>) imanageKhachHangService.listSearch(list, text);
         loadTable(listSearch);
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+         this.dispose();
+        new FormThongKe().setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments

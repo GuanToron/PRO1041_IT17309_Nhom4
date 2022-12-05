@@ -28,4 +28,9 @@ public interface HoaDomVMRepositoryInterface {
     List<HoaDonVM> loaddangcho();
 
     ArrayList<HoaDonVM> listloc(Date ngayBatDau, Date ngayKetThuc);
+    
+    List<HoaDonVM> listDT();
+    
+    List<HoaDonVM> TimKiemDTTheoNgay(String date);
+    List<HoaDonVM> TongDT();
 }

@@ -1,5 +1,7 @@
 package ViewModel;
 
+import java.util.Date;
+
 /**
  *
  * @author Xuan Truong
@@ -8,8 +10,17 @@ public class SachVM {
 
     private Integer maSach;
     private String tenSach;
+    
+    private Date namXB;
+    private String ngonngu;
+     private String nhomtuoi;
+    private String taiban;
+    private String soTrang;
     private Integer soLuong;
     private Float giaBan;
+    private int trangthai;
+    private int slBan;
+    private double doanhthu;
 
     public SachVM() {
     }
@@ -26,6 +37,86 @@ public class SachVM {
         this.soLuong = soLuong;
         this.giaBan = giaBan;
     }
+    
+    public SachVM(Integer maSach, String tenSach, Date namXB, String ngonngu, String nhomtuoi, String taiban, String soTrang, Integer soLuong, Float giaBan, int trangthai, int slBan, double doanhthu) {
+        this.maSach = maSach;
+        this.tenSach = tenSach;
+        this.namXB = namXB;
+        this.ngonngu = ngonngu;
+        this.nhomtuoi = nhomtuoi;
+        this.taiban = taiban;
+        this.soTrang = soTrang;
+        this.soLuong = soLuong;
+        this.giaBan = giaBan;
+        this.trangthai = trangthai;
+        this.slBan = slBan;
+        this.doanhthu = doanhthu;
+    }
+
+    public Date getNamXB() {
+        return namXB;
+    }
+
+    public void setNamXB(Date namXB) {
+        this.namXB = namXB;
+    }
+
+    public String getNgonngu() {
+        return ngonngu;
+    }
+
+    public void setNgonngu(String ngonngu) {
+        this.ngonngu = ngonngu;
+    }
+
+    public String getNhomtuoi() {
+        return nhomtuoi;
+    }
+
+    public void setNhomtuoi(String nhomtuoi) {
+        this.nhomtuoi = nhomtuoi;
+    }
+
+    public String getTaiban() {
+        return taiban;
+    }
+
+    public void setTaiban(String taiban) {
+        this.taiban = taiban;
+    }
+
+    public String getSoTrang() {
+        return soTrang;
+    }
+
+    public void setSoTrang(String soTrang) {
+        this.soTrang = soTrang;
+    }
+
+    public int getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(int trangthai) {
+        this.trangthai = trangthai;
+    }
+
+    public int getSlBan() {
+        return slBan;
+    }
+
+    public void setSlBan(int slBan) {
+        this.slBan = slBan;
+    }
+
+    public double getDoanhthu() {
+        return doanhthu;
+    }
+
+    public void setDoanhthu(double doanhthu) {
+        this.doanhthu = doanhthu;
+    }
+    
 
     public Integer getMaSach() {
         return maSach;

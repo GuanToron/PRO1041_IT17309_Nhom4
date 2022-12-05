@@ -1043,7 +1043,7 @@ public class BanHang1 extends javax.swing.JFrame {
         }
         HoaDonVM x = new HoaDonVM();
         x.setNgayTao(new Date());
-        x.setMaNhanVien(4);
+        x.setMaNhanVien(1);
         x.setTrangThai(0);
         x.setMaKhachHang(1);
 //        ArrayList<HoaDonCTVM> listHDCT = new ArrayList<>();
@@ -1396,7 +1396,8 @@ public class BanHang1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-        this.dispose();
+         this.dispose();
+        new FormThongKe().setVisible(true);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
