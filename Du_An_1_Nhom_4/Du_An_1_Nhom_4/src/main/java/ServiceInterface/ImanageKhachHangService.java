@@ -23,6 +23,8 @@ public interface ImanageKhachHangService {
 
     Integer update(String maKH, KhachHang kh);
 
+    Void updateDiem(String maKH, Integer diem);
+
     List<QLKhachHang> listSearch(List<QLKhachHang> list, String text);
 
     KhachHang timKH(String SDT);

@@ -5,6 +5,7 @@
 package ServiceInterface;
 
 import DomainModel.Sach;
+import ViewModel.SachVML;
 import ViewModel.SachViewmodel;
 import java.util.ArrayList;
 
@@ -22,8 +23,12 @@ public interface SachService {
 
     String delete(int ma);
 
+    String capNhat(Integer maSach, Integer soLuong);
+
     ArrayList<SachViewmodel> listSearch(ArrayList<SachViewmodel> list, String text);
 
     ArrayList<SachViewmodel> listLoc(ArrayList<SachViewmodel> list, String text);
+
+    ArrayList<SachVML> listSach();
 
 }

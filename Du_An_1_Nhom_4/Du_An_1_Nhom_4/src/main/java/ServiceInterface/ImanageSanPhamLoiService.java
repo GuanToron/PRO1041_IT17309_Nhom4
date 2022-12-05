@@ -13,8 +13,12 @@ import java.util.List;
  * @author DELL 5515
  */
 public interface ImanageSanPhamLoiService {
-       List<QLSanPhamLoi> getAll();
+
+    List<QLSanPhamLoi> getAll();
+
     Integer add(SanPhamLoi sp);
+
     Integer delete(String maspl);
+
     Integer update(String maspl, SanPhamLoi sp);
 }

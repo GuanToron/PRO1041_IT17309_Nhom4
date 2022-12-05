@@ -29,6 +29,13 @@ public class Sach {
     public Sach() {
     }
 
+    public Sach(Integer masach, String tensach, Integer maNPH, Integer soluong) {
+        this.masach = masach;
+        this.tensach = tensach;
+        this.maNPH = maNPH;
+        this.soluong = soluong;
+    }
+
     public Sach(Integer masach, String tensach, Integer maDanhMuc, Integer maTheLoai, Integer maNPH, Integer maTacGia, Integer maNXB, String namxuatban, String ngonNgu, String nhomTuoi, Integer taiBan, Integer sotrang, Float giaban, Integer soluong, Integer trangthai) {
         this.masach = masach;
         this.tensach = tensach;

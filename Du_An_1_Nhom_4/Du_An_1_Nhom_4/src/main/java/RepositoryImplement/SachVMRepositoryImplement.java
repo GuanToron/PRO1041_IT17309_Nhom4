@@ -33,7 +33,7 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
     public Void capNhatSLSach(Integer soLuong, String tenSach) {
         String query = "UPDATE [dbo].[SACH] SET [SoLuong] = ? WHERE TenSach = ?";
         int check = 0;
-        try(Connection con = DBConection.getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ps.setObject(1, soLuong);
             ps.setObject(2, tenSach);
             check = ps.executeUpdate();
@@ -41,6 +41,22 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<SachVM> listTimKiem(String tenSach) {
+        ArrayList<SachVM> listSach = new ArrayList<>();
+        String query = "SELECT MaSach,TenSach,SoLuong,GiaBan FROM SACH WHERE TenSach = ?";
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setObject(1, tenSach);
+            ResultSet rs = DBConection.excutequery(query);
+            while (rs.next()) {
+                listSach.add(new SachVM(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getFloat(4)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listSach;
     }
 
 }

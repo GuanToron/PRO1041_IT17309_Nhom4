@@ -9,12 +9,30 @@ package ViewModel;
  * @author DELL 5515
  */
 public class QLSanPhamLoi {
+
     private int maSPL;
     private int maSach;
     private int soLuong;
+    private String tenNPH;
     private String lyDoDoi;
 
     public QLSanPhamLoi() {
+    }
+
+    public String getTenNPH() {
+        return tenNPH;
+    }
+
+    public void setTenNPH(String tenNPH) {
+        this.tenNPH = tenNPH;
+    }
+
+    public QLSanPhamLoi(int maSPL, int maSach, int soLuong, String tenNPH, String lyDoDoi) {
+        this.maSPL = maSPL;
+        this.maSach = maSach;
+        this.soLuong = soLuong;
+        this.tenNPH = tenNPH;
+        this.lyDoDoi = lyDoDoi;
     }
 
     public QLSanPhamLoi(int maSPL, int maSach, int soLuong, String lyDoDoi) {
@@ -55,6 +73,8 @@ public class QLSanPhamLoi {
     public void setLyDoDoi(String lyDoDoi) {
         this.lyDoDoi = lyDoDoi;
     }
-    
-    
+
+    public Object[] toDataRow() {
+        return new Object[]{maSPL, maSach, soLuong, tenNPH, lyDoDoi};
+    }
 }

@@ -86,4 +86,18 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
         return x;
     }
 
+    @Override
+    public Void updateDiem(String maKH, Integer diem) {
+        Integer row = 0;
+        String query = "UPDATE [dbo].[KHACHHANG] SET [DiemTichLuy] = ? WHERE [MaKH] = ?";
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ps.setObject(1, maKH);
+            ps.setObject(2, diem);
+            row = ps.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return null;
+    }
+
 }

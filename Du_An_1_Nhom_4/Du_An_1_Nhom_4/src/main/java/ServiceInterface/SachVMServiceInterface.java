@@ -1,6 +1,7 @@
 package ServiceInterface;
 
 import ViewModel.SachVM;
+import ViewModel.SachViewmodel;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,9 @@ public interface SachVMServiceInterface {
 
     ArrayList<SachVM> listSach();
 
-    ArrayList<SachVM> listSearch(ArrayList<SachVM> list, String text);
+    ArrayList<SachVM> listSearch(String text);
+    
+    ArrayList<SachVM> listLoc(ArrayList<SachViewmodel> list, String text);
 
     Void capNhatSoSach(Integer soLuong, String tenSach);
 }

@@ -22,5 +22,7 @@ public interface IKhachHangResponsitory {
 
     Integer update(String maKH, KhachHang kh);
 
+    Void updateDiem(String maKH, Integer diem);
+
     KhachHang timKhachHang(String SĐT);
 }

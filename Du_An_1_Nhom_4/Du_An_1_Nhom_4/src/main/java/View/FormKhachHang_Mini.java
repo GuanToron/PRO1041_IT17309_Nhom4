@@ -23,6 +23,7 @@ public class FormKhachHang_Mini extends javax.swing.JFrame {
         initComponents();
         imanageKhachHangService = new manageKhachHangService();
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     private KhachHang getdataFromInput() {

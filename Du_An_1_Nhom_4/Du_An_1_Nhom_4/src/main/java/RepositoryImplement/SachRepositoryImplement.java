@@ -6,6 +6,7 @@ package RepositoryImplement;
 
 import DomainModel.Sach;
 import Utilities.DBConection;
+import ViewModel.SachVML;
 import ViewModel.SachViewmodel;
 import java.sql.*;
 import java.util.ArrayList;
@@ -98,4 +99,31 @@ public class SachRepositoryImplement {
         return check > 0;
     }
 
+    public ArrayList<SachVML> listSach() {
+        ArrayList<SachVML> listSach = new ArrayList<>();
+        String query = "SELECT SACH.MaSach, SACH.TenSach, NPH.TenNPH, SACH.SoLuong\n"
+                + "FROM NPH INNER JOIN SACH ON NPH.MaNPH = SACH.MaNPH";
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listSach.add(new SachVML(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+        }
+        return listSach;
+    }
+
+    public Boolean capNhat(Integer maSach, Integer soLuong) {
+        String sql = "UPDATE [dbo].[SACH] SET [SoLuong] = ?\n"
+                + " WHERE [MaSach] = ?";
+        int check = 0;
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, soLuong);
+            ps.setObject(2, maSach);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
 }

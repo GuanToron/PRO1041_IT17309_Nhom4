@@ -11,10 +11,27 @@ package DomainModel;
 public class SanPhamLoi {
     private int maSPL;
     private int maSach;
+    private int maNPH;
     private int soLuong;
     private String lyDoDoi;
 
     public SanPhamLoi() {
+    }
+
+    public int getMaNPH() {
+        return maNPH;
+    }
+
+    public void setMaNPH(int maNPH) {
+        this.maNPH = maNPH;
+    }
+
+    public SanPhamLoi(int maSPL, int maSach, int maNPH, int soLuong, String lyDoDoi) {
+        this.maSPL = maSPL;
+        this.maSach = maSach;
+        this.maNPH = maNPH;
+        this.soLuong = soLuong;
+        this.lyDoDoi = lyDoDoi;
     }
 
     public SanPhamLoi(int maSPL, int maSach, int soLuong, String lyDoDoi) {

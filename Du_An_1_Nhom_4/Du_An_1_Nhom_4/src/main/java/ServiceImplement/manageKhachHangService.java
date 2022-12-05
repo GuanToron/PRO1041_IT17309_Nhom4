@@ -61,4 +61,9 @@ public class manageKhachHangService implements ImanageKhachHangService {
         return x;
     }
 
+    @Override
+    public Void updateDiem(String maKH, Integer diem) {
+        return iKhachHangResponsitory.updateDiem(maKH, diem);
+    }
+
 }
