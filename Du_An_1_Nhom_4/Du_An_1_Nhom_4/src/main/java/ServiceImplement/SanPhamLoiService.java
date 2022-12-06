@@ -54,6 +54,7 @@ public class SanPhamLoiService implements ImanageSanPhamLoiService {
     @Override
     public Integer delete(String maspl) {
         return iSanPhamLoiRepository.delete(maspl);
+        
     }
 
     @Override

@@ -1,12 +1,13 @@
 package ViewModel;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Xuan Truong
  */
-public class HoaDonVM {
+public class HoaDonVM implements Serializable{
 
     private Integer maHoaDon;
     private Integer maKhachHang;

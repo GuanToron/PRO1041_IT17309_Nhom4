@@ -89,10 +89,10 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
     @Override
     public Void updateDiem(String maKH, Integer diem) {
         Integer row = 0;
-        String query = "UPDATE [dbo].[KHACHHANG] SET [DiemTichLuy] = ? WHERE [MaKH] = ?";
+        String query = "UPDATE [dbo].[KHACHHANG] SET [DiemTichLuy] = ? WHERE [MaKH]= ?";
         try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, maKH);
-            ps.setObject(2, diem);
+            ps.setObject(1, diem);
+            ps.setObject(2, maKH);
             row = ps.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
