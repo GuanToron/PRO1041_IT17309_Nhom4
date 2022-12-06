@@ -1145,6 +1145,7 @@
                 <Component class="javax.swing.JButton" name="btnHuy">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Hu&#x1ef7;"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHuyActionPerformed"/>

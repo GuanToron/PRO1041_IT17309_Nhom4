@@ -42,7 +42,7 @@ public class HoaDonVMServiceImplement implements HoaDonVMServiceInterface {
     }
 
     @Override
-    public List<GioHangVM> getSach(String maHD) {
+    public ArrayList<GioHangVM> getSach(String maHD) {
         return repo.getSach(maHD);
     }
 
@@ -68,17 +68,22 @@ public class HoaDonVMServiceImplement implements HoaDonVMServiceInterface {
 
     @Override
     public List<HoaDonVM> listDT() {
-     return repo.listDT();
+        return repo.listDT();
     }
 
     @Override
     public List<HoaDonVM> TimKiemDTTheoNgay(String date) {
-     return repo.TimKiemDTTheoNgay(date);
+        return repo.TimKiemDTTheoNgay(date);
     }
 
     @Override
     public List<HoaDonVM> TongDT() {
-      return repo.TongDT();
+        return repo.TongDT();
+    }
+
+    @Override
+    public ArrayList<HoaDonVM> listHDTH() {
+        return repo.listHDTH();
     }
 
 }

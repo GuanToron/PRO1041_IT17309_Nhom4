@@ -10,10 +10,10 @@ public class SachVM {
 
     private Integer maSach;
     private String tenSach;
-    
-    private Date namXB;
+
+    private String namXB;
     private String ngonngu;
-     private String nhomtuoi;
+    private String nhomtuoi;
     private String taiban;
     private String soTrang;
     private Integer soLuong;
@@ -37,8 +37,8 @@ public class SachVM {
         this.soLuong = soLuong;
         this.giaBan = giaBan;
     }
-    
-    public SachVM(Integer maSach, String tenSach, Date namXB, String ngonngu, String nhomtuoi, String taiban, String soTrang, Integer soLuong, Float giaBan, int trangthai, int slBan, double doanhthu) {
+
+    public SachVM(Integer maSach, String tenSach, String namXB, String ngonngu, String nhomtuoi, String taiban, String soTrang, Integer soLuong, Float giaBan, int trangthai, int slBan, double doanhthu) {
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.namXB = namXB;
@@ -53,11 +53,11 @@ public class SachVM {
         this.doanhthu = doanhthu;
     }
 
-    public Date getNamXB() {
+    public String getNamXB() {
         return namXB;
     }
 
-    public void setNamXB(Date namXB) {
+    public void setNamXB(String namXB) {
         this.namXB = namXB;
     }
 
@@ -116,7 +116,6 @@ public class SachVM {
     public void setDoanhthu(double doanhthu) {
         this.doanhthu = doanhthu;
     }
-    
 
     public Integer getMaSach() {
         return maSach;

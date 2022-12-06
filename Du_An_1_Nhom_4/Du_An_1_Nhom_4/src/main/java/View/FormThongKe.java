@@ -6,7 +6,6 @@ package View;
 
 import DomainModel.NPH;
 import DomainModel.TheLoai;
-import RepositoryImplement.TLRepositoryImplement;
 import ServiceImplement.HoaDonVMServiceImplement;
 import ServiceImplement.NPHServiceImplement;
 import ServiceImplement.SachVMServiceImplement;
@@ -17,7 +16,6 @@ import ServiceInterface.SachVMServiceInterface;
 import ServiceInterface.TLServiceInterface;
 import ViewModel.HoaDonVM;
 import ViewModel.SachVM;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -458,7 +456,7 @@ public class FormThongKe extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         this.dispose();
-        new QLNhanVien_().setVisible(true);
+        new QLNhanVien().setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

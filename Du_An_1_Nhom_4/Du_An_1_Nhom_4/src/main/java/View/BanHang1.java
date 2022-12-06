@@ -35,11 +35,9 @@ import ViewModel.SachViewmodel;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import static java.sql.JDBCType.NULL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -1013,12 +1011,12 @@ public class BanHang1 extends javax.swing.JFrame {
 
     private void btnQLHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLHoaDonActionPerformed
         this.dispose();
-        new FormQLhoadon1().setVisible(true);
+        new FormQLHoaDon().setVisible(true);
     }//GEN-LAST:event_btnQLHoaDonActionPerformed
 
     private void btnQLNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLNhanVienActionPerformed
         this.dispose();
-        new QLNhanVien_().setVisible(true);
+        new QLNhanVien().setVisible(true);
     }//GEN-LAST:event_btnQLNhanVienActionPerformed
 
     private void btnQLKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLKhachHangActionPerformed
@@ -1309,7 +1307,7 @@ public class BanHang1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-         this.dispose();
+        this.dispose();
         new FormThongKe().setVisible(true);
     }//GEN-LAST:event_btnThongKeActionPerformed
 

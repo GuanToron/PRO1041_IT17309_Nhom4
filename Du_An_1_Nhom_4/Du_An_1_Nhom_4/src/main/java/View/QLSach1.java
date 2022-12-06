@@ -1140,6 +1140,7 @@ public class QLSach1 extends javax.swing.JFrame {
         });
 
         btnHuy.setText("Huỷ");
+        btnHuy.setEnabled(false);
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHuyActionPerformed(evt);
@@ -1938,7 +1939,7 @@ public class QLSach1 extends javax.swing.JFrame {
 
     private void btnQLNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLNhanVienActionPerformed
         this.dispose();
-        new QLNhanVien_().setVisible(true);
+        new QLNhanVien().setVisible(true);
     }//GEN-LAST:event_btnQLNhanVienActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed

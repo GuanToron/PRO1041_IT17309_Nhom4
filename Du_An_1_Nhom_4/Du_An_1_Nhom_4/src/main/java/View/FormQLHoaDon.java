@@ -758,7 +758,7 @@ public class FormQLHoaDon extends javax.swing.JFrame {
 
     private void btnQLNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLNhanVienActionPerformed
         this.dispose();
-        new QLNhanVien_().setVisible(true);
+        new QLNhanVien().setVisible(true);
     }//GEN-LAST:event_btnQLNhanVienActionPerformed
 
     private void btnQLKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLKhachHangActionPerformed

@@ -63,27 +63,27 @@ public class SachVMServiceImplement implements SachVMServiceInterface {
 
     @Override
     public List<SachVM> listTopDTThapNhat() {
-      return repo.listTopDTThapNhat();
+        return repo.listTopDTThapNhat();
     }
 
     @Override
     public List<SachVM> listTopSLCaoNhat() {
-     return repo.listTopSLCaoNhat();
+        return repo.listTopSLCaoNhat();
     }
 
     @Override
     public List<SachVM> listTopSLThapNhat() {
-    return repo.listTopSLThapNhat();
+        return repo.listTopSLThapNhat();
     }
 
     @Override
     public List<SachVM> listsachbysql(String tenNPH) {
-     return repo.listsachbysql(tenNPH);
+        return repo.listsachbysql(tenNPH);
     }
 
     @Override
     public List<SachVM> getSearch(String tenSach) {
-     return repo.getSearch(tenSach);
+        return repo.getSearch(tenSach);
     }
 
 }
