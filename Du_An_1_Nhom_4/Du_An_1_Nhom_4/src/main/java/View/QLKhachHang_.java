@@ -607,56 +607,58 @@ public class QLKhachHang_ extends javax.swing.JFrame {
         int row = tblKhachHang.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn 1 dòng trên table để update");
-        }
-        KhachHang kh = getdataFromInput();
-        String makh = tblKhachHang.getValueAt(row, 0).toString();
-        if (txtTenKhachHang.getText().isEmpty() == true) {
-            JOptionPane.showMessageDialog(this, "Vui lòng không để trống tên ");
-            return;
-        }
-        if (txtDiaChi.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng không để trống địa chỉ");
-            return;
-        }
-
-        if (txtNgaySinh.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh ");
-            return;
-        }
-        if (txtSDT.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng không để trống sdt");
-            return;
-        }
-
-        if (txtDiemTichLuy.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng không để trống điểm tích lũy ");
-            return;
-        }
-        try {
-            int diem = Integer.parseInt(txtDiemTichLuy.getText());
-
-            if (diem < 0) {
-                JOptionPane.showMessageDialog(this, "Điểm tích lũy > 0");
-                return;
-            }
-            if (diem == 0) {
-                JOptionPane.showMessageDialog(this, "Điểm tích lũy phải là số nguyên");
-                return;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (imanageKhachHangService.update(makh, kh) != null) {
-            JOptionPane.showMessageDialog(this, " Update thành công ");
-
         } else {
-            JOptionPane.showMessageDialog(this, "Update thất bại  ");
-            return;
+            KhachHang kh = getdataFromInput();
+            String makh = tblKhachHang.getValueAt(row, 0).toString();
+            if (txtTenKhachHang.getText().isEmpty() == true) {
+                JOptionPane.showMessageDialog(this, "Vui lòng không để trống tên ");
+                return;
+            }
+            if (txtDiaChi.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng không để trống địa chỉ");
+                return;
+            }
+
+            if (txtNgaySinh.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh ");
+                return;
+            }
+            if (txtSDT.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng không để trống sdt");
+                return;
+            }
+
+            if (txtDiemTichLuy.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng không để trống điểm tích lũy ");
+                return;
+            }
+            try {
+                int diem = Integer.parseInt(txtDiemTichLuy.getText());
+
+                if (diem < 0) {
+                    JOptionPane.showMessageDialog(this, "Điểm tích lũy > 0");
+                    return;
+                }
+                if (diem == 0) {
+                    JOptionPane.showMessageDialog(this, "Điểm tích lũy phải là số nguyên");
+                    return;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if (imanageKhachHangService.update(makh, kh) != null) {
+                JOptionPane.showMessageDialog(this, " Update thành công ");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Update thất bại  ");
+                return;
+            }
+            list = imanageKhachHangService.getAll();
+            loadTable(list);
+            clearForm();
         }
-        list = imanageKhachHangService.getAll();
-        loadTable(list);
-        clearForm();
+
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed

@@ -1078,6 +1078,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtTenSach">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel27">
                   <Properties>
@@ -1088,6 +1091,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtMaSach">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel28">
                   <Properties>
@@ -1268,6 +1274,9 @@
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JTextField" name="txtNhaPhatHanh">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>

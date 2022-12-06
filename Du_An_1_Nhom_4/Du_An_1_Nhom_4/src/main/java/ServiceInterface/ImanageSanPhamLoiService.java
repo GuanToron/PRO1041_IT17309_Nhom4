@@ -16,9 +16,9 @@ public interface ImanageSanPhamLoiService {
 
     List<QLSanPhamLoi> getAll();
 
-    Integer add(SanPhamLoi sp);
+    String add(SanPhamLoi sp);
 
     Integer delete(String maspl);
 
-    Integer update(String maspl, SanPhamLoi sp);
+    String update(String maspl, SanPhamLoi sp);
 }

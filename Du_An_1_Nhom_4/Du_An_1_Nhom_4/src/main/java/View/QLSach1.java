@@ -1108,8 +1108,12 @@ public class QLSach1 extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel26.setText("Tên Sách");
 
+        txtTenSach.setEditable(false);
+
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel27.setText("Mã sách");
+
+        txtMaSach.setEditable(false);
 
         jLabel28.setText("NPH");
 
@@ -1225,6 +1229,8 @@ public class QLSach1 extends javax.swing.JFrame {
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        txtNhaPhatHanh.setEditable(false);
 
         jLabel12.setText("Ma san pham loi");
 
@@ -2394,23 +2400,32 @@ public class QLSach1 extends javax.swing.JFrame {
     }//GEN-LAST:event_tblDSSachMouseClicked
 
     private void btnDoiSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiSachActionPerformed
-        SanPhamLoi x = getSanPhamLoiTuSach();
-        Integer soSachDoi = x.getSoLuong();
-        Integer maSach = x.getMaSach();
-        Integer themSPL = serviceSPL.add(x);
-        Integer soSachCon = soSachBanDau - soSachDoi;
-        String capNhatSoSach = serviceSach.capNhat(maSach, soSachCon);
-        if (themSPL > 0) {
-            JOptionPane.showMessageDialog(this, "OK");
+        int row = tblDSSach.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Chon dong di");
         } else {
-            JOptionPane.showMessageDialog(this, "No OK");
+            if (txtSoLuong.getText().isBlank()) {
+                JOptionPane.showMessageDialog(this, "Số lượng còn trong");
+                return;
+            }
+            SanPhamLoi x = getSanPhamLoiTuSach();
+            Integer soSachDoi = x.getSoLuong();
+            Integer maSach = x.getMaSach();
+            if (soSachDoi > soSachBanDau) {
+                JOptionPane.showMessageDialog(this, "Sach doi dang nhieu hon sach co, vui long xem lai");
+            } else {
+                String themSPL = serviceSPL.add(x);
+                Integer soSachCon = soSachBanDau - soSachDoi;
+                String capNhatSoSach = serviceSach.capNhat(maSach, soSachCon);
+                JOptionPane.showMessageDialog(this, themSPL);
+                JOptionPane.showMessageDialog(this, capNhatSoSach);
+                lisstSach = serviceSach.listSach();
+                loadTable(lisstSach);
+                listSPL.removeAll(listSPL);
+                listSPL = serviceSPL.getAll();
+                loadTableSachLoi(listSPL);
+            }
         }
-        JOptionPane.showMessageDialog(this, capNhatSoSach);
-        lisstSach = serviceSach.listSach();
-        loadTable(lisstSach);
-        listSPL.removeAll(listSPL);
-        listSPL = serviceSPL.getAll();
-        loadTableSachLoi(listSPL);
     }//GEN-LAST:event_btnDoiSachActionPerformed
 
     private void tblSachLoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSachLoiMouseClicked
@@ -2441,7 +2456,11 @@ public class QLSach1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
-        // TODO add your handling code here:
+        txtMaSanPhamLoi.setText("");
+        txtTenSach.setText("");
+        txtLyDoDoi.setText("");
+        txtNhaPhatHanh.setText("");
+        txtSoLuong.setText("");
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
@@ -2453,7 +2472,7 @@ public class QLSach1 extends javax.swing.JFrame {
         SanPhamLoi x = new SanPhamLoi();
         int maNPH = 0;
         x.setMaSach(Integer.parseInt(txtMaSach.getText()));
-        x.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+        x.setSoLuong(Integer.valueOf(txtSoLuong.getText()));
         x.setLyDoDoi(txtLyDoDoi.getText());
         for (NPH z : listNPH) {
             if (z.getTenNPH().equals(txtNhaPhatHanh.getText())) {

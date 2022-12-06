@@ -68,4 +68,15 @@ public class NhanVienServiceImpl implements NhanVienService {
         return "That bai";
     }
 
+    @Override
+    public Boolean dangNhap(String taiKhoan, String matKhau) {
+        ArrayList<NhanVienRespone> listNhanVien = repo.listNhanVien();
+        for (NhanVienRespone x : listNhanVien) {
+            if (x.getTaiKhoan().equals(taiKhoan) & x.getMatKhau().equals(matKhau)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
