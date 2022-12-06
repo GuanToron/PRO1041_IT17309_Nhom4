@@ -15,13 +15,15 @@ public interface HoaDomVMRepositoryInterface {
 
     ArrayList<HoaDonVM> listHDVM();
 
+    ArrayList<HoaDonVM> listHDTH();
+
     ArrayList<HoaDonVM> listHD();
 
     Boolean taoHoaDon(HoaDonVM x);
 
     Boolean capNhatHoaDon(HoaDonVM x);
 
-    List<GioHangVM> getSach(String maHD);
+    ArrayList<GioHangVM> getSach(String maHD);
 
     List<HoaDonVM> loadchuathanhtoan();
 

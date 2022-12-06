@@ -21,7 +21,7 @@ import javax.swing.table.TableRowSorter;
 public class FormQLhoadon1 extends javax.swing.JFrame {
     
     private DefaultTableModel defaultTableModelCTHD;
-    private DefaultTableModel defauhdct;
+    private DefaultTableModel modelTTHDCT;
     
     private HoaDonCTVMServiccecInterface hdct = new HoaDonCTVMServiceImplement();
     private HoaDonVMServiceInterface hoadonVMServiceInterface;
@@ -53,10 +53,10 @@ public class FormQLhoadon1 extends javax.swing.JFrame {
     }
     
     private void loadhdct(ArrayList<HoaDonCTVM> listhdct) {
-        defauhdct = (DefaultTableModel) tblHDCT.getModel();
-        defauhdct.setRowCount(0);
+        modelTTHDCT = (DefaultTableModel) tblHDCT.getModel();
+        modelTTHDCT.setRowCount(0);
         for (HoaDonCTVM hoaDonCTVM : listhdct) {
-            defauhdct.addRow(new Object[]{hoaDonCTVM.getMaHoaDonCT(),
+            modelTTHDCT.addRow(new Object[]{hoaDonCTVM.getMaHoaDonCT(),
                 //             hoaDonCTVM.getMaHoaDon(),
                 hoaDonCTVM.getMaSach(),
                 hoaDonCTVM.getMaSach(),
@@ -412,8 +412,8 @@ public class FormQLhoadon1 extends javax.swing.JFrame {
         int row = tblQLHD.getSelectedRow();      
         String ma = tblQLHD.getValueAt(row, 0).toString();
         Integer maHoaDon = Integer.valueOf(ma);
-        defauhdct = (DefaultTableModel) tblHDCT.getModel();
-        defauhdct.setRowCount(0);
+        modelTTHDCT = (DefaultTableModel) tblHDCT.getModel();
+        modelTTHDCT.setRowCount(0);
         ArrayList<HoaDonCTVM> list = hdct.getlist(maHoaDon);
         loadhdct(list);
     }//GEN-LAST:event_tblQLHDMouseClicked

@@ -32,13 +32,13 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public Boolean taoHoaDon(HoaDonVM x) {
-        String query = "INSERT INTO [dbo].[HOADON]([MaKH],[MaNV],[NgayTao],[TrangThai])VALUES(?,?,?,?)";
+        String query = "INSERT INTO [dbo].[HOADON]([MaNV],[NgayTao],[TrangThai])\n"
+                + "VALUES(?,?,?)";
         int check = 0;
         try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, x.getMaKhachHang());
-            ps.setObject(2, x.getMaNhanVien());
-            ps.setObject(3, x.getNgayTao());
-            ps.setObject(4, x.getTrangThai());
+            ps.setObject(1, x.getMaNhanVien());
+            ps.setObject(2, x.getNgayTao());
+            ps.setObject(3, x.getTrangThai());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
@@ -80,8 +80,8 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
     }
 
     @Override
-    public List<GioHangVM> getSach(String maHD) {
-        listGH = new ArrayList<>();
+    public ArrayList<GioHangVM> getSach(String maHD) {
+        ArrayList<GioHangVM> listGH = new ArrayList<>();
         String query = "SELECT SACH.TenSach, HOADONCT.SoLuong, HOADONCT.DonGia\n"
                 + "FROM HOADONCT INNER JOIN SACH ON HOADONCT.MaSACH = SACH.MaSach\n"
                 + "WHERE [MaHD] = ?";
@@ -142,7 +142,7 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
             ps.setObject(2, ngayKetThuc);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listHDVM.add(new HoaDonVM(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5)));
+                listHDVM.add(new HoaDonVM(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5), rs.getInt(6)));
             }
         } catch (Exception e) {
             e.getMessage();
@@ -152,6 +152,22 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public ArrayList<HoaDonVM> listHD() {
+        String query = "SELECT [MaHD],[MaKH],[MaNV],[NgayTao],[TongTien],[TrangThai]\n"
+                + "FROM [dbo].[HOADON]";
+        ArrayList<HoaDonVM> listHDVM = new ArrayList<>();
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listHDVM.add(new HoaDonVM(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getFloat(5), rs.getInt(6)));
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return listHDVM;
+    }
+
+    @Override
+    public ArrayList<HoaDonVM> listHDTH() {
         String query = "SELECT [MaHD],[MaKH],[MaNV],[NgayTao],[TongTien],[TrangThai]\n"
                 + "FROM [dbo].[HOADON]\n"
                 + "WHERE TrangThai = 2";

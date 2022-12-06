@@ -17,13 +17,15 @@ public interface HoaDonVMServiceInterface {
 
     ArrayList<HoaDonVM> listHDVM();
 
+    ArrayList<HoaDonVM> listHDTH();
+
     ArrayList<HoaDonVM> listHD();
 
     String capNhatHD(HoaDonVM x);
 
     ArrayList<HoaDonVM> listloc(Date ngayBatDau, Date ngayKetThuc);
 
-    List<GioHangVM> getSach(String maHD);
+    ArrayList<GioHangVM> getSach(String maHD);
 
     List<HoaDonVM> loadchuathanhtoan();
 

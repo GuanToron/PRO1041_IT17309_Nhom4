@@ -2443,15 +2443,20 @@ public class QLSach1 extends javax.swing.JFrame {
     }//GEN-LAST:event_tblSachLoiMouseClicked
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
-        String maSanPhamLoi = txtMaSanPhamLoi.getText();
-        Integer huy = serviceSPL.delete(maSanPhamLoi);
-        if (huy < 0) {
-            JOptionPane.showMessageDialog(this, "No OK");
+        if (tblSachLoi.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Chua chon sach loi");
+            return;
         } else {
-            JOptionPane.showMessageDialog(this, "OK");
-            listSPL.removeAll(listSPL);
-            listSPL = serviceSPL.getAll();
-            loadTableSachLoi(listSPL);
+            String maSanPhamLoi = txtMaSanPhamLoi.getText();
+            Integer huy = serviceSPL.delete(maSanPhamLoi);
+            if (huy < 0) {
+                JOptionPane.showMessageDialog(this, "No OK");
+            } else {
+                JOptionPane.showMessageDialog(this, "OK");
+                listSPL.removeAll(listSPL);
+                listSPL = serviceSPL.getAll();
+                loadTableSachLoi(listSPL);
+            }
         }
     }//GEN-LAST:event_btnHuyActionPerformed
 
