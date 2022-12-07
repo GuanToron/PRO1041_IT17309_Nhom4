@@ -73,13 +73,13 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
     @Override
     public List<SachVM> listTopDTCaoNhat() {
         listDTCaoNhat = new ArrayList<>();
-        String sql = "select SACH.MaSach,TenSach, NamXuatBan, NgonNgu, NhomTuoi, TaiBan, SoTrang, GiaBan, SACH.SoLuong, TrangThai, HOADONCT.SoLuong as 'soluongdaban',  DonGia as 'doanh thu'\n"
+        String sql = "select HOADONCT.MaHD, SACH.MaSach,TenSach, NamXuatBan, NgonNgu, NhomTuoi, TaiBan, SoTrang, GiaBan, SACH.SoLuong, TrangThai, HOADONCT.SoLuong as 'soluongdaban',  DonGia as 'doanh thu'\n"
                 + "from SACH join HOADONCT on HOADONCT.MaSACH = Sach.MaSach \n"
                 + "order by  HOADONCT.DonGia desc";
         ResultSet rs = DBConection.excutequery(sql);
         try {
             while (rs.next()) {
-                listDTCaoNhat.add(new SachVM(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(9), rs.getFloat(8), rs.getInt(10), rs.getInt(11), rs.getDouble(12)));
+                listDTCaoNhat.add(new SachVM(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(10), rs.getFloat(9), rs.getInt(11), rs.getInt(12), rs.getDouble(13)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SachVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
@@ -90,13 +90,13 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
     @Override
     public List<SachVM> listTopDTThapNhat() {
         listDTThapNhat = new ArrayList<>();
-        String sql = "select SACH.MaSach,TenSach, NamXuatBan, NgonNgu, NhomTuoi, TaiBan, SoTrang, GiaBan, SACH.SoLuong, TrangThai, HOADONCT.SoLuong as 'soluongdaban',  DonGia as 'doanh thu'\n"
+        String sql = "select HOADONCT.MaHD, SACH.MaSach,TenSach, NamXuatBan, NgonNgu, NhomTuoi, TaiBan, SoTrang, GiaBan, SACH.SoLuong, TrangThai, HOADONCT.SoLuong as 'soluongdaban',  DonGia as 'doanh thu'\n"
                 + "from SACH join HOADONCT on HOADONCT.MaSACH = Sach.MaSach \n"
                 + "order by  HOADONCT.DonGia asc";
         ResultSet rs = DBConection.excutequery(sql);
         try {
             while (rs.next()) {
-                listDTThapNhat.add(new SachVM(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(9), rs.getFloat(8), rs.getInt(10), rs.getInt(11), rs.getDouble(12)));
+                listDTThapNhat.add(new SachVM(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(10), rs.getFloat(9), rs.getInt(11), rs.getInt(12), rs.getDouble(13)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SachVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,13 +107,13 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
     @Override
     public List<SachVM> listTopSLCaoNhat() {
         listSLCaoNhat = new ArrayList<>();
-        String sql = "select SACH.MaSach,TenSach, NamXuatBan, NgonNgu, NhomTuoi, TaiBan, SoTrang, GiaBan, SACH.SoLuong, TrangThai, HOADONCT.SoLuong as 'soluongdaban', DonGia\n"
+        String sql = "select HOADONCT.MaHD, SACH.MaSach,TenSach, NamXuatBan, NgonNgu, NhomTuoi, TaiBan, SoTrang, GiaBan, SACH.SoLuong, TrangThai, HOADONCT.SoLuong as 'soluongdaban', DonGia\n"
                 + "from SACH join HOADONCT on HOADONCT.MaSACH = Sach.MaSach\n"
                 + "order by  HOADONCT.SoLuong desc";
         ResultSet rs = DBConection.excutequery(sql);
         try {
             while (rs.next()) {
-                listSLCaoNhat.add(new SachVM(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(9), rs.getFloat(8), rs.getInt(10), rs.getInt(11), rs.getDouble(12)));
+                listSLCaoNhat.add(new SachVM(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(10), rs.getFloat(9), rs.getInt(11), rs.getInt(12), rs.getDouble(13)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SachVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
@@ -124,13 +124,13 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
     @Override
     public List<SachVM> listTopSLThapNhat() {
         listSLThapNhat = new ArrayList<>();
-        String sql = "select SACH.MaSach,TenSach, NamXuatBan, NgonNgu, NhomTuoi, TaiBan, SoTrang, GiaBan, SACH.SoLuong, TrangThai, HOADONCT.SoLuong as 'soluongdaban', DonGia\n"
+        String sql = "select HOADONCT.MaHD, SACH.MaSach,TenSach, NamXuatBan, NgonNgu, NhomTuoi, TaiBan, SoTrang, GiaBan, SACH.SoLuong, TrangThai, HOADONCT.SoLuong as 'soluongdaban', DonGia\n"
                 + "from SACH join HOADONCT on HOADONCT.MaSACH = Sach.MaSach\n"
                 + "order by  HOADONCT.SoLuong asc";
         ResultSet rs = DBConection.excutequery(sql);
         try {
             while (rs.next()) {
-                listSLThapNhat.add(new SachVM(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(9), rs.getFloat(8), rs.getInt(10), rs.getInt(11), rs.getDouble(12)));
+                listSLThapNhat.add(new SachVM(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(10), rs.getFloat(9), rs.getInt(11), rs.getInt(12), rs.getDouble(13)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SachVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,7 +157,7 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
         ResultSet rs = DBConection.excutequery(sql2, ma);
         try {
             while (rs.next()) {
-                listSachByNPH.add(new SachVM(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(9), rs.getFloat(8), rs.getInt(10), rs.getInt(11), rs.getDouble(12)));
+                listSachByNPH.add(new SachVM(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(10), rs.getFloat(9), rs.getInt(11), rs.getInt(12), rs.getDouble(13)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SachVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
@@ -174,7 +174,7 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
         ResultSet rs = DBConection.excutequery(sql, tenSach);
         try {
             while (rs.next()) {
-                search.add(new SachVM(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(9), rs.getFloat(8), rs.getInt(10), rs.getInt(11), rs.getDouble(12)));
+                search.add(new SachVM(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(10), rs.getFloat(9), rs.getInt(11), rs.getInt(12), rs.getDouble(13)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(SachVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
