@@ -681,7 +681,9 @@ public class QLNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+//        this.dispose();
+//        new BanHangNhanVien().setVisible(true);
+        JOptionPane.showMessageDialog(this, "Ban la quan ly, khong phai nhan vien");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

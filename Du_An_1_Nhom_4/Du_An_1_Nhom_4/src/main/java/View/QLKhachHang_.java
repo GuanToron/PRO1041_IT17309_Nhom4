@@ -532,8 +532,9 @@ public class QLKhachHang_ extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-        new BanHang1().setVisible(true);
+//        this.dispose();
+//        new BanHangNhanVien().setVisible(true);
+        JOptionPane.showMessageDialog(this, "Ban la quan ly, khong phai nhan vien");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

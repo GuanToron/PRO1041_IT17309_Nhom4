@@ -231,8 +231,8 @@ public class FormQLHoaDon extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtMaNhanVien = new javax.swing.JTextField();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tbltrahang = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tbltrahang1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -698,7 +698,7 @@ public class FormQLHoaDon extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Quản lý đổi trả", jPanel2);
 
-        tbltrahang.setModel(new javax.swing.table.DefaultTableModel(
+        tbltrahang1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -706,12 +706,7 @@ public class FormQLHoaDon extends javax.swing.JFrame {
                 "Mã PTH", "Mã HĐ", "Mã KH", "Mã NV", "Tổng tiền", "Ngày tạo", "Ngày trả", "Số tiền trả lại", "Lý do trả"
             }
         ));
-        tbltrahang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbltrahangMouseClicked(evt);
-            }
-        });
-        jScrollPane5.setViewportView(tbltrahang);
+        jScrollPane6.setViewportView(tbltrahang1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -722,7 +717,9 @@ public class FormQLHoaDon extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1)
-                    .addComponent(jScrollPane5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane6)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -730,8 +727,8 @@ public class FormQLHoaDon extends javax.swing.JFrame {
             .addComponent(SidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -743,8 +740,9 @@ public class FormQLHoaDon extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTrangChuActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
-        this.dispose();
-        new BanHang1().setVisible(true);
+//        this.dispose();
+//        new BanHangNhanVien().setVisible(true);
+        JOptionPane.showMessageDialog(this, "Ban la quan lý, khong phai nhan vien");
     }//GEN-LAST:event_btnBanHangActionPerformed
 
     private void btnQLSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSachActionPerformed
@@ -884,12 +882,6 @@ public class FormQLHoaDon extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtmakhActionPerformed
 
-    private void tbltrahangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbltrahangMouseClicked
-        //        // TODO add your handling code here:
-        int temp = tbltrahang.getSelectedRow();
-        loadTraHang(temp);
-    }//GEN-LAST:event_tbltrahangMouseClicked
-
     private void txtSoLuongInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtSoLuongInputMethodTextChanged
 
     }//GEN-LAST:event_txtSoLuongInputMethodTextChanged
@@ -983,7 +975,7 @@ public class FormQLHoaDon extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1000,7 +992,7 @@ public class FormQLHoaDon extends javax.swing.JFrame {
     private javax.swing.JTable tblTHHoaDonChiTiet;
     private javax.swing.JTable tblTTHoaDon;
     private javax.swing.JTable tblTTHoaDonChiTiet;
-    private javax.swing.JTable tbltrahang;
+    private javax.swing.JTable tbltrahang1;
     private javax.swing.JTextField txtMaNhanVien;
     private javax.swing.JTextField txtMaPTH;
     private javax.swing.JTextField txtMaSach;

@@ -18,5 +18,5 @@ public interface NhanVienService {
 
     String suaNhanVien(NhanVien x, Integer maNhanVien);
 
-    Boolean dangNhap(String taiKhoan, String matKhau);
+    Integer dangNhap(String taiKhoan, String matKhau);
 }

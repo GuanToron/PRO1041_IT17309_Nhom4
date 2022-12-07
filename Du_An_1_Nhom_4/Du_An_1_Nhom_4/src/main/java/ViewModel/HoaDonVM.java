@@ -19,6 +19,11 @@ public class HoaDonVM implements Serializable{
     public HoaDonVM() {
     }
 
+    public HoaDonVM(Integer maHoaDon, Integer trangThai) {
+        this.maHoaDon = maHoaDon;
+        this.trangThai = trangThai;
+    }
+
     public HoaDonVM(Integer maHoaDon, Integer maKhachHang, Integer maNhanVien, Date ngayTao, float tongTien, Integer trangThai) {
         this.maHoaDon = maHoaDon;
         this.maKhachHang = maKhachHang;
