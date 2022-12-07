@@ -28,6 +28,7 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
     private List<HoaDonVM> listDT;
     private List<HoaDonVM> timkiem;
 
+    private List<HoaDonVM> listHDThongke;
     private List<HoaDonVM> tongDT;
 
     @Override
@@ -231,6 +232,22 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
             Logger.getLogger(HoaDonVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tongDT;
+    }
+
+    @Override
+    public List<HoaDonVM> tongHDthongke() {
+      listHDThongke = new ArrayList<>();
+        String sql = "select count(MaHD) from HOADON";
+        ResultSet rs = DBConection.excutequery(sql);
+        try {
+            while (rs.next()) {
+                listHDThongke.add(new HoaDonVM( rs.getInt(1)));
+                System.out.println(listHDThongke);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listHDThongke;
     }
 
 }

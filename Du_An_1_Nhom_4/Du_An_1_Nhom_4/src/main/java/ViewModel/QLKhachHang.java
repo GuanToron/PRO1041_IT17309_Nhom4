@@ -20,6 +20,7 @@ public class QLKhachHang {
     private String sdt;
     private int diemTichLuy;
 
+    private int tongkh;
     public QLKhachHang() {
     }
 
@@ -33,6 +34,19 @@ public class QLKhachHang {
         this.diemTichLuy = diemTichLuy;
     }
 
+    public QLKhachHang(int tongkh) {
+        this.tongkh = tongkh;
+    }
+
+    public int getTongkh() {
+        return tongkh;
+    }
+
+    public void setTongkh(int tongkh) {
+        this.tongkh = tongkh;
+    }
+
+    
     public int getMaKH() {
         return maKH;
     }

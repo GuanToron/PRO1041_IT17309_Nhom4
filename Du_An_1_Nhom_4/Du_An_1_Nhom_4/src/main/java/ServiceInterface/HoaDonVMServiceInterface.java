@@ -36,4 +36,6 @@ public interface HoaDonVMServiceInterface {
     List<HoaDonVM> TimKiemDTTheoNgay(String date);
 
     List<HoaDonVM> TongDT();
+    
+    List<HoaDonVM> tongHDthongke();
 }
