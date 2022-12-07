@@ -16,6 +16,7 @@ public class HoaDonVM implements Serializable{
     private float tongTien;
     private Integer trangThai;
 
+    private int soHD;
     public HoaDonVM() {
     }
 
@@ -24,6 +25,11 @@ public class HoaDonVM implements Serializable{
         this.trangThai = trangThai;
     }
 
+    public HoaDonVM(int soHD) {
+        this.soHD = soHD;
+    }
+
+    
     public HoaDonVM(Integer maHoaDon, Integer maKhachHang, Integer maNhanVien, Date ngayTao, float tongTien, Integer trangThai) {
         this.maHoaDon = maHoaDon;
         this.maKhachHang = maKhachHang;
@@ -40,6 +46,14 @@ public class HoaDonVM implements Serializable{
     public HoaDonVM(Date ngayTao, float tongTien) {
         this.ngayTao = ngayTao;
         this.tongTien = tongTien;
+    }
+
+    public int getSoHD() {
+        return soHD;
+    }
+
+    public void setSoHD(int soHD) {
+        this.soHD = soHD;
     }
 
     

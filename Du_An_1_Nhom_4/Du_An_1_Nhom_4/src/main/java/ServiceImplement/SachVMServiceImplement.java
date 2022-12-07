@@ -86,4 +86,9 @@ public class SachVMServiceImplement implements SachVMServiceInterface {
         return repo.getSearch(tenSach);
     }
 
+    @Override
+    public List<SachVM> listSPbanchay() {
+        return repo.listSPbanchay();
+    }
+
 }

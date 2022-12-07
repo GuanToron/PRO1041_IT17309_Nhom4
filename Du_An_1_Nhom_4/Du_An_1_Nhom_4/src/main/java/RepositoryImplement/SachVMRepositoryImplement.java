@@ -23,6 +23,7 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
     private List<SachVM> listSLCaoNhat;
     private List<SachVM> listSLThapNhat;
     private List<SachVM> listSachByNPH;
+    private List<SachVM> listSPbanChay;
     private List<SachVM> search;
 
     @Override
@@ -180,6 +181,29 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
             Logger.getLogger(SachVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
         }
         return search;
+    }
+
+    @Override
+    public List<SachVM> listSPbanchay() {
+       listSPbanChay = new ArrayList<>();
+        String query = " SELECT TOP 1 SACH.TenSach FROM HOADONCT\n" +
+"                JOIN HoaDon ON HoaDon.MaHD = HOADONCT.MaHD\n" +
+"                JOIN SACH ON SACH.MaSach=HOADONCT.MaSACH \n" +
+"                WHERE HoaDon.TrangThai = 2\n" +
+"                GROUP BY HOADONCT.MaSACH, SACH.TenSach \n" +
+"                HAVING Sum(HOADONCT.SoLuong) >= ALL(SELECT Sum(SoLuong) FROM HOADONCT \n" +
+"                JOIN HoaDon ON HoaDon.MaHD = HOADONCT.MaHD \n" +
+"                WHERE HoaDon.TrangThai = 2\n" +
+"                GROUP BY HOADONCT.MaSACH)";
+        ResultSet rs = DBConection.excutequery(query);
+        try {
+            while (rs.next()) {
+                listSPbanChay.add(new SachVM(rs.getString(1)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listSPbanChay;
     }
 
 }

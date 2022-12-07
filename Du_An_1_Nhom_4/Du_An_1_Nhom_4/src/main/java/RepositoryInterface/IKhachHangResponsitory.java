@@ -25,4 +25,6 @@ public interface IKhachHangResponsitory {
     Void updateDiem(String maKH, Integer diem);
 
     KhachHang timKhachHang(String SĐT);
+    
+    List<QLKhachHang> tongKH();
 }

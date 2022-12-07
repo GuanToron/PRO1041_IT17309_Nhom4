@@ -66,4 +66,9 @@ public class manageKhachHangService implements ImanageKhachHangService {
         return iKhachHangResponsitory.updateDiem(maKH, diem);
     }
 
+    @Override
+    public List<QLKhachHang> tongKH() {
+       return iKhachHangResponsitory.tongKH();
+    }
+
 }

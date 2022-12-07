@@ -30,4 +30,6 @@ public interface SachVMServiceInterface {
     List<SachVM> listsachbysql(String tenNPH);
 
     List<SachVM> getSearch(String tenSach);
+    
+    List<SachVM> listSPbanchay();
 }

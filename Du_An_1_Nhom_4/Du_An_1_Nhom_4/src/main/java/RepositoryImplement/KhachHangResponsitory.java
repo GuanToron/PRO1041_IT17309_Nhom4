@@ -22,6 +22,7 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
 
     private List<QLKhachHang> listkh;
 
+    private List<QLKhachHang>  listtongKH;
     public KhachHangResponsitory() {
 
     }
@@ -98,6 +99,22 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
             e.getMessage();
         }
         return null;
+    }
+
+    @Override
+    public List<QLKhachHang> tongKH() {
+     listtongKH = new ArrayList<>();
+        String tongkh = "select count(MaKH) from KHACHHANG";
+        ResultSet rs = DBConection.excutequery(tongkh);
+        try {
+            while (rs.next()) {
+                listtongKH.add(new QLKhachHang(rs.getInt(1)));
+                System.out.println(listtongKH);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangResponsitory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listtongKH;
     }
 
 }
