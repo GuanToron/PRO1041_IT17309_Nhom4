@@ -17,6 +17,7 @@ public class LoginView extends javax.swing.JFrame {
 
     private DBConection connection;
     private NhanVienService serviceNV = new NhanVienServiceImpl();
+
     /**
      * Creates new form Login
      */
@@ -122,54 +123,18 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserNameActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
-//        if (txtUserName.getText().equals("")) {
-//
-//            JOptionPane.showMessageDialog(this, "khong duoc de trong user ");
-//
-//            return;
-//        }
-//        if (txtPassWord.getText().equals("")) {
-//            JOptionPane.showMessageDialog(this, "pass chua nhap");
-//            return;
-//        }
-//
-//        String sql = "select  NHANVIEN.TaiKhoan,NHANVIEN.MatKhau,CHUCVU.TenCV from NHANVIEN join CHUCVU on NHANVIEN.MaCV= CHUCVU.MaCV ";
-//        try ( Connection con = connection.getConnection();  PreparedStatement ps = con.prepareStatement(sql);  ResultSet rs = ps.executeQuery();) {
-//            String role, pass, user;
-//            while (rs.next()) {
-//
-//                user = rs.getString(1);
-//                pass = rs.getString(2);
-//                role = rs.getString(3);
-//                if (user.equals(txtUserName.getText()) && pass.equals(txtPassWord.getText())) {
-//
-//                    if (role.equalsIgnoreCase(" NhânViên")) {
-//                        JOptionPane.showMessageDialog(this, "dang nhap thanh cong");
-//                        new MainApp().setVisible(true);
-//                        dispose();
-//                    } else if (role.equalsIgnoreCase("QuảnLý")) {
-//                        JOptionPane.showMessageDialog(this, "dang nhap thanh cong");
-//                        new MainApp().setVisible(true);
-//                        dispose();
-//
-//                    }
-//                }
-//            }
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, "khong thanh cong");
-//        }
-//
+
         String tenTaiKhoan = txtUserName.getText();
         String matKhau = String.valueOf(txtPassWord.getPassword());
-        Boolean loGin = serviceNV.dangNhap(tenTaiKhoan, matKhau);
-        if(loGin){
+        Integer loGin = serviceNV.dangNhap(tenTaiKhoan, matKhau);
+        if (loGin == 1) {
+            JOptionPane.showMessageDialog(this, "Tyhanh cong");
+            new BanHangNhanVien().setVisible(true);
+            this.dispose();
+        } else if (loGin == 2) {
             JOptionPane.showMessageDialog(this, "Tyhanh cong");
             new MainApp().setVisible(true);
             this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(this, "That bai");
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 

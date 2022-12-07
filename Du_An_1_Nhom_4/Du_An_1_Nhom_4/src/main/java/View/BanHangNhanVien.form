@@ -356,10 +356,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jScrollPane2" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnClearGioHang" min="-2" pref="58" max="-2" attributes="0"/>
-                      <Component id="btnXoaGioHang" min="-2" pref="58" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnXoaGioHang" min="-2" pref="58" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -369,19 +366,17 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="btnXoaGioHang" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnClearGioHang" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="134" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="btnXoaGioHang" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -419,14 +414,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnClearGioHang">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Clear"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearGioHangActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnXoaGioHang">
           <Properties>
             <Property name="text" type="java.lang.String" value="Xoa"/>
@@ -641,7 +628,9 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnClearGioHang1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnThanhToan" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnHoaDonCho" min="-2" max="-2" attributes="0"/>
@@ -710,6 +699,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnHoaDonCho" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnClearGioHang1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -943,10 +933,18 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnHoaDonCho">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ch&#x1edd;"/>
+            <Property name="text" type="java.lang.String" value="Ho&#xe1; &#x111;&#x1a1;n ch&#x1edd;"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHoaDonChoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnClearGioHang1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hu&#x1ef7; ho&#xe1; &#x111;&#x1a1;n"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearGioHang1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
