@@ -588,18 +588,21 @@ public class QLKhachHang_ extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Điểm tích lũy phải là số nguyên");
             return;
         }
-        KhachHang kh = getdataFromInput();
-        // add
-        if (imanageKhachHangService.add(kh) != null) {
-            JOptionPane.showMessageDialog(this, "Add thành công ");
+        int choice = JOptionPane.showConfirmDialog(null, "Bạn có muốn thêm khách hàng ?", null, JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            KhachHang kh = getdataFromInput();
+            // add
+            if (imanageKhachHangService.add(kh) != null) {
+                JOptionPane.showMessageDialog(this, "Add thành công ");
 
-        } else {
-            JOptionPane.showMessageDialog(this, "Add thất bại  ");
-            return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Add thất bại  ");
+                return;
+            }
+            list = imanageKhachHangService.getAll();
+            loadTable(list);
+            clearForm();
         }
-        list = imanageKhachHangService.getAll();
-        loadTable(list);
-        clearForm();
 
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -647,16 +650,19 @@ public class QLKhachHang_ extends javax.swing.JFrame {
                 e.printStackTrace();
             }
 
-            if (imanageKhachHangService.update(makh, kh) != null) {
-                JOptionPane.showMessageDialog(this, " Update thành công ");
+            int choice = JOptionPane.showConfirmDialog(null, "Bạn có muốn sửa khách hàng ?", null, JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (imanageKhachHangService.update(makh, kh) != null) {
+                    JOptionPane.showMessageDialog(this, " Update thành công ");
 
-            } else {
-                JOptionPane.showMessageDialog(this, "Update thất bại  ");
-                return;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Update thất bại  ");
+                    return;
+                }
+                list = imanageKhachHangService.getAll();
+                loadTable(list);
+                clearForm();
             }
-            list = imanageKhachHangService.getAll();
-            loadTable(list);
-            clearForm();
         }
 
     }//GEN-LAST:event_btnCapNhatActionPerformed
@@ -673,16 +679,19 @@ public class QLKhachHang_ extends javax.swing.JFrame {
             return;
         }
 
-        if (imanageKhachHangService.delete(makh) != null) {
-            JOptionPane.showMessageDialog(this, " Delete thành công ");
+        int choice = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa khách hàng ?", null, JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            if (imanageKhachHangService.delete(makh) != null) {
+                JOptionPane.showMessageDialog(this, " Delete thành công ");
 
-        } else {
-            JOptionPane.showMessageDialog(this, "Delete thất bại  ");
-            return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Delete thất bại  ");
+                return;
+            }
+            list = imanageKhachHangService.getAll();
+            loadTable(list);
+            clearForm();
         }
-        list = imanageKhachHangService.getAll();
-        loadTable(list);
-        clearForm();
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
@@ -713,7 +722,7 @@ public class QLKhachHang_ extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-         this.dispose();
+        this.dispose();
         new FormThongKe().setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 

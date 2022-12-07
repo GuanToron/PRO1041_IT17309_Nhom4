@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class SachVM {
 
+    private Integer maHD;
     private Integer maSach;
     private String tenSach;
 
@@ -32,13 +33,22 @@ public class SachVM {
         this.giaBan = giaBan;
     }
 
+    public Integer getMaHD() {
+        return maHD;
+    }
+
+    public void setMaHD(Integer maHD) {
+        this.maHD = maHD;
+    }
+
     public SachVM(String tenSach, Integer soLuong, Float giaBan) {
         this.tenSach = tenSach;
         this.soLuong = soLuong;
         this.giaBan = giaBan;
     }
 
-    public SachVM(Integer maSach, String tenSach, String namXB, String ngonngu, String nhomtuoi, String taiban, String soTrang, Integer soLuong, Float giaBan, int trangthai, int slBan, double doanhthu) {
+    public SachVM(Integer maHD, Integer maSach, String tenSach, String namXB, String ngonngu, String nhomtuoi, String taiban, String soTrang, Integer soLuong, Float giaBan, int trangthai, int slBan, double doanhthu) {
+        this.maHD = maHD;
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.namXB = namXB;
@@ -53,6 +63,7 @@ public class SachVM {
         this.doanhthu = doanhthu;
     }
 
+   
     public String getNamXB() {
         return namXB;
     }

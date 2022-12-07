@@ -276,14 +276,14 @@ public class FormThongKe extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã Sách", "Tên Sách", "Năm xuất bản", "Ngôn ngữ", "Nhóm tuổi ", "Tái bản", "Số trang ", "Giá bán", "Số lượng", "Trạng thái ", "Số lượng đã bán ", "Doanh thu"
+                "Mã HD", "Mã Sách ", "Tên Sách ", "Năm xuất bản ", "Ngôn ngữ ", "Nhóm tuổi ", "Tái bản ", "Số trang ", "Giá bán ", "Số lượng ", "Trạng thái  ", "Số lượng đã bán ", "Doanh thu "
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -432,7 +432,7 @@ public class FormThongKe extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jTabbedPane1)
         );
@@ -552,7 +552,7 @@ public class FormThongKe extends javax.swing.JFrame {
             tbldtcaonhat.setRowCount(0);
             List<SachVM> list = sachVMServiceInterface.listTopDTCaoNhat();
             for (SachVM s : list) {
-                tbldtcaonhat.addRow(new Object[]{s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
+                tbldtcaonhat.addRow(new Object[]{ s.getMaHD(),s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
             }
         }
     
@@ -562,7 +562,7 @@ public class FormThongKe extends javax.swing.JFrame {
             tbldtthapnhat.setRowCount(0);
             List<SachVM> list = sachVMServiceInterface.listTopDTThapNhat();
             for (SachVM s : list) {
-                tbldtthapnhat.addRow(new Object[]{s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
+                tbldtthapnhat.addRow(new Object[]{ s.getMaHD(),s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
             }
         }
     
@@ -572,7 +572,7 @@ public class FormThongKe extends javax.swing.JFrame {
             tblSLcaonhat.setRowCount(0);
             List<SachVM> list = sachVMServiceInterface.listTopSLCaoNhat();
             for (SachVM s : list) {
-                tblSLcaonhat.addRow(new Object[]{s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
+                tblSLcaonhat.addRow(new Object[]{s.getMaHD(),s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
             }
         }
     
@@ -582,7 +582,7 @@ public class FormThongKe extends javax.swing.JFrame {
             tblQLThapnhat.setRowCount(0);
             List<SachVM> list = sachVMServiceInterface.listTopSLThapNhat();
             for (SachVM s : list) {
-                tblQLThapnhat.addRow(new Object[]{s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
+                tblQLThapnhat.addRow(new Object[]{s.getMaHD(),s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
             }
         }
     
@@ -592,7 +592,7 @@ public class FormThongKe extends javax.swing.JFrame {
             String tenNPH = cbonphmodel.getSelectedItem().toString();
             List<SachVM> list = sachVMServiceInterface.listsachbysql(tenNPH);
             for (SachVM s : list) {
-                dtm.addRow(new Object[]{s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
+                dtm.addRow(new Object[]{s.getMaHD(),s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
             }
     }
     
@@ -603,7 +603,7 @@ public class FormThongKe extends javax.swing.JFrame {
             String tenSach = txtsearch.getText();
             List<SachVM> list = sachVMServiceInterface.getSearch(tenSach);
             for (SachVM s : list) {
-                dtm.addRow(new Object[]{s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
+                dtm.addRow(new Object[]{s.getMaHD(),s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(),s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
             }
     }
 
