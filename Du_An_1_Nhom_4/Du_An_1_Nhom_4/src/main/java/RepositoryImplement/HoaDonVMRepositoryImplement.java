@@ -186,7 +186,7 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public List<HoaDonVM> listDT() {
-         listDT = new ArrayList<>();
+        listDT = new ArrayList<>();
         String sql = "select NgayTao as 'Nam',SUM(TongTien) as 'doanh thu ' from HOADON \n"
                 + "group by NgayTao\n"
                 + "order by SUM( TongTien) desc";
@@ -203,7 +203,7 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public List<HoaDonVM> TimKiemDTTheoNgay(String date) {
-      timkiem = new ArrayList<>();
+        timkiem = new ArrayList<>();
         String sql = "select NgayTao as 'thoi gian ',SUM(TongTien) as 'doanh thu ' from HOADON where NgayTao = ?\n"
                 + "group by NgayTao\n"
                 + "order by SUM( TongTien) desc";
@@ -220,13 +220,13 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public List<HoaDonVM> TongDT() {
-     tongDT = new ArrayList<>();
+        tongDT = new ArrayList<>();
         String sql = "select SUM(TongTien) as 'doanh thu ' from HOADON\n"
                 + "order by SUM( TongTien) desc";
         ResultSet rs = DBConection.excutequery(sql);
         try {
             while (rs.next()) {
-                tongDT.add(new HoaDonVM( rs.getFloat(1)));
+                tongDT.add(new HoaDonVM(rs.getFloat(1)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
@@ -236,18 +236,39 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public List<HoaDonVM> tongHDthongke() {
-      listHDThongke = new ArrayList<>();
+        listHDThongke = new ArrayList<>();
         String sql = "select count(MaHD) from HOADON";
         ResultSet rs = DBConection.excutequery(sql);
         try {
             while (rs.next()) {
-                listHDThongke.add(new HoaDonVM( rs.getInt(1)));
+                listHDThongke.add(new HoaDonVM(rs.getInt(1)));
                 System.out.println(listHDThongke);
             }
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listHDThongke;
+    }
+
+    @Override
+    public HoaDonVM inHoaDon(String maHoaDon) {
+        String query = "SELECT [MaHD],[MaKH],[MaNV],[NgayTao],[TongTien]"
+                + "FROM [dbo].[HOADON] WHERE MaHD = ?";
+        HoaDonVM x = new HoaDonVM();
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setObject(1, maHoaDon);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                x.setMaHoaDon(rs.getInt(1));
+                x.setMaKhachHang(rs.getInt(2));
+                x.setMaNhanVien(rs.getInt(3));
+                x.setNgayTao(rs.getDate(4));
+                x.setTongTien(rs.getFloat(5));
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return x;
     }
 
 }

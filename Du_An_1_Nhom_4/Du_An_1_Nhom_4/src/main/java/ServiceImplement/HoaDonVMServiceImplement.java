@@ -88,7 +88,12 @@ public class HoaDonVMServiceImplement implements HoaDonVMServiceInterface {
 
     @Override
     public List<HoaDonVM> tongHDthongke() {
-      return repo.tongHDthongke();
+        return repo.tongHDthongke();
+    }
+
+    @Override
+    public HoaDonVM inHoaDon(String maHoaDon) {
+        return repo.inHoaDon(maHoaDon);
     }
 
 }

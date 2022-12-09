@@ -19,6 +19,8 @@ public interface HoaDonVMServiceInterface {
 
     ArrayList<HoaDonVM> listHDTH();
 
+    HoaDonVM inHoaDon(String maHoaDon);
+
     ArrayList<HoaDonVM> listHD();
 
     String capNhatHD(HoaDonVM x);
@@ -36,6 +38,6 @@ public interface HoaDonVMServiceInterface {
     List<HoaDonVM> TimKiemDTTheoNgay(String date);
 
     List<HoaDonVM> TongDT();
-    
+
     List<HoaDonVM> tongHDthongke();
 }

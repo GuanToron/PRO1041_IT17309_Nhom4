@@ -19,6 +19,8 @@ public interface HoaDomVMRepositoryInterface {
 
     ArrayList<HoaDonVM> listHD();
 
+    HoaDonVM inHoaDon(String maHoaDon);
+
     Boolean taoHoaDon(HoaDonVM x);
 
     Boolean capNhatHoaDon(HoaDonVM x);
@@ -30,10 +32,12 @@ public interface HoaDomVMRepositoryInterface {
     List<HoaDonVM> loaddangcho();
 
     ArrayList<HoaDonVM> listloc(Date ngayBatDau, Date ngayKetThuc);
-    
+
     List<HoaDonVM> listDT();
-    
+
     List<HoaDonVM> TimKiemDTTheoNgay(String date);
+
     List<HoaDonVM> TongDT();
+
     List<HoaDonVM> tongHDthongke();
 }
