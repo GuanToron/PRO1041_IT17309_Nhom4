@@ -1943,8 +1943,7 @@ public class QLSach1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQLNhanVienActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
-        this.dispose();
-        new BanHangNhanVien().setVisible(true);
+
     }//GEN-LAST:event_btnBanHangActionPerformed
 
     private void btnTrangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangChuActionPerformed
