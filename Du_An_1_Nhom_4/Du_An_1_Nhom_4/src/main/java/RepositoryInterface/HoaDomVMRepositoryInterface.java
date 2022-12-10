@@ -40,4 +40,6 @@ public interface HoaDomVMRepositoryInterface {
     List<HoaDonVM> TongDT();
 
     List<HoaDonVM> tongHDthongke();
+
+    List<HoaDonVM> timKiemTheoTen(String ten );
 }

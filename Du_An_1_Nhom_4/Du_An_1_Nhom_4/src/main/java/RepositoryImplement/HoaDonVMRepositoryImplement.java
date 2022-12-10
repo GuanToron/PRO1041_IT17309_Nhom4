@@ -153,13 +153,16 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public ArrayList<HoaDonVM> listHD() {
-        String query = "SELECT [MaHD],[MaKH],[MaNV],[NgayTao],[TongTien],[TrangThai]\n"
-                + "FROM [dbo].[HOADON]";
+        String query = "SELECT    HOADON.MaHD, KHACHHANG.TenKH, NHANVIEN.TenNV, HOADON.NgayTao, HOADON.TongTien, HOADON.TrangThai\n"
+                + "                FROM         HOADON INNER JOIN\n"
+                + "                                     KHACHHANG ON HOADON.MaKH = KHACHHANG.MaKH INNER JOIN\n"
+                + "                                      NHANVIEN ON HOADON.MaNV = NHANVIEN.MaNV";
         ArrayList<HoaDonVM> listHDVM = new ArrayList<>();
         try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listHDVM.add(new HoaDonVM(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getFloat(5), rs.getInt(6)));
+
+                listHDVM.add(new HoaDonVM(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getFloat(5), rs.getInt(6)));
             }
         } catch (Exception e) {
             e.getMessage();
@@ -269,6 +272,25 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
             e.getMessage();
         }
         return x;
+    }
+
+    @Override
+    public List<HoaDonVM> timKiemTheoTen(String ten) {
+        List<HoaDonVM> lstVM = new ArrayList<>();
+        String sql = "SELECT    HOADON.MaHD, KHACHHANG.TenKH, NHANVIEN.TenNV, HOADON.NgayTao, HOADON.TongTien, HOADON.TrangThai\n"
+                + "FROM         HOADON INNER JOIN\n"
+                + "                      KHACHHANG ON HOADON.MaKH = KHACHHANG.MaKH INNER JOIN\n"
+                + "                      NHANVIEN ON HOADON.MaNV = NHANVIEN.MaNV\n"
+                + "					  where TenKH = ? ";
+        ResultSet rs = DBConection.excutequery(sql, ten);
+        try {
+            while (rs.next()) {
+                lstVM.add(new HoaDonVM(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getFloat(5), rs.getInt(6)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lstVM;
     }
 
 }

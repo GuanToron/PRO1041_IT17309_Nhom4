@@ -40,4 +40,7 @@ public interface HoaDonVMServiceInterface {
     List<HoaDonVM> TongDT();
 
     List<HoaDonVM> tongHDthongke();
+
+    List<HoaDonVM> timKiemTen(String ten);
+   
 }

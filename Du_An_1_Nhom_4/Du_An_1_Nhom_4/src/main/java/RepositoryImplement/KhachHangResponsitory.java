@@ -22,7 +22,8 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
 
     private List<QLKhachHang> listkh;
 
-    private List<QLKhachHang>  listtongKH;
+    private List<QLKhachHang> listtongKH;
+
     public KhachHangResponsitory() {
 
     }
@@ -103,7 +104,7 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
 
     @Override
     public List<QLKhachHang> tongKH() {
-     listtongKH = new ArrayList<>();
+        listtongKH = new ArrayList<>();
         String tongkh = "select count(MaKH) from KHACHHANG";
         ResultSet rs = DBConection.excutequery(tongkh);
         try {
@@ -115,6 +116,35 @@ public class KhachHangResponsitory implements IKhachHangResponsitory {
             Logger.getLogger(KhachHangResponsitory.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listtongKH;
+    }
+
+    @Override
+    public List<KhachHang> timTen(String ten) {
+        List<KhachHang> lst = new ArrayList<>();
+        String tenKh = "SELECT [MaKH]\n"
+                + "      ,[TenKH]\n"
+                + "      ,[GioiTinh]\n"
+                + "      ,[NgaySinh]\n"
+                + "      ,[DiaChi]\n"
+                + "      ,[SDT]\n"
+                + "      ,[DiemTichLuy]\n"
+                + "  FROM [dbo].[KHACHHANG]\n"
+                + "  where TenKH=?";
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(tenKh);) {
+            ps.setObject(1, ten);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KhachHang kh = new KhachHang();
+                kh.setTenKH(rs.getString(2));
+                kh.setMaKH(rs.getInt(1));
+                kh.setGioiTinh(rs.getInt(3));
+                kh.setNgaySinh(rs.getDate(4));
+                lst.add(kh);
+
+            }
+        } catch (Exception e) {
+        }
+        return lst;
     }
 
 }

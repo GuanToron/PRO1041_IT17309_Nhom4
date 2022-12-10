@@ -7,16 +7,51 @@ import java.util.Date;
  *
  * @author Xuan Truong
  */
-public class HoaDonVM implements Serializable{
+public class HoaDonVM implements Serializable {
 
     private Integer maHoaDon;
     private Integer maKhachHang;
+    private String tenKhachHang;
+    private String tenNhanVien;
     private Integer maNhanVien;
     private Date ngayTao;
     private float tongTien;
     private Integer trangThai;
-
     private int soHD;
+
+    public HoaDonVM(Integer maHoaDon, String tenKhachHang, String tenNhanVien, Date ngayTao, float tongTien, Integer trangThai) {
+        this.maHoaDon = maHoaDon;
+        this.tenKhachHang = tenKhachHang;
+        this.tenNhanVien = tenNhanVien;
+        this.ngayTao = ngayTao;
+        this.tongTien = tongTien;
+        this.trangThai = trangThai;
+    }
+
+    public HoaDonVM(Integer maHoaDon, String tenKhachHang, String tenNhanVien, Date ngayTao, float tongTien) {
+        this.maHoaDon = maHoaDon;
+        this.tenKhachHang = tenKhachHang;
+        this.tenNhanVien = tenNhanVien;
+        this.ngayTao = ngayTao;
+        this.tongTien = tongTien;
+    }
+
+    public String getTenKhachHang() {
+        return tenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
+    }
+
+    public String getTenNhanVien() {
+        return tenNhanVien;
+    }
+
+    public void setTenNhanVien(String tenNhanVien) {
+        this.tenNhanVien = tenNhanVien;
+    }
+
     public HoaDonVM() {
     }
 
@@ -29,7 +64,6 @@ public class HoaDonVM implements Serializable{
         this.soHD = soHD;
     }
 
-    
     public HoaDonVM(Integer maHoaDon, Integer maKhachHang, Integer maNhanVien, Date ngayTao, float tongTien, Integer trangThai) {
         this.maHoaDon = maHoaDon;
         this.maKhachHang = maKhachHang;
@@ -56,7 +90,6 @@ public class HoaDonVM implements Serializable{
         this.soHD = soHD;
     }
 
-    
     public Integer getMaHoaDon() {
         return maHoaDon;
     }
@@ -120,7 +153,19 @@ public class HoaDonVM implements Serializable{
         this.trangThai = trangThai;
     }
 
-    public Object[] toDataRow() {
-        return new Object[]{maHoaDon, maKhachHang, maNhanVien, ngayTao, trangThai == 0 ? "Đang chờ" : "Chưa thanh toán"};
+    private String trangThaiHD() {
+        if (this.trangThai == 0) {
+            return "Dang Chờ";
+        } else if (this.trangThai == 1) {
+            return "Chưa Thanh Toán";
+        }
+        return "Đã Thanh Toán";
+    }
+
+    public Object[] toDataRow1() {
+        return new Object[]{maHoaDon, tenKhachHang, tenNhanVien, ngayTao,trangThaiHD()};
+    }
+ public Object[] toDataRow2() {
+        return new Object[]{maHoaDon, tenKhachHang, tenNhanVien, ngayTao,tongTien, trangThaiHD()};
     }
 }

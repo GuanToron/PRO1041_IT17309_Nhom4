@@ -71,4 +71,9 @@ public class manageKhachHangService implements ImanageKhachHangService {
        return iKhachHangResponsitory.tongKH();
     }
 
+    @Override
+    public List<KhachHang> timKiem(String ten) {
+        return iKhachHangResponsitory.timTen(ten);
+    }
+
 }
