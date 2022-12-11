@@ -67,7 +67,7 @@ public class DMImplement_XT implements DMInterface_XT {
     public DanhMuc timDanhMuc(ArrayList<DanhMuc> list, String text) {
         DanhMuc x = new DanhMuc();
         for (DanhMuc z : list) {
-            if (z.getTenDM().equals(text)) {
+            if (z.getTenDM().equalsIgnoreCase(text)) {
                 x.setTenDM(z.getTenDM());
             }
         }

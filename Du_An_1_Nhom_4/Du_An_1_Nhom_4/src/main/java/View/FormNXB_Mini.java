@@ -20,6 +20,7 @@ public class FormNXB_Mini extends javax.swing.JFrame {
     public FormNXB_Mini() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private NXB getNXBFromInput() {

@@ -129,11 +129,11 @@ public class LoginView extends javax.swing.JFrame {
         Integer loGin = serviceNV.dangNhap(tenTaiKhoan, matKhau);
         if (loGin == 1) {
             JOptionPane.showMessageDialog(this, "Tyhanh cong");
-            new BanHang().setVisible(true);
+            new BanHangDoiTra().setVisible(true);
             this.dispose();
         } else if (loGin == 2) {
             JOptionPane.showMessageDialog(this, "Tyhanh cong");
-            new MainApp().setVisible(true);
+            new MainAppQuanLy().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed

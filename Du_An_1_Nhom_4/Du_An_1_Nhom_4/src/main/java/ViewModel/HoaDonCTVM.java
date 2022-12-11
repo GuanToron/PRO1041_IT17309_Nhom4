@@ -1,4 +1,3 @@
-
 package ViewModel;
 
 /**
@@ -6,13 +5,31 @@ package ViewModel;
  * @author Xuan Truong
  */
 public class HoaDonCTVM {
+
     private Integer maHoaDonCT;
     private Integer maHoaDon;
     private Integer maSach;
+    private String tenSach;
     private Integer soLuong;
     private Float donGia;
 
     public HoaDonCTVM() {
+    }
+
+    public HoaDonCTVM(Integer maHoaDonCT, Integer maHoaDon, String tenSach, Integer soLuong, Float donGia) {
+        this.maHoaDonCT = maHoaDonCT;
+        this.maHoaDon = maHoaDon;
+        this.tenSach = tenSach;
+        this.soLuong = soLuong;
+        this.donGia = donGia;
+    }
+
+    public String getTenSach() {
+        return tenSach;
+    }
+
+    public void setTenSach(String tenSach) {
+        this.tenSach = tenSach;
     }
 
     public HoaDonCTVM(Integer maHoaDonCT, Integer maHoaDon, Integer maSach, Integer soLuong, Float donGia) {
@@ -62,5 +79,5 @@ public class HoaDonCTVM {
     public void setDonGia(Float donGia) {
         this.donGia = donGia;
     }
-    
+
 }

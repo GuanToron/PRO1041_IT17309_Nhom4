@@ -344,7 +344,7 @@ public class QLHoaDon extends javax.swing.JFrame {
 
     private void btnTrangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangChuActionPerformed
         this.dispose();
-        new MainApp().setVisible(true);
+        new MainAppQuanLy().setVisible(true);
     }//GEN-LAST:event_btnTrangChuActionPerformed
 
     private void btnQLSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSachActionPerformed
