@@ -28,6 +28,8 @@ public interface ImanageKhachHangService {
     List<QLKhachHang> listSearch(List<QLKhachHang> list, String text);
 
     KhachHang timKH(String SDT);
-    
+
     List<QLKhachHang> tongKH();
+
+    List<KhachHang> timKiem(String ten);
 }

@@ -96,4 +96,9 @@ public class HoaDonVMServiceImplement implements HoaDonVMServiceInterface {
         return repo.inHoaDon(maHoaDon);
     }
 
+    @Override
+    public List<HoaDonVM> timKiemTen(String ten) {
+        return repo.timKiemTheoTen(ten);
+    }
+
 }

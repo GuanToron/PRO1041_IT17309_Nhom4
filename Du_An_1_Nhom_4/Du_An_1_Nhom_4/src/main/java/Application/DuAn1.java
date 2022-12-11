@@ -3,12 +3,12 @@
 package Application;
 
 
-import View.MainApp;
+import View.MainAppQuanLy;
 
 
 public class DuAn1 {
 
     public static void main(String[] args) {
-         new MainApp().setVisible(true);
+         new MainAppQuanLy().setVisible(true);
     }
 }

@@ -27,4 +27,6 @@ public interface IKhachHangResponsitory {
     KhachHang timKhachHang(String SĐT);
     
     List<QLKhachHang> tongKH();
+    
+    List<KhachHang> timTen(String ten);
 }

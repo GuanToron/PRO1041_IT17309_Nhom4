@@ -32,13 +32,8 @@ public class HoaDonCTVMRepositoryInterface implements RepositoryInterface.HoaDon
     @Override
     public ArrayList<HoaDonCTVM> getlist(Integer maHoaDon) {
         ArrayList<HoaDonCTVM> list = new ArrayList<>();
-        String sql = "SELECT [MaHDCT]\n"
-                + "      ,[MaHD]\n"
-                + "      ,[MaSACH]\n"
-                + "      ,[SoLuong]\n"
-                + "      ,[DonGia]\n"
-                + "  FROM [dbo].[HOADONCT]\n"
-                + "  WHERE [MaHD] = ?";
+        String sql = "SELECT HOADONCT.MaHDCT, HOADONCT.MaHD, SACH.TenSach, HOADONCT.SoLuong, HOADONCT.DonGia\n"
+                + "FROM HOADONCT INNER JOIN SACH ON HOADONCT.MaSACH = SACH.MaSach WHERE MaHD = ?";
         try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(sql);) {
             ps.setObject(1, maHoaDon);
             ResultSet rs = ps.executeQuery();
@@ -46,7 +41,7 @@ public class HoaDonCTVMRepositoryInterface implements RepositoryInterface.HoaDon
                 HoaDonCTVM h = new HoaDonCTVM();
                 h.setMaHoaDonCT(rs.getInt(1));
                 h.setMaHoaDon(rs.getInt(2));
-                h.setMaSach(rs.getInt(3));
+                h.setTenSach(rs.getString(3));
                 h.setSoLuong(rs.getInt(4));
                 h.setDonGia(rs.getFloat(5));
                 list.add(h);
