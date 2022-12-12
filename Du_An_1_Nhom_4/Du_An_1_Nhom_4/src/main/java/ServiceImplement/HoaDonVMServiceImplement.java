@@ -33,8 +33,8 @@ public class HoaDonVMServiceImplement implements HoaDonVMServiceInterface {
     }
 
     @Override
-    public String capNhatHD(HoaDonVM x) {
-        boolean capNhatHD = repo.capNhatHoaDon(x);
+    public String capNhatHDThanhToan(HoaDonVM x) {
+        boolean capNhatHD = repo.capNhatHoaDonThanhToan(x);
         if (capNhatHD) {
             return "Thanh cong";
         }
@@ -99,6 +99,15 @@ public class HoaDonVMServiceImplement implements HoaDonVMServiceInterface {
     @Override
     public List<HoaDonVM> timKiemTen(String ten) {
         return repo.timKiemTheoTen(ten);
+    }
+
+    @Override
+    public String capNhatHDCho(HoaDonVM x) {
+        boolean capNhatHD = repo.capNhatHoaDonCho(x);
+        if (capNhatHD) {
+            return "Thanh cong";
+        }
+        return "That bai";
     }
 
 }

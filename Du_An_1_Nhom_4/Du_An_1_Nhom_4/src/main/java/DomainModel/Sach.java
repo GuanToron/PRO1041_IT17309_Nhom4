@@ -29,6 +29,11 @@ public class Sach {
     public Sach() {
     }
 
+    public Sach(String tensach, Integer soluong) {
+        this.tensach = tensach;
+        this.soluong = soluong;
+    }
+
     public Sach(Integer masach, Integer soluong) {
         this.masach = masach;
         this.soluong = soluong;

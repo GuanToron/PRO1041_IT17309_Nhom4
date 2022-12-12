@@ -1254,7 +1254,7 @@ public class BanHang1 extends javax.swing.JFrame {
             serviceHDCTVM.themHDCCT(x);
         }
         HoaDonVM x = new HoaDonVM(Integer.valueOf(txtMaHoaDon.getText()), Integer.valueOf(txtMaKhachHang.getText()), tongTienHD, 1);
-        serviceHoaDonVM.capNhatHD(x);
+//        serviceHoaDonVM.capNhatHD(x);
         listHDVM = serviceHoaDonVM.listHDVM();
         loadTableHoaDonVM(listHDVM);
         listGioHang.removeAll(listGioHang);
@@ -1323,7 +1323,7 @@ public class BanHang1 extends javax.swing.JFrame {
 
     private void btnClearGioHang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearGioHang1ActionPerformed
         HoaDonVM x = new HoaDonVM(Integer.parseInt(txtMaHoaDon.getText()), 3);
-        JOptionPane.showMessageDialog(this, serviceHoaDonVM.capNhatHD(x));
+//        JOptionPane.showMessageDialog(this, serviceHoaDonVM.capNhatHD(x));
         clear();
     }//GEN-LAST:event_btnClearGioHang1ActionPerformed
     private void thanhToan() {
@@ -1340,7 +1340,7 @@ public class BanHang1 extends javax.swing.JFrame {
             serviceHDCTVM.themHDCCT(x);
         }
         HoaDonVM x = new HoaDonVM(Integer.valueOf(txtMaHoaDon.getText()), Integer.valueOf(txtMaKhachHang.getText()), tongTienHD, 2);
-        JOptionPane.showMessageDialog(this, serviceHoaDonVM.capNhatHD(x));
+//        JOptionPane.showMessageDialog(this, serviceHoaDonVM.capNhatHD(x));
         listGioHang.removeAll(listGioHang);
         loadTableGioHang(listGioHang);
     }

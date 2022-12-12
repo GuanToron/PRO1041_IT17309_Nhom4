@@ -25,6 +25,8 @@ public interface SachService {
 
     String capNhat(Integer maSach, Integer soLuong);
 
+    String capNhatTheoTen(String tenSach, Integer soLuong);
+
     ArrayList<SachViewmodel> listSearch(ArrayList<SachViewmodel> list, String text);
 
     ArrayList<SachViewmodel> listLoc(ArrayList<SachViewmodel> list, String text);
