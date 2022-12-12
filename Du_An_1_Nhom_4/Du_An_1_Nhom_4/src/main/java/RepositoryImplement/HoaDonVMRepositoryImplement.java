@@ -33,14 +33,13 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public Boolean taoHoaDon(HoaDonVM x) {
-        String query = "INSERT INTO [dbo].[HOADON]([MaKH],[MaNV],[NgayTao],[TrangThai])\n"
-                + "VALUES(?,?,?,?)";
+        String query = "INSERT INTO [dbo].[HOADON]([MaNV],[NgayTao],[TrangThai])\n"
+                + "VALUES(?,?,?)";
         int check = 0;
         try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query);) {
-            ps.setObject(1, x.getMaKhachHang());
-            ps.setObject(2, x.getMaNhanVien());
-            ps.setObject(3, x.getNgayTao());
-            ps.setObject(4, x.getTrangThai());
+            ps.setObject(1, x.getMaNhanVien());
+            ps.setObject(2, x.getNgayTao());
+            ps.setObject(3, x.getTrangThai());
             check = ps.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
@@ -50,14 +49,13 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public ArrayList<HoaDonVM> listHDVM() {
-        String query = "SELECT HOADON.MaHD, KHACHHANG.TenKH, HOADON.MaNV, HOADON.NgayTao, HOADON.TrangThai\n"
-                + "FROM HOADON INNER JOIN KHACHHANG ON HOADON.MaKH = KHACHHANG.MaKH\n"
-                + "WHERE TrangThai = 1 or TrangThai =0";
+        String query = "SELECT [MaHD],[MaKH],[MaNV],[NgayTao],[TrangThai]\n"
+                + "FROM [dbo].[HOADON] WHERE TrangThai = 0 or TrangThai = 1";
         ArrayList<HoaDonVM> listHDVM = new ArrayList<>();
         try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                listHDVM.add(new HoaDonVM(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDate(4), rs.getInt(5)));
+                listHDVM.add(new HoaDonVM(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getInt(5)));
             }
         } catch (Exception e) {
             e.getMessage();
@@ -66,7 +64,7 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
     }
 
     @Override
-    public Boolean capNhatHoaDon(HoaDonVM x) {
+    public Boolean capNhatHoaDonThanhToan(HoaDonVM x) {
         String query = "UPDATE [dbo].[HOADON]SET [MaKH] = ? ,[TongTien] = ? ,[TrangThai] = ? WHERE [MaHD] = ?";
         int check = 0;
         try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
@@ -294,6 +292,21 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
             Logger.getLogger(HoaDonVMRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lstVM;
+    }
+
+    @Override
+    public Boolean capNhatHoaDonCho(HoaDonVM x) {
+        String query = "UPDATE [dbo].[HOADON]SET [TongTien] = ? ,[TrangThai] = ? WHERE [MaHD] = ?";
+        int check = 0;
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setObject(1, x.getTongTien());
+            ps.setObject(2, x.getTrangThai());
+            ps.setObject(3, x.getMaHoaDon());
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return check > 0;
     }
 
 }
