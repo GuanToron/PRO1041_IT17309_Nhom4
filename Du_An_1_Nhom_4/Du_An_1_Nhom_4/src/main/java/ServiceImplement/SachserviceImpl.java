@@ -83,4 +83,13 @@ public class SachserviceImpl implements SachService {
         return "That bai";
     }
 
+    @Override
+    public String capNhatTheoTen(String tenSach, Integer soLuong) {
+        boolean capNhat = cc.capNhatTheoTen(tenSach, soLuong);
+        if (capNhat) {
+            return "Thanh cong";
+        }
+        return "That bai";
+    }
+
 }

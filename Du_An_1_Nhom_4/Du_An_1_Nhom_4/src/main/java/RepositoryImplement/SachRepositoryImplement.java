@@ -126,4 +126,18 @@ public class SachRepositoryImplement {
         }
         return check > 0;
     }
+
+    public Boolean capNhatTheoTen(String tenSach, Integer soLuong) {
+        String sql = "UPDATE [dbo].[SACH] SET [SoLuong] = ?\n"
+                + " WHERE [TenSach] = ?";
+        int check = 0;
+        try ( Connection con = DBConection.getConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, soLuong);
+            ps.setObject(2, tenSach);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
 }
