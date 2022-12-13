@@ -125,6 +125,10 @@ public class LoginView extends javax.swing.JFrame {
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
 
         String tenTaiKhoan = txtUserName.getText();
+        if(txtUserName.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "điền đủ thông tin");
+            return;
+        }
         String matKhau = String.valueOf(txtPassWord.getPassword());
         Integer loGin = serviceNV.dangNhap(tenTaiKhoan, matKhau);
         if (loGin == 1) {
