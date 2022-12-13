@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
  * @author DELL 5515
  */
 public class FormThongKe extends javax.swing.JFrame {
-    
+
     private final TLServiceInterface tLServiceInterface;
     private final NPHServiceInterface pHServiceInterface;
     private final SachVMServiceInterface sachVMServiceInterface;
@@ -37,7 +37,7 @@ public class FormThongKe extends javax.swing.JFrame {
     private final ImanageKhachHangService imanageKhachHangService;
     private DefaultComboBoxModel<TheLoai> cbotlmodel = new DefaultComboBoxModel();
     private DefaultComboBoxModel<NPH> cbonphmodel = new DefaultComboBoxModel();
-    
+
     public FormThongKe() {
         initComponents();
         tLServiceInterface = new TLServiceImplement();
@@ -64,7 +64,7 @@ public class FormThongKe extends javax.swing.JFrame {
         TableDTCaoNhat();
         loadSPbanChay();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -84,9 +84,10 @@ public class FormThongKe extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         cbothongke = new javax.swing.JComboBox<>();
         btnchon = new javax.swing.JButton();
-        txtsearch = new javax.swing.JTextField();
+        txtsearchtenSach = new javax.swing.JTextField();
         btnsearch = new javax.swing.JButton();
         btnclearSP = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblThongKe = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -268,31 +269,40 @@ public class FormThongKe extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Tìm theo tên sách");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnclearSP)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(cbothongke, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnchon)
-                .addGap(29, 29, 29))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(txtsearchtenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnclearSP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addComponent(cbothongke, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnchon)
+                        .addGap(29, 29, 29))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbothongke, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsearch)
-                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtsearchtenSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnchon)
                     .addComponent(btnclearSP))
                 .addContainerGap(26, Short.MAX_VALUE))
@@ -382,7 +392,7 @@ public class FormThongKe extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(lbltongtien, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,7 +582,7 @@ public class FormThongKe extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         JOptionPane.showMessageDialog(this, "Ban la quan ly, khong phai nhan vien");
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -624,14 +634,14 @@ public class FormThongKe extends javax.swing.JFrame {
 
     private void btnchonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchonActionPerformed
         int loigoi = cbothongke.getSelectedIndex();
-        
+
         if (loigoi == 0) {
             TableSLCaoNhat();
         }
         if (loigoi == 1) {
             TableSLThapNhat();
         }
-        
+
         if (loigoi == 2) {
             TableDTCaoNhat();
         }
@@ -641,7 +651,12 @@ public class FormThongKe extends javax.swing.JFrame {
     }//GEN-LAST:event_btnchonActionPerformed
 
     private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
-        search();
+        String tenSach = txtsearchtenSach.getText();
+        if (txtsearchtenSach.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên sách cần tìm");
+            return;
+        }
+        search(tenSach);
     }//GEN-LAST:event_btnsearchActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -650,7 +665,7 @@ public class FormThongKe extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập thời gian cần tìm");
             return;
         }
-        
+
         loadTableTimKiem(date);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -677,7 +692,7 @@ public class FormThongKe extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
 //    Top sản phẩm được mua nhiều nhất 
@@ -685,7 +700,7 @@ public class FormThongKe extends javax.swing.JFrame {
 //Top sản phẩm doanh thu nhiều nhất 
 //Top sản phẩm doanh thu ít nhất 
     private void TableDTCaoNhat() {
-        
+
         DefaultTableModel tbldtcaonhat = (DefaultTableModel) tblThongKe.getModel();
         tbldtcaonhat.setRowCount(0);
         List<SachVM> list = sachVMServiceInterface.listTopDTCaoNhat();
@@ -693,9 +708,9 @@ public class FormThongKe extends javax.swing.JFrame {
             tbldtcaonhat.addRow(new Object[]{s.getMaHD(), s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(), s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
         }
     }
-    
+
     private void TableDTThapNhat() {
-        
+
         DefaultTableModel tbldtthapnhat = (DefaultTableModel) tblThongKe.getModel();
         tbldtthapnhat.setRowCount(0);
         List<SachVM> list = sachVMServiceInterface.listTopDTThapNhat();
@@ -703,9 +718,9 @@ public class FormThongKe extends javax.swing.JFrame {
             tbldtthapnhat.addRow(new Object[]{s.getMaHD(), s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(), s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
         }
     }
-    
+
     private void TableSLCaoNhat() {
-        
+
         DefaultTableModel tblSLcaonhat = (DefaultTableModel) tblThongKe.getModel();
         tblSLcaonhat.setRowCount(0);
         List<SachVM> list = sachVMServiceInterface.listTopSLCaoNhat();
@@ -713,9 +728,9 @@ public class FormThongKe extends javax.swing.JFrame {
             tblSLcaonhat.addRow(new Object[]{s.getMaHD(), s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(), s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
         }
     }
-    
+
     private void TableSLThapNhat() {
-        
+
         DefaultTableModel tblQLThapnhat = (DefaultTableModel) tblThongKe.getModel();
         tblQLThapnhat.setRowCount(0);
         List<SachVM> list = sachVMServiceInterface.listTopSLThapNhat();
@@ -723,7 +738,7 @@ public class FormThongKe extends javax.swing.JFrame {
             tblQLThapnhat.addRow(new Object[]{s.getMaHD(), s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(), s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
         }
     }
-    
+
     private void loadTableByNPH() {
         DefaultTableModel dtm = (DefaultTableModel) tblThongKe.getModel();
         dtm.setRowCount(0);
@@ -733,14 +748,14 @@ public class FormThongKe extends javax.swing.JFrame {
             dtm.addRow(new Object[]{s.getMaHD(), s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(), s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
         }
     }
-    
-    private void search() {
-        DefaultTableModel dtm = (DefaultTableModel) tblThongKe.getModel();
-        dtm.setRowCount(0);
-        String tenSach = txtsearch.getText();
+
+    private void search(String tenSach) {
+        DefaultTableModel searchtensach = (DefaultTableModel) tblThongKe.getModel();
+        searchtensach.setRowCount(0);
+        //String tenSach = txtsearchtenSach.getText();
         List<SachVM> list = sachVMServiceInterface.getSearch(tenSach);
         for (SachVM s : list) {
-            dtm.addRow(new Object[]{s.getMaHD(), s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(), s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
+            searchtensach.addRow(new Object[]{s.getMaHD(), s.getMaSach(), s.getTenSach(), s.getNamXB(), s.getNgonngu(), s.getNhomtuoi(), s.getTaiban(), s.getSoTrang(), s.getGiaBan(), s.getSoLuong(), s.getTrangthai() == 1 ? "Còn hàng" : "Hết hàng", s.getSlBan(), s.getDoanhthu()});
         }
     }
 
@@ -800,6 +815,7 @@ public class FormThongKe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -819,7 +835,7 @@ public class FormThongKe extends javax.swing.JFrame {
     private javax.swing.JTable tblThongKe;
     private javax.swing.JTable tbldoanhThu;
     private javax.swing.JTextField txtngaytao;
-    private javax.swing.JTextField txtsearch;
+    private javax.swing.JTextField txtsearchtenSach;
     // End of variables declaration//GEN-END:variables
 
     private void loadTableDT() {
@@ -830,17 +846,17 @@ public class FormThongKe extends javax.swing.JFrame {
             tblmodelDT.addRow(new Object[]{s.getNgayTao(), s.getTongTien()});
         }
     }
-    
+
     private void loadTableTimKiem(String date) {
         DefaultTableModel tblmodelSearch = (DefaultTableModel) tbldoanhThu.getModel();
         tblmodelSearch.setRowCount(0);
-        
+
         List<HoaDonVM> list = hoaDonVMServiceInterface.TimKiemDTTheoNgay(date);
         for (HoaDonVM s : list) {
             tblmodelSearch.addRow(new Object[]{s.getNgayTao(), s.getTongTien()});
         }
     }
-    
+
     private void tongDT() {
         List<HoaDonVM> list = hoaDonVMServiceInterface.TongDT();
         float tongDT = 0;
@@ -849,7 +865,7 @@ public class FormThongKe extends javax.swing.JFrame {
         }
         lbltongtien.setText(String.valueOf(tongDT) + " VNĐ");
     }
-    
+
     private void loadtongkh() {
         List<QLKhachHang> list = imanageKhachHangService.tongKH();
         int tong = 0;
@@ -859,27 +875,27 @@ public class FormThongKe extends javax.swing.JFrame {
         }
         lblsokh.setText(String.valueOf(tong));
     }
-    
+
     private void hoaDonThongKe() {
         DefaultTableModel listhoadonthongke = (DefaultTableModel) tbldoanhThu.getModel();
         listhoadonthongke.setRowCount(0);
-        
+
         List<HoaDonVM> list = hoaDonVMServiceInterface.tongHDthongke();
         int hd = 0;
         for (HoaDonVM s : list) {
             hd = s.getSoHD();
         }
         lblsohd.setText(String.valueOf(hd));
-        
+
     }
-    
+
     private void loadSPbanChay() {
         List<SachVM> spbanchay = sachVMServiceInterface.listSPbanchay();
         String ten = null;
         for (SachVM s : spbanchay) {
             ten = s.getTenSach();
         }
-        
+
         lblspbanchay.setText(ten);
     }
 }
