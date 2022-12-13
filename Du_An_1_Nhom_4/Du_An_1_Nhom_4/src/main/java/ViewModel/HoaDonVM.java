@@ -230,4 +230,8 @@ public class HoaDonVM implements Serializable {
     public Object[] toDataRow2() {
         return new Object[]{maHoaDon, tenKhachHang, tenNhanVien, ngayTao, tongTien, trangThaiHD()};
     }
+
+    public String inHoaDon() {
+        return "Ma hoa don: " + this.maHoaDon + ", Ten khach hang: " + this.tenKhachHang + "Ma nhan vien: " + this.maNhanVien + ", ngay tao: " + this.ngayTao;
+    }
 }
