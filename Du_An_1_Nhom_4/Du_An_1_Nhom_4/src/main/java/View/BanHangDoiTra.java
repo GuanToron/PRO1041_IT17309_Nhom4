@@ -1614,7 +1614,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
                 }
             }
         }
-        JOptionPane.showMessageDialog(this, diemThua);
     }//GEN-LAST:event_rdDiemActionPerformed
 
     private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHActionPerformed
