@@ -1,13 +1,37 @@
 package ViewModel;
 
+import DomainModel.KhachHang;
+import ServiceImplement.NhanVienServiceImpl;
+import ServiceImplement.manageKhachHangService;
+import ServiceInterface.ImanageKhachHangService;
+import ServiceInterface.NhanVienService;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author Xuan Truong
  */
 public class HoaDonVM implements Serializable {
+
+    private ImanageKhachHangService serviceKH = new manageKhachHangService();
+    private NhanVienService serviceNV = new NhanVienServiceImpl();
+    private List<QLKhachHang> listKhachHang = serviceKH.getAll();
+    private ArrayList<NhanVienRespone> listNV = serviceNV.listNhanVien();
+
+    public HoaDonVM(Integer maHoaDon, float tongTien, int soHD) {
+        this.maHoaDon = maHoaDon;
+        this.tongTien = tongTien;
+        this.soHD = soHD;
+    }
+
+    public HoaDonVM(Integer maHoaDon, float tongTien, Integer trangThai) {
+        this.maHoaDon = maHoaDon;
+        this.tongTien = tongTien;
+        this.trangThai = trangThai;
+    }
 
     private Integer maHoaDon;
     private Integer maKhachHang;
@@ -169,7 +193,26 @@ public class HoaDonVM implements Serializable {
         } else {
             return "Đã Thanh Toán";
         }
+    }
 
+    private String tenNhanVien() {
+        String tenNhanVien = "";
+        for (NhanVienRespone x : listNV) {
+            if (x.getMaNhanVien() == this.maNhanVien) {
+                tenNhanVien = x.getTenNhanVien();
+            }
+        }
+        return tenNhanVien;
+    }
+
+    private String tenKhachHang() {
+        String tenKhachHang = "";
+        for (QLKhachHang x : listKhachHang) {
+            if (x.getMaKH() == this.maKhachHang) {
+                tenKhachHang = x.getTenKH();
+            }
+        }
+        return tenKhachHang;
     }
 
     public Object[] toDataRow1() {
@@ -177,7 +220,7 @@ public class HoaDonVM implements Serializable {
     }
 
     public Object[] toDataRow4() {
-        return new Object[]{maHoaDon, tenKhachHang, maNhanVien, ngayTao, trangThaiHD()};
+        return new Object[]{maHoaDon, tenKhachHang(), tenNhanVien(), ngayTao, trangThaiHD()};
     }
 
     public Object[] toDataRow3() {
@@ -186,5 +229,9 @@ public class HoaDonVM implements Serializable {
 
     public Object[] toDataRow2() {
         return new Object[]{maHoaDon, tenKhachHang, tenNhanVien, ngayTao, tongTien, trangThaiHD()};
+    }
+
+    public String inHoaDon() {
+        return "Ma hoa don: " + this.maHoaDon + ", Ten khach hang: " + this.tenKhachHang + "Ma nhan vien: " + this.maNhanVien + ", ngay tao: " + this.ngayTao;
     }
 }

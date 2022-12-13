@@ -23,7 +23,9 @@ public interface HoaDonVMServiceInterface {
 
     ArrayList<HoaDonVM> listHD();
 
-    String capNhatHD(HoaDonVM x);
+    String capNhatHDThanhToan(HoaDonVM x);
+
+    String capNhatHDCho(HoaDonVM x);
 
     ArrayList<HoaDonVM> listloc(Date ngayBatDau, Date ngayKetThuc);
 
@@ -42,5 +44,5 @@ public interface HoaDonVMServiceInterface {
     List<HoaDonVM> tongHDthongke();
 
     List<HoaDonVM> timKiemTen(String ten);
-   
+
 }

@@ -23,7 +23,9 @@ public interface HoaDomVMRepositoryInterface {
 
     Boolean taoHoaDon(HoaDonVM x);
 
-    Boolean capNhatHoaDon(HoaDonVM x);
+    Boolean capNhatHoaDonThanhToan(HoaDonVM x);
+
+    Boolean capNhatHoaDonCho(HoaDonVM x);
 
     ArrayList<GioHangVM> getSach(String maHD);
 
@@ -41,5 +43,5 @@ public interface HoaDomVMRepositoryInterface {
 
     List<HoaDonVM> tongHDthongke();
 
-    List<HoaDonVM> timKiemTheoTen(String ten );
+    List<HoaDonVM> timKiemTheoTen(String ten);
 }
