@@ -255,7 +255,7 @@ public class HoaDonVMRepositoryImplement implements HoaDomVMRepositoryInterface 
 
     @Override
     public HoaDonVM inHoaDon(String maHoaDon) {
-        String query = "SELECT HOADON.MaHD, KHACHHANG.TenKH, HOADON.MaNV, HOADON.NgayTao, HOADON.TrangThai\n"
+        String query = "SELECT HOADON.MaHD, KHACHHANG.TenKH, HOADON.MaNV, HOADON.NgayTao, HOADON.[TongTien]\n"
                 + "FROM HOADON INNER JOIN KHACHHANG ON HOADON.MaKH = KHACHHANG.MaKH"
                 + "WHERE MaHD = ?";
         HoaDonVM x = new HoaDonVM();
