@@ -128,13 +128,15 @@ public class LoginView extends javax.swing.JFrame {
         String matKhau = String.valueOf(txtPassWord.getPassword());
         Integer loGin = serviceNV.dangNhap(tenTaiKhoan, matKhau);
         if (loGin == 1) {
-            JOptionPane.showMessageDialog(this, "Tyhanh cong");
+            JOptionPane.showMessageDialog(this, "Thanh cong");
             new BanHangDoiTra().setVisible(true);
             this.dispose();
         } else if (loGin == 2) {
-            JOptionPane.showMessageDialog(this, "Tyhanh cong");
+            JOptionPane.showMessageDialog(this, "Thanh cong");
             new MainAppQuanLy().setVisible(true);
             this.dispose();
+        }else {
+            JOptionPane.showMessageDialog(this,"khong thanh cong");
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
