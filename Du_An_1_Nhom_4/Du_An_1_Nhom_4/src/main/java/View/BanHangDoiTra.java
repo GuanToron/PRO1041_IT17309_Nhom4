@@ -462,7 +462,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtDiemTichLuy = new javax.swing.JTextField();
         rdDiem = new javax.swing.JRadioButton();
-        btnThemKH = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtMaHoaDon = new javax.swing.JTextField();
         btnTaoHD = new javax.swing.JButton();
@@ -890,13 +889,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
             }
         });
 
-        btnThemKH.setText("Thêm KH");
-        btnThemKH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemKHActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -912,12 +904,15 @@ public class BanHangDoiTra extends javax.swing.JFrame {
                     .addComponent(txtTenKhachHang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(txtMaKhachHang, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDiemTichLuy))
-                .addGap(26, 26, 26)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThemKH)
-                    .addComponent(btnChonKH)
-                    .addComponent(rdDiem))
-                .addGap(0, 9, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btnChonKH)
+                        .addGap(0, 19, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rdDiem)
+                        .addContainerGap())))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -931,12 +926,11 @@ public class BanHangDoiTra extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(btnThemKH))
+                    .addComponent(rdDiem))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtDiemTichLuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rdDiem))
+                    .addComponent(txtDiemTichLuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -1616,10 +1610,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rdDiemActionPerformed
 
-    private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHActionPerformed
-        new FormKhachHang_Mini().setVisible(true);
-    }//GEN-LAST:event_btnThemKHActionPerformed
-
     private void btnTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHDActionPerformed
         for (int i = 0; i < listBHHoaDon.size(); i++) {
             if (listBHHoaDon.size() > 10) {
@@ -2090,7 +2080,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
     private javax.swing.JButton btnQLSach;
     private javax.swing.JButton btnTaoHD;
     private javax.swing.JButton btnThanhToan;
-    private javax.swing.JButton btnThemKH;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnTimHoaDon;
