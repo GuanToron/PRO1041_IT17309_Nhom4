@@ -462,7 +462,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtDiemTichLuy = new javax.swing.JTextField();
         rdDiem = new javax.swing.JRadioButton();
-        btnThemKH = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtMaHoaDon = new javax.swing.JTextField();
         btnTaoHD = new javax.swing.JButton();
@@ -787,6 +786,12 @@ public class BanHangDoiTra extends javax.swing.JFrame {
             }
         });
 
+        txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTimKiemCaretUpdate(evt);
+            }
+        });
+
         btnTimTenSach.setText("Tìm kiếm");
         btnTimTenSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -890,13 +895,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
             }
         });
 
-        btnThemKH.setText("Thêm KH");
-        btnThemKH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemKHActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -912,12 +910,15 @@ public class BanHangDoiTra extends javax.swing.JFrame {
                     .addComponent(txtTenKhachHang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(txtMaKhachHang, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDiemTichLuy))
-                .addGap(26, 26, 26)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThemKH)
-                    .addComponent(btnChonKH)
-                    .addComponent(rdDiem))
-                .addGap(0, 9, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btnChonKH)
+                        .addGap(0, 19, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rdDiem)
+                        .addContainerGap())))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -931,12 +932,11 @@ public class BanHangDoiTra extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTenKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(btnThemKH))
+                    .addComponent(rdDiem))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtDiemTichLuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rdDiem))
+                    .addComponent(txtDiemTichLuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -1441,8 +1441,13 @@ public class BanHangDoiTra extends javax.swing.JFrame {
     }//GEN-LAST:event_tblBHGioHangMouseClicked
 
     private void btnXoaGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaGioHangActionPerformed
+        if (listGioHang.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chua co sach");
+            return;
+        }
         int temp = tblBHGioHang.getSelectedRow();
         if (temp < 0) {
+            JOptionPane.showMessageDialog(this, "Chon sach de xoa");
             return;
         } else {
             GioHangVM x = listGioHang.get(temp);
@@ -1450,6 +1455,13 @@ public class BanHangDoiTra extends javax.swing.JFrame {
             Integer soSachBanDau = 0;
             Integer soLuongSachGHBanDau = x.getSoLuong();
             String sachTru = JOptionPane.showInputDialog(this, "Nhap so sach muon xoa");
+            if (Integer.parseInt(sachTru) == JOptionPane.CLOSED_OPTION) {
+                return;
+            }
+            if (sachTru.isBlank()) {
+                JOptionPane.showMessageDialog(this, "Vui long nhap so sach muon xoa");
+                return;
+            }
             String regex = "^[0-9]*$";
             for (SachVM z : listSach) {
                 if (z.getTenSach().equals(x.getTenSach())) {
@@ -1462,16 +1474,35 @@ public class BanHangDoiTra extends javax.swing.JFrame {
                 Integer soSachTru = Integer.parseInt(sachTru);
                 if (soLuongSachGHBanDau < soSachTru) {
                     JOptionPane.showMessageDialog(this, "Vuot qua so luong tru");
+                } else if (soSachTru == 0) {
+                    return;
                 } else {
                     Integer soSachCon = soLuongSachGHBanDau - soSachTru;
-                    x.setSoLuong(soSachCon);
-                    loadTableGioHang(listGioHang);
-                    Integer soSachSauKhiXoa = soSachBanDau + soSachTru;
-                    serviceSach.capNhatSoSach(soSachSauKhiXoa, tenSach);
-                    listSach = serviceSach.listSach();
-                    loadTableSach(listSach);
+                    if (soSachCon == 0) {
+                        listGioHang.remove(x);
+                        if (listGioHang.isEmpty()) {
+                            tongtienGH = 0;
+                            txtTongTien.setText(String.valueOf(tongtienGH));
+                        }
+                        loadTableGioHang(listGioHang);
+                        Integer soSachSauKhiXoa = soSachBanDau + soSachTru;
+                        serviceSach.capNhatSoSach(soSachSauKhiXoa, tenSach);
+                        listSach = serviceSach.listSach();
+                        loadTableSach(listSach);
+                    } else {
+                        x.setSoLuong(soSachCon);
+                        loadTableGioHang(listGioHang);
+                        Integer soSachSauKhiXoa = soSachBanDau + soSachTru;
+                        serviceSach.capNhatSoSach(soSachSauKhiXoa, tenSach);
+                        listSach = serviceSach.listSach();
+                        loadTableSach(listSach);
+                    }
                 }
             }
+            for (GioHangVM s : listGioHang) {
+                tongtienGH = tongtienGH - s.getThanhTien();
+            }
+            txtTongTien.setText(String.valueOf(tongtienGH));
         }
     }//GEN-LAST:event_btnXoaGioHangActionPerformed
 
@@ -1505,14 +1536,8 @@ public class BanHangDoiTra extends javax.swing.JFrame {
     }//GEN-LAST:event_cbChiTetDanhMucItemStateChanged
 
     private void btnTimTenSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimTenSachActionPerformed
-        String text = txtTimKiem.getText();
-        String regex = "^[a-zA-Z]*$";
-        if (!text.matches(regex)) {
-            JOptionPane.showMessageDialog(this, "Ten sach phai la cac chu cai");
-        } else {
-            ArrayList<SachVM> listTimKiem = serviceSach.listSearch(text);
-            loadTableSach(listTimKiem);
-        }
+        listSach = serviceSach.listSach();
+        loadTableSach(listSach);
     }//GEN-LAST:event_btnTimTenSachActionPerformed
 
     private void tblSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSachMouseClicked
@@ -1521,12 +1546,19 @@ public class BanHangDoiTra extends javax.swing.JFrame {
         Integer soSachGioHang = 0;
         Integer viTri = 0;
         String soLuong = JOptionPane.showInputDialog(this, "Nhập số lượng");
+        if (soLuong.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Vui long nhap so luong sach");
+            return;
+        }
         if (!soLuong.matches(regex)) {
             JOptionPane.showMessageDialog(this, "So luong phai la so");
             return;
         }
         if (Integer.valueOf(soLuong) < 0) {
             JOptionPane.showMessageDialog(this, "So luong phai lon hon 0");
+            return;
+        }
+        if (Integer.valueOf(soLuong) == 0) {
             return;
         }
         if (Integer.valueOf(soLuong) > Integer.valueOf(tblSach.getValueAt(row, 2).toString())) {
@@ -1546,17 +1578,17 @@ public class BanHangDoiTra extends javax.swing.JFrame {
             serviceSach.capNhatSoSach(slSachCon, tenSach);
             listSach = serviceSach.listSach();
             loadTableSach(listSach);
-//            for (GioHangVM z : listGioHang) {
-//                if (tenSach.equalsIgnoreCase(z.getTenSach())) {
-//                    soSachGioHang = z.getSoLuong();
-//                    z.setSoLuong(Integer.valueOf(soLuong) + soSachGioHang);
-//                    loadTableGioHang(listGioHang);
-//                    for (GioHangVM s : listGioHang) {
-//                        tongtienGH = tongtienGH + s.getThanhTien();
-//                    }
-//                    txtTongTien.setText(String.valueOf(tongtienGH));
-//                }
-//            }
+            for (GioHangVM z : listGioHang) {
+                if (tenSach.equalsIgnoreCase(z.getTenSach())) {
+                    soSachGioHang = z.getSoLuong();
+                    z.setSoLuong(Integer.valueOf(soLuong) + soSachGioHang);
+                    loadTableGioHang(listGioHang);
+                    for (GioHangVM s : listGioHang) {
+                        tongtienGH = tongtienGH + s.getThanhTien();
+                    }
+                    txtTongTien.setText(String.valueOf(tongtienGH));
+                }
+            }
             GioHangVM x = new GioHangVM();
             x.setTenSach(tblSach.getValueAt(row, 1).toString());
             x.setSoLuong(Integer.valueOf(soLuong));
@@ -1597,8 +1629,14 @@ public class BanHangDoiTra extends javax.swing.JFrame {
             if (txtMaKhachHang.getText().isBlank() || txtTenKhachHang.getText().isBlank() || txtDiemTichLuy.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Chưa chọn khách hàng");
             } else {
-                String diem = JOptionPane.showInputDialog("Nhap so diem can quy doi");
+                String diem = JOptionPane.showInputDialog("Nhap so diem can quy doi(1 diem = 1000 dong)");
+                if (diem.isBlank()) {
+                    JOptionPane.showMessageDialog(this, "Vui long nhap so diem can quy doi");
+                }
                 String regex = "^[0-9]*$";
+                if (Integer.valueOf(diem) == JOptionPane.CLOSED_OPTION) {
+                    return;
+                }
                 if (!diem.matches(regex)) {
                     JOptionPane.showMessageDialog(this, "Diem quy doi can là so");
                 } else {
@@ -1615,10 +1653,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_rdDiemActionPerformed
-
-    private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHActionPerformed
-        new FormKhachHang_Mini().setVisible(true);
-    }//GEN-LAST:event_btnThemKHActionPerformed
 
     private void btnTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHDActionPerformed
         for (int i = 0; i < listBHHoaDon.size(); i++) {
@@ -2042,6 +2076,21 @@ public class BanHangDoiTra extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_txtMaKhachHangCaretUpdate
 
+    private void txtTimKiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemCaretUpdate
+        if (!txtTimKiem.getText().isBlank()) {
+            String text = txtTimKiem.getText();
+            String regex = "^[a-zA-Z]*$";
+            if (!text.matches(regex)) {
+                JOptionPane.showMessageDialog(this, "Ten sach phai la cac chu cai");
+            } else {
+                ArrayList<SachVM> listTimKiem = serviceSach.listSearch(text);
+                loadTableSach(listTimKiem);
+            }
+        } else {
+            return;
+        }
+    }//GEN-LAST:event_txtTimKiemCaretUpdate
+
     /**
      * @param args the command line arguments
      */
@@ -2090,7 +2139,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
     private javax.swing.JButton btnQLSach;
     private javax.swing.JButton btnTaoHD;
     private javax.swing.JButton btnThanhToan;
-    private javax.swing.JButton btnThemKH;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnTimHoaDon;
