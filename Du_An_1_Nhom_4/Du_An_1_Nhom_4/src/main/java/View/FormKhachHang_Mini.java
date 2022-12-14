@@ -29,12 +29,7 @@ public class FormKhachHang_Mini extends javax.swing.JFrame {
     private KhachHang getdataFromInput() {
         KhachHang kh = new KhachHang();
         kh.setDiaChi(txtDiaChi.getText());
-        try {
-            kh.setDiemTichLuy(Integer.parseInt(txtDiem.getText()));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        
+        kh.setDiemTichLuy(0);
         int gt = 0;
         if (rdNam.isSelected() == true) {
             gt = 1;
@@ -75,8 +70,6 @@ public class FormKhachHang_Mini extends javax.swing.JFrame {
         txtSDT = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtDiaChi = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtDiem = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,8 +91,6 @@ public class FormKhachHang_Mini extends javax.swing.JFrame {
 
         jLabel5.setText("Địa chỉ");
 
-        jLabel6.setText("Điểm");
-
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,8 +109,7 @@ public class FormKhachHang_Mini extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel5))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnThem)
@@ -128,11 +118,10 @@ public class FormKhachHang_Mini extends javax.swing.JFrame {
                             .addComponent(rdNam)
                             .addGap(29, 29, 29)
                             .addComponent(rdNu))
-                        .addComponent(txtTenKhachHang)
+                        .addComponent(txtTenKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                         .addComponent(txtNgaySinh)
                         .addComponent(txtSDT)
-                        .addComponent(txtDiaChi)
-                        .addComponent(txtDiem, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
+                        .addComponent(txtDiaChi)))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -160,12 +149,8 @@ public class FormKhachHang_Mini extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addComponent(btnThem)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,21 +172,6 @@ public class FormKhachHang_Mini extends javax.swing.JFrame {
         }
         if (txtSDT.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng không để trống sdt");
-            return;
-        }
-        
-        if (txtDiem.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng không để trống điểm tích lũy ");
-            return;
-        }
-        
-        int diem = Integer.parseInt(txtDiem.getText());
-        if (diem < 0) {
-            JOptionPane.showMessageDialog(this, "Điểm tích lũy > 0");
-            return;
-        }
-        if (diem == 0) {
-            JOptionPane.showMessageDialog(this, "Điểm tích lũy phải là số nguyên");
             return;
         }
         KhachHang kh = getdataFromInput();
@@ -259,11 +229,9 @@ public class FormKhachHang_Mini extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton rdNam;
     private javax.swing.JRadioButton rdNu;
     private javax.swing.JTextField txtDiaChi;
-    private javax.swing.JTextField txtDiem;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenKhachHang;
