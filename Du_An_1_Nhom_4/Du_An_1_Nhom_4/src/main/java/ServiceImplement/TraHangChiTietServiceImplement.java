@@ -4,6 +4,8 @@ import DomainModel.TraHangChiTiet;
 import RepositoryImplement.TraHangChiTietRepositoryImpement;
 import RepositoryInterface.TraHangChiTietRepositoryInteface;
 import ServiceInterface.TraHangChiTietServiceInterface;
+import ViewModel.QLTraHangCT;
+import java.util.List;
 
 /**
  *
@@ -16,6 +18,11 @@ public class TraHangChiTietServiceImplement implements TraHangChiTietServiceInte
     @Override
     public Void themTraHang(TraHangChiTiet x) {
         return repo.theTraHangChiTiet(x);
+    }
+
+    @Override
+    public List<QLTraHangCT> spTraNhieu() {
+        return repo.spTraNhieu();
     }
 
 }

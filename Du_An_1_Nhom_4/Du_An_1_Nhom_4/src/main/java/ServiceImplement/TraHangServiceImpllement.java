@@ -5,6 +5,7 @@ import ViewModel.QLTraHang;
 import java.util.ArrayList;
 import java.util.Date;
 import ServiceInterface.TraHangServiceInterface;
+import java.util.List;
 
 /**
  *
@@ -44,6 +45,11 @@ public class TraHangServiceImpllement implements TraHangServiceInterface {
             return "Thanh cong";
         }
         return "That bai";
+    }
+
+    @Override
+    public List<QLTraHang> tongSP() {
+      return repo.tongSP();
     }
 
 }

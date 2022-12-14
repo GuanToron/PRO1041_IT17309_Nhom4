@@ -20,9 +20,12 @@ public class QLTraHang {
     private Float tienTraLai;
     private String lyDo;
 
+    private int tongPTH;
+    private String spTraNhieu;
     public QLTraHang() {
     }
 
+    
     public QLTraHang(Integer maPTH, Integer maHD, Integer maKH, Integer maNV, Date ngayTra, Float tienTraLai, String lyDo) {
         this.maPTH = maPTH;
         this.maHD = maHD;
@@ -33,6 +36,32 @@ public class QLTraHang {
         this.lyDo = lyDo;
     }
 
+    public QLTraHang(int tongPTH) {
+        this.tongPTH = tongPTH;
+    }
+
+    public QLTraHang(String spTraNhieu) {
+        this.spTraNhieu = spTraNhieu;
+    }
+
+    public int getTongPTH() {
+        return tongPTH;
+    }
+
+    public void setTongPTH(int tongPTH) {
+        this.tongPTH = tongPTH;
+    }
+
+    public String getSpTraNhieu() {
+        return spTraNhieu;
+    }
+
+    public void setSpTraNhieu(String spTraNhieu) {
+        this.spTraNhieu = spTraNhieu;
+    }
+
+    
+    
     public Integer getMaPTH() {
         return maPTH;
     }
