@@ -1,6 +1,8 @@
 package ServiceInterface;
 
 import DomainModel.TraHangChiTiet;
+import ViewModel.QLTraHangCT;
+import java.util.List;
 
 /**
  *
@@ -9,4 +11,5 @@ import DomainModel.TraHangChiTiet;
 public interface TraHangChiTietServiceInterface {
 
     Void themTraHang(TraHangChiTiet x);
+    List<QLTraHangCT> spTraNhieu();
 }

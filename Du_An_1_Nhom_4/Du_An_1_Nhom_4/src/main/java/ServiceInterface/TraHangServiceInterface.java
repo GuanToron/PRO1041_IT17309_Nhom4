@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 
 import ViewModel.QLTraHang;
+import java.util.List;
 
 /**
  *
@@ -19,5 +20,7 @@ public interface TraHangServiceInterface {
     String xoaPTH(String MaPTH);
 
     String suaPTH(QLTraHang x,String MaPTH);
+    
+    List<QLTraHang> tongSP();
 
 }

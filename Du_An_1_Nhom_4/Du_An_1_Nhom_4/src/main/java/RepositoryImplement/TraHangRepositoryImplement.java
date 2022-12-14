@@ -7,6 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Utilities.DBConection;
 import ViewModel.QLTraHang;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +18,7 @@ import ViewModel.QLTraHang;
  */
 public class TraHangRepositoryImplement {
 
+    private List<QLTraHang> list;
     public ArrayList<QLTraHang> listTraHang() {
         String query = "SELECT PHIEUTRAHANG.MaPTH, PHIEUTRAHANG.MaHD,PHIEUTRAHANG.MaKH, PHIEUTRAHANG.MaNV, PHIEUTRAHANG.NgayTra, PHIEUTRAHANG.SoTienTraLai, PHIEUTRAHANG.LyDoTra\n"
                 + "FROM PHIEUTRAHANG";
@@ -79,5 +84,19 @@ public class TraHangRepositoryImplement {
             e.printStackTrace();
         }
         return check > 0;
+    }
+    
+     public List<QLTraHang> tongSP() {
+      list = new ArrayList<>();
+      String sql = "select count(MaPTH) from PHIEUTRAHANG";
+      ResultSet rs = DBConection.excutequery(sql);
+        try {
+            while(rs.next()){
+                list.add(new QLTraHang(rs.getInt(1)));
+                //System.out.println(list);
+            } } catch (SQLException ex) {
+            Logger.getLogger(TraHangChiTietRepositoryImpement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 }
