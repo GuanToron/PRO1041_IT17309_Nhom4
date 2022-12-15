@@ -7,6 +7,8 @@
         <Property name="text" type="java.lang.String" value="L&#xfd; do Tr&#x1ea3;"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -346,6 +348,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rdCho">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroup1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x110;ang ch&#x1edd;"/>
                   </Properties>
                   <Events>
@@ -354,6 +359,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rdChuaThanhToan">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroup1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Ch&#x1b0;a thanh to&#xe1;n"/>
                   </Properties>
                   <Events>
