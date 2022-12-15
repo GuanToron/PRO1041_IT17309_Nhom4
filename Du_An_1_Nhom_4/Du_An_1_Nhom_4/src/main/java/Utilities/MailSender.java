@@ -23,6 +23,8 @@ public class MailSender {
     private final static String emailGui = "xtruongtdo2003@gmail.com";
     private final static String matKhau = "gxrqtrsjjguzlfql";
 
+    
+    
     public static void guiMail(String emailNhan,
             String tieuDe, String noiDung)
             throws AddressException, MessagingException {

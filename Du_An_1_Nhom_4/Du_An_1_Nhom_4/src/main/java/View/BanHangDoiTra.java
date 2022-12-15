@@ -413,6 +413,7 @@ public class BanHangDoiTra extends javax.swing.JFrame {
     private void initComponents() {
 
         lblLyDoTra = new javax.swing.JLabel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         SidePanel = new javax.swing.JPanel();
         btnTrangChu = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -644,6 +645,7 @@ public class BanHangDoiTra extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("DANH SÁCH HOÁ ĐƠN CHỜ");
 
+        buttonGroup1.add(rdCho);
         rdCho.setText("Đang chờ");
         rdCho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -651,6 +653,7 @@ public class BanHangDoiTra extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(rdChuaThanhToan);
         rdChuaThanhToan.setText("Chưa thanh toán");
         rdChuaThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1397,9 +1400,10 @@ public class BanHangDoiTra extends javax.swing.JFrame {
         tblhdchuathanhtoan.setRowCount(0);
         List<HoaDonVM> listhdcho = serviceBHHoaDon.loaddangcho();
         for (HoaDonVM hd : listhdcho) {
-            tblhdchuathanhtoan.addRow(new Object[]{hd.getMaHoaDon(), hd.getMaKhachHang(), hd.getMaNhanVien(), hd.getNgayTao(), hd.getTrangThai() == 1 ? "Chưa thanh toán" : "Đang chờ "});
+            tblhdchuathanhtoan.addRow(new Object[]{hd.getMaHoaDon(), hd.getTenKhachHang(), hd.getTenNhanVien(), hd.getNgayTao(), hd.getTrangThai()== 1 ? "Chưa thanh toán" : "Đang chờ "});
         }
 
+        
     }//GEN-LAST:event_rdChoActionPerformed
 
     private void rdChuaThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdChuaThanhToanActionPerformed
@@ -1407,8 +1411,9 @@ public class BanHangDoiTra extends javax.swing.JFrame {
         tblhdchuathanhtoan.setRowCount(0);
         List<HoaDonVM> listhdcho = serviceBHHoaDon.loadchuathanhtoan();
         for (HoaDonVM hd : listhdcho) {
-            tblhdchuathanhtoan.addRow(new Object[]{hd.getMaHoaDon(), hd.getMaKhachHang(), hd.getMaNhanVien(), hd.getNgayTao(), hd.getTrangThai() == 1 ? "Chưa thanh toán" : "Đang chờ "});
+            tblhdchuathanhtoan.addRow(new Object[]{hd.getMaHoaDon(), hd.getTenKhachHang(), hd.getTenNhanVien(), hd.getNgayTao(), hd.getTrangThai() == 1 ? "Chưa thanh toán" : "Đang chờ "});
         }
+
     }//GEN-LAST:event_rdChuaThanhToanActionPerformed
 
     private void tblBHHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBHHoaDonMouseClicked
@@ -2145,6 +2150,7 @@ public class BanHangDoiTra extends javax.swing.JFrame {
     private javax.swing.JButton btnTimTenSach;
     private javax.swing.JButton btnTrangChu;
     private javax.swing.JButton btnXoaGioHang;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbChiTetDanhMuc;
     private javax.swing.JComboBox<String> cbDanhMucSearch;
     private javax.swing.JButton jButton2;
