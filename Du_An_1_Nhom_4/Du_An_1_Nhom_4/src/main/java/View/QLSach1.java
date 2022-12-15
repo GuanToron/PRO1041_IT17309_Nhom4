@@ -2482,7 +2482,7 @@ public class QLSach1 extends javax.swing.JFrame {
                     MailSender m = new MailSender();
                     try {
                         m.guiMail("truongnxph23532@fpt.edu.vn", "Bao cao doi hang ngay " + date, "Hom nay sach co sach " + txtTenSach.getText() + "doi " + txtSoLuong.getText() + " cuon" + "\n" + "Ly do doi: " + txtLyDoDoi.getText());
-                        JOptionPane.showMessageDialog(this, "Ðã g?i");
+                        JOptionPane.showMessageDialog(this, "Ðã gửi");
                     } catch (MessagingException ex) {
                         Logger.getLogger(QLSach1.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -2531,7 +2531,7 @@ public class QLSach1 extends javax.swing.JFrame {
                     MailSender m = new MailSender();
                     try {
                         m.guiMail("truongnxph23532@fpt.edu.vn", "Bao cao doi hang ngay " + date, "Hom nay sach co sach " + txtTenSach.getText() + "huy doi tra " + txtSoLuong.getText() + " cuon");
-                        JOptionPane.showMessageDialog(this, "Ðã g?i");
+                        JOptionPane.showMessageDialog(this, "Ðã gửi");
                     } catch (MessagingException ex) {
                         Logger.getLogger(QLSach1.class.getName()).log(Level.SEVERE, null, ex);
                     }

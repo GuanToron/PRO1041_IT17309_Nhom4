@@ -29,7 +29,7 @@ public class SachVMRepositoryImplement implements SachVMRepositoryInterface {
     @Override
     public ArrayList<SachVM> listSach() {
         ArrayList<SachVM> listSach = new ArrayList<>();
-        String query = "SELECT MaSach,TenSach,SoLuong,GiaBan FROM SACH";
+        String query = "SELECT MaSach,TenSach,SoLuong,GiaBan FROM SACH where SoLuong >0";
         ResultSet rs = DBConection.excutequery(query);
         try {
             while (rs.next()) {
