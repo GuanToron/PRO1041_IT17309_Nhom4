@@ -132,6 +132,7 @@ public class FormThongKe extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         lblsokh = new javax.swing.JLabel();
+        btnbaocao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -594,6 +595,13 @@ public class FormThongKe extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        btnbaocao.setText("Gủi báo cáo ");
+        btnbaocao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbaocaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -621,7 +629,9 @@ public class FormThongKe extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton5)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnclear)))
+                                .addComponent(btnclear)
+                                .addGap(49, 49, 49)
+                                .addComponent(btnbaocao)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -640,7 +650,8 @@ public class FormThongKe extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtngaytao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5)
-                    .addComponent(btnclear))
+                    .addComponent(btnclear)
+                    .addComponent(btnbaocao))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -788,6 +799,21 @@ public class FormThongKe extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void btnbaocaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbaocaoActionPerformed
+        int row = tbldoanhThu.getSelectedRow();
+        int choice = JOptionPane.showConfirmDialog(this, "Ban co muon gui bao cao khong?");
+        if (choice == JOptionPane.OK_OPTION) {
+            Date date = new Date();
+            MailSender m = new MailSender();
+            try {
+                m.guiMail("sonnddph26841@fpt.edu.vn", "Báo cáo hằng ngày" + date, "Thời gian" + tbldoanhThu.getValueAt(row, 0) + " Doanh thu" + tbldoanhThu.getValueAt(row, 1) + " VNĐ" + "\n");
+                JOptionPane.showMessageDialog(this, "Ðã gửi");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnbaocaoActionPerformed
+
 //    Top sản phẩm được mua nhiều nhất 
 //Top sản phẩm được mua ít nhất 
 //Top sản phẩm doanh thu nhiều nhất 
@@ -889,6 +915,7 @@ public class FormThongKe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnbaocao;
     private javax.swing.JButton btnchon;
     private javax.swing.JButton btnclear;
     private javax.swing.JButton btnclearSP;
