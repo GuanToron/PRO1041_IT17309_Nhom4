@@ -2476,12 +2476,16 @@ public class QLSach1 extends javax.swing.JFrame {
                 listSPL.removeAll(listSPL);
                 listSPL = serviceSPL.getAll();
                 loadTableSachLoi(listSPL);
-                int choice = JOptionPane.showConfirmDialog(this, "Ban co muon gui bao cao khong?");
+                int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn gửi báo cáo không?");
                 if (choice == JOptionPane.OK_OPTION) {
                     Date date = new Date();
                     MailSender m = new MailSender();
                     try {
-                        m.guiMail("truongnxph23532@fpt.edu.vn", "Bao cao doi hang ngay " + date, "Hom nay sach co sach " + txtTenSach.getText() + "doi " + txtSoLuong.getText() + " cuon" + "\n" + "Ly do doi: " + txtLyDoDoi.getText());
+
+//                        m.guiMail("truongnxph23532@fpt.edu.vn", "Bao cao doi hang ngay " + date, "Hom nay sach co sach " + txtTenSach.getText() + "doi " + txtSoLuong.getText() + " cuon" + "\n" + "Ly do doi: " + txtLyDoDoi.getText());
+
+                        m.guiMail("sonnddph26841@fpt.edu.vn", "Báo cáo đổi hằng ngày" + date, "Hôm nay có sách" + txtTenSach.getText() + "đổi" + txtSoLuong.getText() + " cuốn" + "\n" + "Lý do đổi: " + txtLyDoDoi.getText());
+
                         JOptionPane.showMessageDialog(this, "Ðã gửi");
                     } catch (MessagingException ex) {
                         Logger.getLogger(QLSach1.class.getName()).log(Level.SEVERE, null, ex);
