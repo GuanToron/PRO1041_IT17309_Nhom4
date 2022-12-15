@@ -23,10 +23,15 @@ import ServiceInterface.NPHServiceInterface;
 import ServiceInterface.SachService;
 import ServiceInterface.TGServiceInterface;
 import ServiceInterface.TLServiceInterface;
+import Utilities.MailSender;
 import ViewModel.QLSanPhamLoi;
 import ViewModel.SachVML;
 import ViewModel.SachViewmodel;
+import jakarta.mail.MessagingException;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -1177,6 +1182,11 @@ public class QLSach1 extends javax.swing.JFrame {
         tblDSSach.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDSSachMouseClicked(evt);
+            }
+        });
+        tblDSSach.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblDSSachKeyPressed(evt);
             }
         });
         jScrollPane9.setViewportView(tblDSSach);
@@ -2436,6 +2446,7 @@ public class QLSach1 extends javax.swing.JFrame {
             txtMaSach.setText(String.valueOf(x.getMaSach()));
             txtTenSach.setText(x.getTenSach());
             txtNhaPhatHanh.setText(x.getTenNPH());
+            txtSoLuong.setText("");
         }
     }//GEN-LAST:event_tblDSSachMouseClicked
 
@@ -2453,6 +2464,8 @@ public class QLSach1 extends javax.swing.JFrame {
             Integer maSach = x.getMaSach();
             if (soSachDoi > soSachBanDau) {
                 JOptionPane.showMessageDialog(this, "Sach doi dang nhieu hon sach co, vui long xem lai");
+            } else if (soSachDoi == 0) {
+                return;
             } else {
                 String themSPL = serviceSPL.add(x);
                 Integer soSachCon = soSachBanDau - soSachDoi;
@@ -2463,6 +2476,17 @@ public class QLSach1 extends javax.swing.JFrame {
                 listSPL.removeAll(listSPL);
                 listSPL = serviceSPL.getAll();
                 loadTableSachLoi(listSPL);
+                int choice = JOptionPane.showConfirmDialog(this, "Ban co muon gui bao cao khong?");
+                if (choice == JOptionPane.OK_OPTION) {
+                    Date date = new Date();
+                    MailSender m = new MailSender();
+                    try {
+                        m.guiMail("truongnxph23532@fpt.edu.vn", "Bao cao doi hang ngay " + date, "Hom nay sach co sach " + txtTenSach.getText() + "doi " + txtSoLuong.getText() + " cuon" + "\n" + "Ly do doi: " + txtLyDoDoi.getText());
+                        JOptionPane.showMessageDialog(this, "Ðã g?i");
+                    } catch (MessagingException ex) {
+                        Logger.getLogger(QLSach1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
     }//GEN-LAST:event_btnDoiSachActionPerformed
@@ -2486,15 +2510,38 @@ public class QLSach1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Chua chon sach loi");
             return;
         } else {
+            lisstSach = serviceSach.listSach();
             String maSanPhamLoi = txtMaSanPhamLoi.getText();
             Integer huy = serviceSPL.delete(maSanPhamLoi);
             if (huy < 0) {
                 JOptionPane.showMessageDialog(this, "No OK");
             } else {
                 JOptionPane.showMessageDialog(this, "OK");
+                Integer soLuongHoan = 0;
+                Integer soLuongDoi = Integer.valueOf(txtSoLuong.getText());
+                Integer maSach = Integer.valueOf(txtMaSach.getText());
+                for (SachVML x : lisstSach) {
+                    if (x.getMaSach() == maSach) {
+                        soLuongHoan = soLuongDoi + x.getSoLuong();
+                    }
+                }
+                int choice = JOptionPane.showConfirmDialog(this, "Ban co muon gui bao cao khong?");
+                if (choice == JOptionPane.OK_OPTION) {
+                    Date date = new Date();
+                    MailSender m = new MailSender();
+                    try {
+                        m.guiMail("truongnxph23532@fpt.edu.vn", "Bao cao doi hang ngay " + date, "Hom nay sach co sach " + txtTenSach.getText() + "huy doi tra " + txtSoLuong.getText() + " cuon");
+                        JOptionPane.showMessageDialog(this, "Ðã g?i");
+                    } catch (MessagingException ex) {
+                        Logger.getLogger(QLSach1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                serviceSach.capNhat(maSach, soLuongHoan);
                 listSPL.removeAll(listSPL);
                 listSPL = serviceSPL.getAll();
                 loadTableSachLoi(listSPL);
+                lisstSach = serviceSach.listSach();
+                loadTable(lisstSach);
             }
         }
     }//GEN-LAST:event_btnHuyActionPerformed
@@ -2505,10 +2552,11 @@ public class QLSach1 extends javax.swing.JFrame {
         txtLyDoDoi.setText("");
         txtNhaPhatHanh.setText("");
         txtSoLuong.setText("");
+        txtMaSach.setText("");
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-       this.dispose();
+        this.dispose();
         new FormThongKe().setVisible(true);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
@@ -2524,6 +2572,10 @@ public class QLSach1 extends javax.swing.JFrame {
             new LoginView().setVisible(true);
         }
     }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void tblDSSachKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDSSachKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDSSachKeyPressed
     private SanPhamLoi getSanPhamLoiTuSach() {
         SanPhamLoi x = new SanPhamLoi();
         int maNPH = 0;
