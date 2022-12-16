@@ -1404,10 +1404,10 @@ public class BanHangDoiTra extends javax.swing.JFrame {
         tblhdchuathanhtoan.setRowCount(0);
         List<HoaDonVM> listhdcho = serviceBHHoaDon.loaddangcho();
         for (HoaDonVM hd : listhdcho) {
-            tblhdchuathanhtoan.addRow(new Object[]{hd.getMaHoaDon(), hd.getTenKhachHang(), hd.getTenNhanVien(), hd.getNgayTao(), hd.getTrangThai()== 1 ? "Chưa thanh toán" : "Đang chờ "});
+            tblhdchuathanhtoan.addRow(new Object[]{hd.getMaHoaDon(), hd.getTenKhachHang(), hd.getTenNhanVien(), hd.getNgayTao(), hd.getTrangThai() == 1 ? "Chưa thanh toán" : "Đang chờ "});
         }
 
-        
+
     }//GEN-LAST:event_rdChoActionPerformed
 
     private void rdChuaThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdChuaThanhToanActionPerformed
@@ -1587,17 +1587,6 @@ public class BanHangDoiTra extends javax.swing.JFrame {
             serviceSach.capNhatSoSach(slSachCon, tenSach);
             listSach = serviceSach.listSach();
             loadTableSach(listSach);
-            for (GioHangVM z : listGioHang) {
-                if (tenSach.equalsIgnoreCase(z.getTenSach())) {
-                    soSachGioHang = z.getSoLuong();
-                    z.setSoLuong(Integer.valueOf(soLuong) + soSachGioHang);
-                    loadTableGioHang(listGioHang);
-                    for (GioHangVM s : listGioHang) {
-                        tongtienGH = tongtienGH + s.getThanhTien();
-                    }
-                    txtTongTien.setText(String.valueOf(tongtienGH));
-                }
-            }
             GioHangVM x = new GioHangVM();
             x.setTenSach(tblSach.getValueAt(row, 1).toString());
             x.setSoLuong(Integer.valueOf(soLuong));
@@ -1866,6 +1855,8 @@ public class BanHangDoiTra extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, serviceBHHoaDon.capNhatHDThanhToan(x));
                 listSach = serviceSach.listSach();
                 loadTableSach(listSach);
+                listBHHoaDon = serviceBHHoaDon.listHDVM();
+                loadTableBanHangHoaDon(listBHHoaDon);
                 clear();
             } else {
                 return;
@@ -2111,9 +2102,8 @@ public class BanHangDoiTra extends javax.swing.JFrame {
 //          txtMaSach.setText(tblTraHang.getValueAt(row, 0).toString());
 //          txtNgayTao1.setText(tblTraHang.getValueAt(row, 0).toString());
 //          txtSoTienTraLai.setText(tblTraHang.getValueAt(row, 7).toString());
-          
-                  
-                  
+
+
     }//GEN-LAST:event_tblTraHangMouseClicked
 
     /**

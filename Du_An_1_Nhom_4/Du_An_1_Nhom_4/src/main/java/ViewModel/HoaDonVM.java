@@ -51,7 +51,6 @@ public class HoaDonVM implements Serializable {
         this.trangThai = trangThai;
     }
 
-    
     public HoaDonVM(Integer maHoaDon, String tenKhachHang, String tenNhanVien, Date ngayTao, float tongTien, Integer trangThai) {
         this.maHoaDon = maHoaDon;
         this.tenKhachHang = tenKhachHang;
@@ -76,7 +75,6 @@ public class HoaDonVM implements Serializable {
 //        this.ngayTao = ngayTao;
 //        this.tongTien = tongTien;
 //    }
-
     public String getTenKhachHang() {
         return tenKhachHang;
     }
@@ -219,6 +217,8 @@ public class HoaDonVM implements Serializable {
         for (QLKhachHang x : listKhachHang) {
             if (x.getMaKH() == this.maKhachHang) {
                 tenKhachHang = x.getTenKH();
+            } else if (x.getMaKH() == 0) {
+                tenKhachHang = "Khách Le";
             }
         }
         return tenKhachHang;
