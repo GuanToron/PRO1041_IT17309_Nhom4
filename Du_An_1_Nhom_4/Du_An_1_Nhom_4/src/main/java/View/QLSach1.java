@@ -2229,7 +2229,6 @@ public class QLSach1 extends javax.swing.JFrame {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String text = txtTimKiem.getText();
-        listSach = serviceSach.getlist();
         ArrayList<SachViewmodel> listSearch = serviceSach.listSearch(listSach, text);
         loadTableSach(listSearch);
     }//GEN-LAST:event_btnTimKiemActionPerformed
