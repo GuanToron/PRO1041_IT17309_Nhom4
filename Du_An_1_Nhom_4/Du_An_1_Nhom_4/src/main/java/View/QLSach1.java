@@ -437,7 +437,6 @@ public class QLSach1 extends javax.swing.JFrame {
         btnTimKiem = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cbChiTetDanhMuc = new javax.swing.JComboBox<>();
-        btnLoc = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtTaiBan = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -788,11 +787,9 @@ public class QLSach1 extends javax.swing.JFrame {
         jLabel1.setText("SÁCH");
 
         cbChiTetDanhMuc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        btnLoc.setText("Tìm");
-        btnLoc.addActionListener(new java.awt.event.ActionListener() {
+        cbChiTetDanhMuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocActionPerformed(evt);
+                cbChiTetDanhMucActionPerformed(evt);
             }
         });
 
@@ -807,8 +804,6 @@ public class QLSach1 extends javax.swing.JFrame {
                 .addComponent(cbDanhMucSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cbChiTetDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLoc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -834,8 +829,7 @@ public class QLSach1 extends javax.swing.JFrame {
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbDanhMucSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44)
-                    .addComponent(cbChiTetDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLoc))
+                    .addComponent(cbChiTetDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -2360,12 +2354,6 @@ public class QLSach1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTimTheLoaiActionPerformed
 
-    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
-        String text = (String) cbChiTetDanhMuc.getSelectedItem();
-        ArrayList<SachViewmodel> listLoc = serviceSach.listLoc(listSach, text);
-        loadTableSach(listLoc);
-    }//GEN-LAST:event_btnLocActionPerformed
-
     private void cbDanhMucSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDanhMucSearchItemStateChanged
         String text = (String) cbDanhMucSearch.getSelectedItem();
         if (text.equalsIgnoreCase("Tác giả")) {
@@ -2580,6 +2568,12 @@ public class QLSach1 extends javax.swing.JFrame {
     private void tblDSSachKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDSSachKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_tblDSSachKeyPressed
+
+    private void cbChiTetDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbChiTetDanhMucActionPerformed
+ String text = (String) cbChiTetDanhMuc.getSelectedItem();
+        ArrayList<SachViewmodel> listLoc = serviceSach.listLoc(listSach, text);
+        loadTableSach(listLoc);        // TODO add your handling code here:
+    }//GEN-LAST:event_cbChiTetDanhMucActionPerformed
     private SanPhamLoi getSanPhamLoiTuSach() {
         SanPhamLoi x = new SanPhamLoi();
         int maNPH = 0;
@@ -2643,7 +2637,6 @@ public class QLSach1 extends javax.swing.JFrame {
     private javax.swing.JButton btnDoiSach;
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnLamMoi;
-    private javax.swing.JButton btnLoc;
     private javax.swing.JButton btnQLHoaDon;
     private javax.swing.JButton btnQLKhachHang;
     private javax.swing.JButton btnQLNhanVien;
