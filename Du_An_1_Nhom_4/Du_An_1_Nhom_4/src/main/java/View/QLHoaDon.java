@@ -43,7 +43,7 @@ public class QLHoaDon extends javax.swing.JFrame {
                 hDVM.getMaNhanVien(),
                 hDVM.getNgayTao(),
                 hDVM.getTongTien(),
-                hDVM.getTrangThai()});
+                hDVM.getTrangThai() == 2 ? "Đã thanh toán" :"Chưa thanh toán"});
         }
     }
 

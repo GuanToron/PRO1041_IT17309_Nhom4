@@ -196,6 +196,7 @@ public class FormHoaDon extends javax.swing.JFrame {
         dtNgayKetThuc = new com.toedter.calendar.JDateChooser();
         txtTenKH = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -398,6 +399,8 @@ public class FormHoaDon extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Tìm theo tên ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -426,9 +429,12 @@ public class FormHoaDon extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnLocHoaDon)
                                 .addGap(34, 34, 34)))
-                        .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTimKiem))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTimKiem))
+                            .addComponent(jLabel1)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,7 +454,8 @@ public class FormHoaDon extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblTuNgay)
-                                    .addComponent(lblDenNgay))
+                                    .addComponent(lblDenNgay)
+                                    .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dtNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -665,6 +672,7 @@ public class FormHoaDon extends javax.swing.JFrame {
     private javax.swing.JButton btnTrangChu;
     private com.toedter.calendar.JDateChooser dtNgayBatDau;
     private com.toedter.calendar.JDateChooser dtNgayKetThuc;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
