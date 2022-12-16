@@ -6,6 +6,7 @@ import ServiceImplement.manageKhachHangService;
 import ServiceInterface.ImanageKhachHangService;
 import ServiceInterface.NhanVienService;
 import java.io.Serializable;
+import static java.sql.JDBCType.NULL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,6 +44,16 @@ public class HoaDonVM implements Serializable {
     private Integer trangThai;
     private int soHD;
 
+
+    public HoaDonVM(Integer maHoaDon, String tenKhachHang, String tenNhanVien, Date ngayTao, Integer trangThai) {
+        this.maHoaDon = maHoaDon;
+        this.tenKhachHang = tenKhachHang;
+        this.tenNhanVien = tenNhanVien;
+        this.ngayTao = ngayTao;
+        this.trangThai = trangThai;
+    }
+
+
     public HoaDonVM(Integer maHoaDon, String tenKhachHang, String tenNhanVien, Date ngayTao, float tongTien, Integer trangThai) {
         this.maHoaDon = maHoaDon;
         this.tenKhachHang = tenKhachHang;
@@ -59,6 +70,7 @@ public class HoaDonVM implements Serializable {
         this.ngayTao = ngayTao;
         this.trangThai = trangThai;
     }
+
 
     public HoaDonVM(Integer maHoaDon, String tenKhachHang, String tenNhanVien, Date ngayTao, float tongTien) {
         this.maHoaDon = maHoaDon;
@@ -220,7 +232,7 @@ public class HoaDonVM implements Serializable {
     }
 
     public Object[] toDataRow4() {
-        return new Object[]{maHoaDon, tenKhachHang(), tenNhanVien(), ngayTao, trangThaiHD()};
+        return new Object[]{maHoaDon, maKhachHang, tenNhanVien(), ngayTao, trangThaiHD()};
     }
 
     public Object[] toDataRow3() {
