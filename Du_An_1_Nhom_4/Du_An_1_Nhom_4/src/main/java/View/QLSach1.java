@@ -100,6 +100,7 @@ public class QLSach1 extends javax.swing.JFrame {
         loadTableTG(listTG);
         loadTableTL(listTL);
         loadTableNPH(listNPH);
+        loadTableDM(listDM);
         loadTableNXB();
         loadTable(lisstSach);
         loadTableSachLoi(listSPL);
@@ -2822,11 +2823,11 @@ public class QLSach1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Con trong du lieu");
             return false;
         }
-        String regex = "^[a-zA-Z]*$";
-        if (!txtTenSach1.getText().matches(regex)) {
-            JOptionPane.showMessageDialog(this, "Ten sach chi duoc la chu");
-            return false;
-        }
+//        String regex = "^[a-zA-Z]*$";
+//        if (!txtTenSach1.getText().matches(regex)) {
+//            JOptionPane.showMessageDialog(this, "Ten sach chi duoc la chu");
+//            return false;
+//        }
         try {
             Integer soLuong = Integer.parseInt(txtSoLuong1.getText());
             if (soLuong <= 0) {
