@@ -1115,7 +1115,7 @@ public class QLSach1 extends javax.swing.JFrame {
                     .addComponent(btnXoaSach)
                     .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(31, 31, 31)
+                .addGap(24, 24, 24)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1337,7 +1337,7 @@ public class QLSach1 extends javax.swing.JFrame {
                     .addComponent(btnDoiSach)
                     .addComponent(btnLamMoi)
                     .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1663,7 +1663,7 @@ public class QLSach1 extends javax.swing.JFrame {
                     .addComponent(btnXoaNPH)
                     .addComponent(btnSuaNPH))
                 .addGap(15, 15, 15)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2230,7 +2230,7 @@ public class QLSach1 extends javax.swing.JFrame {
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String text = txtTimKiem.getText();
         ArrayList<SachViewmodel> listSearch = serviceSach.listSearch(listSach, text);
-        loadTableSach(listSach);
+        loadTableSach(listSearch);
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -2307,15 +2307,15 @@ public class QLSach1 extends javax.swing.JFrame {
     }//GEN-LAST:event_tblSachMouseClicked
 
     private void btnThemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSachActionPerformed
-//        Boolean check = themSach();
-////        if (check) {
+        Boolean check = themSach();
+        if (check) {
         Sach x = getSach();
         JOptionPane.showMessageDialog(this, serviceSach.add(x));
         listSach = serviceSach.getlist();
         loadTableSach(listSach);
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Vui long xem lai du lieu");
-//        }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui long xem lai du lieu");
+        }
     }//GEN-LAST:event_btnThemSachActionPerformed
 
     private void btnSearchTacGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchTacGiaActionPerformed
